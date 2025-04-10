@@ -3,6 +3,8 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 let options = {
     method: "GET", // HTTP method (e.g., GET, POST, PUT, DELETE)
     headers: {
@@ -14,19 +16,19 @@ let options = {
 // response status is 400 : Not Found
 // response status is 500 : Server Error
 
-let promise = fetch("http://localhost:5000", options)
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json(); // Parse JSON response
-    })
-    .then( function(data) {
-        console.log("Data received:", data);    
-    })
-    .catch((error) => { 
-        console.error("Error fetching data:", error);   
-    });
+// let promise = fetch("http://localhost:5000", options)
+//     .then((response) => {
+//         if (!response.ok) {
+//             throw new Error(`HTTP error! Status: ${response.status}`);
+//         }
+//         return response.json(); // Parse JSON response
+//     })
+//     .then( function(data) {
+//         console.log("Data received:", data);    
+//     })
+//     .catch((error) => { 
+//         console.error("Error fetching data:", error);   
+//     });
 
 app.get("/test-fetch", (req, res) => {
     res.sendFile(path.join(__dirname +'/' ,"test.html"));
@@ -51,6 +53,11 @@ app.get("/", (req, res) => {
 
 app.get("/admin-login", (req,res) => {
     res.sendFile(path.join(__dirname + '/', "login.html"))
+});
+
+app.get("/home", (req, res) => {
+    res.sendFile(path.join(__dirname +'/' ,"home.html"));
+    
 });
 
 
