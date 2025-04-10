@@ -14,23 +14,22 @@ let options = {
 // response status is 400 : Not Found
 // response status is 500 : Server Error
 
-// let promise = fetch("http://localhost:5000", options)
-//     .then((response) => {
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! Status: ${response.status}`);
-//         }
-//         return response.json(); // Parse JSON response
-//     })
-//     .then( function(data) {
-//         console.log("Data received:", data);    
-//     })
-//     .catch((error) => { 
-//         console.error("Error fetching data:", error);   
-//     });
+let promise = fetch("http://localhost:5000", options)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json(); // Parse JSON response
+    })
+    .then( function(data) {
+        console.log("Data received:", data);    
+    })
+    .catch((error) => { 
+        console.error("Error fetching data:", error);   
+    });
 
 app.get("/test-fetch", (req, res) => {
-    res.sendFile(path.join(__dirname +'/html' ,"test.html"));
-    
+    res.sendFile(path.join(__dirname +'/' ,"test.html"));
 });
 
 app.get("/", (req, res) => {
@@ -49,6 +48,11 @@ app.get("/", (req, res) => {
         console.error("Error fetching data:", error);   
     });
 });
+
+app.get("/admin-login", (req,res) => {
+    res.sendFile(path.join(__dirname + '/', "login.html"))
+});
+
 
 // Start the server
 app.listen(port, () => {

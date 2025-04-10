@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login-styles.css" />
+    <title>Administrators Login</title>
+  </head>
+  <body>
+    <div class="admin-login-page">
+      <header class="main-header">
+        <nav class="nav-bar">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/50b9c1a10b1b6d9f016658928daf3e9eccc280bc?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Logo" class="logo-image" />
+
+          <div class="search-container">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cef9fa138ea3cceb7a78d37bb4a95a7124782853" alt="Search Icon" class="search-icon" />
+            <input
+              type="text"
+              class="search-input"
+              placeholder="Search..."
+              aria-label="Search"
+            />
+            <button class="search-button" aria-label="Submit search">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/40d8bde33849d067b0b32caa7ed20e348763fbfb"
+                alt="Search Button Icon"
+                class="search-button-icon"
+              />
+            </button>
+          </div>
+
+          <div class="user-icons">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e4c8c8ec3f83c27319c85c073fc4227505c84178?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="User Icon" class="user-icon" />
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/24bec2b08ae5ed6fe80d6b9edc43ed0dde918905?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Settings Icon" class="settings-icon" />
+          </div>
+        </nav>
+      </header>
+
+      <main class="login-content">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/bc5d783ce8d85d4a02a55e77aae9138b9e47d81a?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Admin Logo" class="admin-logo" />
+
+        <h1 class="login-heading">Administrators Login</h1>
+
+        <form class="login-form" action="#" method="post">
+          <div class="form-field">
+            <label for="username" class="field-label">Username</label>
+            <input
+              type="text"
+              id="username"
+              class="field-input"
+              placeholder="Username"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="password" class="field-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="field-input"
+              placeholder="Password"
+              required
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="sign-in-button">Sign In</button>
+          </div>
+
+          <a href="#" class="forgot-password">Forgot password?</a>
+        </form>
+      </main>
+    </div>
+
+    <script>
+      document
+        .querySelector(".search-button")
+        .addEventListener("click", function () {
+          window.location.href = "/search";
+        });
+    </script>
+  </body>
+</html>
