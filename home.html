@@ -1,0 +1,170 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cafe Discovery</title>
+    <link rel="stylesheet" href="home-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons@1.68.0/iconfont/tabler-icons.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="main-header">
+        <nav class="main-nav">
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e93ec0778ca81c8749f0be063a2ed548ae9d4cda" alt="Logo" class="logo" />
+
+          <div class="search-container">
+            <div class="search-icon">
+              <img src=""/>
+            </div>
+            <input type="text" placeholder="Search..." class="search-input" />
+            <div class="add-button">
+              <i class="ti ti-plus"></i>
+            </div>
+          </div>
+
+          <div class="user-actions">
+            <button aria-label="Settings" class="icon-button">
+              <i class="ti ti-settings"></i>
+            </button>
+            <button aria-label="User profile" class="icon-button">
+              <i class="ti ti-user"></i>
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      <main class="main-content">
+        <section class="slider-section" aria-label="Featured cafes">
+          <div class="slider-container">
+            <div class="slider-track" id="sliderTrack">
+              <img
+                src="/Project Builder/img/Cafe/Starbuck1.jpg"
+                alt="Slider image"
+                class="slider-image"
+              />
+              <img
+                src="/Project Builder/img/Cafe/Starbuck2.jpg"
+                alt="Slider image"
+                class="slider-image"
+              />
+              <img
+                src="/Project Builder/img/Cafe/Starbuck3.jpg"
+                alt="Slider image"
+                class="slider-image"
+              />
+            </div>
+
+            <button
+              class="slider-button prev-button"
+              aria-label="Previous slide"
+            >
+              <i class="ti ti-chevron-left"></i>
+            </button>
+
+            <button class="slider-button next-button" aria-label="Next slide">
+              <i class="ti ti-chevron-right"></i>
+            </button>
+
+            <div class="slider-indicators">
+              <button
+                class="indicator-dot active"
+                aria-label="Go to slide 1"
+                data-index="0"
+              ></button>
+              <button
+                class="indicator-dot"
+                aria-label="Go to slide 2"
+                data-index="1"
+              ></button>
+              <button
+                class="indicator-dot"
+                aria-label="Go to slide 3"
+                data-index="2"
+              ></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="recommendation-section">
+          <i class="ti ti-thumb-up"></i>
+          <h2 class="recommendation-text">Recommend</h2>
+        </section>
+
+        <section class="locations-grid" aria-label="Recommended cafes">
+          <article class="location-card">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/c090dc849f56c7aca1812b8027722a1daf760ab2"
+              alt="Mareeji cafe"
+              class="location-image"
+            />
+            <div class="location-details">
+              <h3 class="location-name">mareeji cafe &amp; casual dining</h3>
+              <p class="location-address">
+                8 Napasup 2, Sukhumvit 36 Rd, Klongtan, Klongtey, Krung Thep
+                Maha Nakhon 10110
+              </p>
+            </div>
+          </article>
+
+          <article class="location-card">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/eacf22a2b719035a96676ff968829e3f6f535e89"
+              alt="Mareeji cafe"
+              class="location-image"
+            />
+            <div class="location-details">
+              <h3 class="location-name">mareeji cafe &amp; casual dining</h3>
+              <p class="location-address">
+                19 59 Salaya Subdistrict, Phutthamonthon District, Nakhon Pathom
+                73170
+              </p>
+            </div>
+          </article>
+
+          <article class="location-card">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/0b7f2657fe6880e59aac90f0edf3d6d0a62be5e4"
+              alt="Cafe Amazon"
+              class="location-image"
+            />
+            <div class="location-details">
+              <h3 class="location-name">Café Amazon Mahidol</h3>
+              <p class="location-address">
+                999 Phutthamonthon Sai 4 Road, Salaya Subdistrict,
+                Phutthamonthon District, Nakhon Pathom Province, Nakhon Pathom
+                73170
+              </p>
+            </div>
+          </article>
+
+          <article class="location-card">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/3d3e00dd05e8f49951c9ace74dc47653b6d072b7"
+              alt="Starbucks"
+              class="location-image"
+            />
+            <div class="location-details">
+              <h3 class="location-name">Starbucks Mahidol Salaya</h3>
+              <p class="location-address">
+                999 Phutthamonthon Sai 4 Road, Salaya Subdistrict,
+                Phutthamonthon District, Nakhon Pathom Province, Nakhon Pathom
+                73170
+              </p>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

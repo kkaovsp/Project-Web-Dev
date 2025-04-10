@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cafe Discovery App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Cafe Discovery</h1>
+      <input type="text" id="searchInput" placeholder="Search cafes...">
+    </header>
+
+    <main id="cafeList">
+      <!-- Cafes will be dynamically loaded here -->
+    </main>
+
+    <section id="loginSection">
+      <h2>Admin Login</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p id="loginStatus"></p>
+    </section>
+  </div>
+
+  <script>
+    const cafeList = document.getElementById("cafeList");
+    const searchInput = document.getElementById("searchInput");
+    const loginForm = document.getElementById("loginForm");
+    const loginStatus = document.getElementById("loginStatus");
+
+    let cafes = [];
+
+    // Load cafes from JSON
+    fetch("cafes.json")
+      .then(res => res.json())
+      .then(data => {
+        cafes = data;
+        displayCafes(cafes);
+      });
+
+    // Display cafes
+    function displayCafes(cafes) {
+      cafeList.innerHTML = "";
+      cafes.forEach(cafe => {
+        const div = document.createElement("div");
+        div.className = "cafe-card";
+        div.innerHTML = `
+          <h3>${cafe.name}</h3>
+          <p>${cafe.address}</p>
+        `;
+        cafeList.appendChild(div);
+      });
+    }
+
+    // Real-time search
+    searchInput.addEventListener("input", e => {
+      const filtered = cafes.filter(cafe =>
+        cafe.name.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+      displayCafes(filtered);
+    });
+
+    // Simple authentication
+    const users = [
+      { username: "admin", password: "admin123" }
+    ];
+
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      const valid = users.find(u => u.username === user && u.password === pass);
+      loginStatus.textContent = valid ? "Login successful!" : "Invalid credentials.";
+    });
+  </script>
+</body>
+</html>

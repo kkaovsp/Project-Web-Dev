@@ -1,0 +1,289 @@
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background-color: #fff;
+}
+
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+/* Header styles */
+.main-header {
+  width: 100%;
+  background-color: #4409ab;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 106px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo {
+  width: 76px;
+  height: 83px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+  width: 556px;
+  height: 57px;
+  padding: 0 16px;
+  border-radius: 4px;
+  background-color: #f3edf7;
+}
+
+.search-icon {
+  color: #49454f;
+  font-size: 24px;
+  margin-right: 12px;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  color: #49454f;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  margin-left: 12px;
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+  background-color: #e8def8;
+  cursor: pointer;
+}
+
+.user-actions {
+  display: flex;
+  gap: 20px;
+  color: white;
+  font-size: 24px;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Main content styles */
+.main-content {
+  padding: 20px;
+}
+
+/* Slider section styles */
+.slider-section {
+  margin-bottom: 20px;
+}
+
+.slider-container {
+  position: relative;
+  width: 75%;
+  height: 431px;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.6s ease-in-out;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slider-image {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  flex-shrink: 0;
+  display: block;
+  transition: transform 0.3s ease-in-out;
+}
+
+.slider-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.8);
+  z-index: 10;
+}
+
+.slider-button:hover {
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev-button {
+  left: 20px;
+}
+
+.next-button {
+  right: 20px;
+}
+
+.slider-indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.indicator-dot.active {
+  background-color: #4409ab;
+}
+
+/* Recommendation section styles */
+.recommendation-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 51px;
+  padding: 0 20px;
+  color: white;
+  background-color: rgba(68, 9, 171, 0.37);
+  margin-bottom: 20px;
+}
+
+.recommendation-text {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: #000;
+  font-weight: normal;
+}
+
+/* Locations grid styles */
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.location-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.location-image {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+}
+
+.location-details {
+  padding: 10px;
+}
+
+.location-name {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: #000;
+  margin-bottom: 5px;
+  font-weight: normal;
+}
+
+.location-address {
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: #68717a;
+  line-height: 1.4;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .slider-container {
+    width: 85%;
+    height: 380px;
+  }
+
+  .locations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .main-nav {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+  }
+
+  .search-container {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  .slider-container {
+    width: 100%;
+    height: 300px;
+  }
+
+  .slider-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .prev-button {
+    left: 10px;
+  }
+
+  .locations-grid {
+    grid-template-columns: 1fr;
+  }
+  
+}
