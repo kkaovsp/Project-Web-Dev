@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Test</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      h1 {
+        color: #333;
+      }
+      .endpoint {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .endpoint h2 {
+        margin-top: 0;
+      }
+      button {
+        padding: 8px 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      pre {
+        background-color: #f5f5f5;
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>API Test Page</h1>
+    <p>Use this page to test if your API endpoints are working correctly.</p>
+
+    <div class="endpoint">
+      <h2>GET /api/login-logs</h2>
+      <button onclick="testLoginLogs()">Test Endpoint</button>
+      <div id="login-logs-result"></div>
+    </div>
+
+    <div class="endpoint">
+      <h2>GET /api/active-users-count</h2>
+      <button onclick="testActiveUsersCount()">Test Endpoint</button>
+      <div id="active-users-result"></div>
+    </div>
+
+    <div class="endpoint">
+      <h2>GET /api/total-logins-today</h2>
+      <button onclick="testTotalLoginsToday()">Test Endpoint</button>
+      <div id="total-logins-result"></div>
+    </div>
+
+    <script>
+      async function testEndpoint(url, resultElementId) {
+        const resultElement = document.getElementById(resultElementId);
+        resultElement.innerHTML = "<p>Loading...</p>";
+
+        try {
+          const startTime = new Date().getTime();
+          const response = await fetch(`http://localhost:5000${url}`); // Add backend URL
+          const endTime = new Date().getTime();
+          const responseTime = endTime - startTime;
+
+          let result = "";
+
+          if (response.ok) {
+            const data = await response.json();
+            result = `
+              <p style="color: green;">✅ Success (${responseTime}ms)</p>
+              <p>Status: ${response.status}</p>
+              <pre>${JSON.stringify(data, null, 2)}</pre>
+            `;
+          } else {
+            const errorText = await response.text();
+            result = `
+              <p style="color: red;">❌ Error (${responseTime}ms)</p>
+              <p>Status: ${response.status}</p>
+              <pre>${errorText}</pre>
+            `;
+          }
+
+          resultElement.innerHTML = result;
+        } catch (error) {
+          resultElement.innerHTML = `
+            <p style="color: red;">❌ Exception</p>
+            <p>Error: ${error.message}</p>
+          `;
+        }
+      }
+
+      function testLoginLogs() {
+        testEndpoint("/api/login-logs?page=1&limit=5", "login-logs-result");
+      }
+
+      function testActiveUsersCount() {
+        testEndpoint("/api/active-users-count", "active-users-result");
+      }
+
+      function testTotalLoginsToday() {
+        testEndpoint("/api/total-logins-today", "total-logins-result");
+      }
+    </script>
+  </body>
+</html>

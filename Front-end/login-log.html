@@ -1,439 +1,113 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Log</title>
-    <link rel="stylesheet" href="login-log.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="login-log.css">
+</head>
+<body>
     <main class="login-log-page">
-      <header class="header-section">
-        <div class="breadcrumb">
-          <img
-            src="https://images.pexels.com/photos/5137555/pexels-photo-5137555.jpeg"
-            alt="Dashboard icon"
-            class="dashboard-icon"
-          />
-          <span class="breadcrumb-item">Dashboard</span>
-          <span class="breadcrumb-separator">/</span>
-          <span class="breadcrumb-item current">Login Log</span>
-        </div>
-        <div class="header-content">
-          <div class="header-text">
-            <h1 class="page-title">Login Log</h1>
-            <p class="page-description">
-              Track and manage user login activities across your platform
-            </p>
-          </div>
-          <div class="stats-cards">
-            <div class="stats-card">
-              <div class="stats-label">Active Users</div>
-              <div class="stats-value active-users">24</div>
-            </div>
-            <div class="stats-card">
-              <div class="stats-label">Total Logins Today</div>
-              <div class="stats-value">156</div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      <section class="content-section">
-        <div class="controls-container">
-          <input
-            type="search"
-            placeholder="Search users..."
-            class="search-input"
-            aria-label="Search users"
-          />
-          <div class="filter-controls">
-            <select class="filter-select" aria-label="Filter by role">
-              <option>All Roles</option>
-              <option>Super Admin</option>
-              <option>Manager</option>
-              <option>Moderator</option>
-              <option>Operator</option>
-              <option>Analyst</option>
-            </select>
-            <select class="filter-select" aria-label="Filter by status">
-              <option>All Status</option>
-              <option>Active</option>
-              <option>Offline</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="table-container">
-          <div class="user-table" role="table" aria-label="User login log">
-            <div class="table-row table-header" role="row">
-              <div class="checkbox" role="cell">
-                <input
-                  type="checkbox"
-                  aria-label="Select all rows"
-                  id="select-all"
+        <header class="header-section">
+            <div class="breadcrumb">
+                <img
+                    src="https://images.pexels.com/photos/5137555/pexels-photo-5137555.jpeg"
+                    alt="Dashboard icon"
+                    class="dashboard-icon"
                 />
-                <label for="select-all" class="visually-hidden"
-                  >Select all rows</label
-                >
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="columnheader">Name</div>
-                <div class="table-cell" role="columnheader">Mobile No</div>
-                <div class="table-cell" role="columnheader">Email Address</div>
-                <div class="table-cell" role="columnheader">Account ID</div>
-                <div class="table-cell" role="columnheader">Role</div>
-                <div class="table-cell" role="columnheader">Login Date</div>
-                <div class="table-cell" role="columnheader">Status</div>
-                <div class="table-cell" role="columnheader"></div>
-              </div>
+                <span class="breadcrumb-item">Dashboard</span>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-item current">Login Log</span>
+            </div>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1 class="page-title">Login Log</h1>
+                    <p class="page-description">
+                        Track and manage user login activities across your platform
+                    </p>
+                </div>
+                <div class="stats-cards">
+                    <div class="stats-card">
+                        <div class="stats-label">Active Users</div>
+                        <div class="stats-value active-users">24</div>
+                    </div>
+                    <div class="stats-card">
+                        <div class="stats-label">Total Logins Today</div>
+                        <div class="stats-value">156</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section class="content-section">
+            <div class="controls-container">
+                <input
+                    type="search"
+                    placeholder="Search users..."
+                    class="search-input"
+                    aria-label="Search users"
+                />
+                <div class="filter-controls">
+                    <select class="filter-select" aria-label="Filter by role">
+                        <option>All Roles</option>
+                        <option>Super Admin</option>
+                        <option>Manager</option>
+                        <option>Moderator</option>
+                        <option>Operator</option>
+                        <option>Analyst</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="table-row" role="row" data-el="stable-table-row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row1" />
-                <label for="row1" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Chaowaphat</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Chaowaphat@gmail.com</div>
-                <div class="table-cell" role="cell">1111111</div>
-                <div class="table-cell" role="cell">Super Admin</div>
-                <div class="table-cell" role="cell">18:00 1/3/2568</div>
-                <div class="table-cell status-active" role="cell">Active</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
+            <div class="table-container">
+                <div class="user-table" role="table" aria-label="User login log">
+                    <!-- Table Header -->
+                    <div class="table-header table-row" role="row">
+                        <div class="table-cell" role="columnheader">
+                            <input type="checkbox" aria-label="Select all rows" id="select-all">
+                            <label for="select-all" class="visually-hidden">Select all rows</label>
+                        </div>
+                        <div class="table-cell" role="columnheader">Name</div>
+                        <div class="table-cell" role="columnheader">Mobile No</div>
+                        <div class="table-cell" role="columnheader">Email Address</div>
+                        <div class="table-cell" role="columnheader">Account ID</div>
+                        <div class="table-cell" role="columnheader">Role</div>
+                        <div class="table-cell" role="columnheader">Login Date</div>
+                    </div>
+
+                    <!-- Table Rows (Dynamically Generated by JavaScript) -->
+                </div>
             </div>
 
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row2" />
-                <label for="row2" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Vasuphon</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Vasuphon@gmail.com</div>
-                <div class="table-cell" role="cell">2222222</div>
-                <div class="table-cell" role="cell">Manager</div>
-                <div class="table-cell" role="cell">17:00 1/3/2568</div>
-                <div class="table-cell status-active" role="cell">Active</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
+            <div class="pagination-container">
+                <div class="pagination-controls">
+                    <button class="pagination-button" aria-label="Previous page">Previous</button>
+                    <button class="pagination-button" aria-label="Next page">Next</button>
+                </div>
+                <div class="pagination-info"></div>
             </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row3" />
-                <label for="row3" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Nattapat</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Nattapat@gmail.com</div>
-                <div class="table-cell" role="cell">3333333</div>
-                <div class="table-cell" role="cell">Moderator</div>
-                <div class="table-cell" role="cell">17:30 1/3/2568</div>
-                <div class="table-cell status-active" role="cell">Active</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row4" />
-                <label for="row4" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Thanakorn</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Thanakorn@gmail.com</div>
-                <div class="table-cell" role="cell">4444444</div>
-                <div class="table-cell" role="cell">Operator</div>
-                <div class="table-cell" role="cell">17:00 28/2/2568</div>
-                <div class="table-cell status-offline" role="cell">Offline</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row5" />
-                <label for="row5" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Kuntapat</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Kuntapat@gmail.com</div>
-                <div class="table-cell" role="cell">5555555</div>
-                <div class="table-cell" role="cell">Analyst</div>
-                <div class="table-cell" role="cell">17:00 28/2/2568</div>
-                <div class="table-cell status-offline" role="cell">Offline</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row6" />
-                <label for="row6" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Thanakorn</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Thanakorn@gmail.com</div>
-                <div class="table-cell" role="cell">4444444</div>
-                <div class="table-cell" role="cell">Operator</div>
-                <div class="table-cell" role="cell">17:00 26/2/2568</div>
-                <div class="table-cell status-offline" role="cell">Offline</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row7" />
-                <label for="row7" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Nattapat</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Nattapat@gmail.com</div>
-                <div class="table-cell" role="cell">3333333</div>
-                <div class="table-cell" role="cell">Moderator</div>
-                <div class="table-cell" role="cell">17:30 26/2/2568</div>
-                <div class="table-cell status-active" role="cell">Active</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row8" />
-                <label for="row8" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Kuntapat</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Kuntapat@gmail.com</div>
-                <div class="table-cell" role="cell">5555555</div>
-                <div class="table-cell" role="cell">Analyst</div>
-                <div class="table-cell" role="cell">17:00 25/2/2568</div>
-                <div class="table-cell status-offline" role="cell">Offline</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row9" />
-                <label for="row9" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Vasuphon</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Vasuphon@gmail.com</div>
-                <div class="table-cell" role="cell">2222222</div>
-                <div class="table-cell" role="cell">Manager</div>
-                <div class="table-cell" role="cell">17:00 24/2/2568</div>
-                <div class="table-cell status-active" role="cell">Active</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row10" />
-                <label for="row10" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Chaowaphat</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Chaowaphat@gmail.com</div>
-                <div class="table-cell" role="cell">1111111</div>
-                <div class="table-cell" role="cell">Super Admin</div>
-                <div class="table-cell" role="cell">18:00 24/2/2568</div>
-                <div class="table-cell status-active" role="cell">Active</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row11" />
-                <label for="row11" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Kuntapat</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Kuntapat@gmail.com</div>
-                <div class="table-cell" role="cell">5555555</div>
-                <div class="table-cell" role="cell">Analyst</div>
-                <div class="table-cell" role="cell">17:00 23/2/2568</div>
-                <div class="table-cell status-offline" role="cell">Offline</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row12" />
-                <label for="row12" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Thanakorn</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Thanakorn@gmail.com</div>
-                <div class="table-cell" role="cell">4444444</div>
-                <div class="table-cell" role="cell">Operator</div>
-                <div class="table-cell" role="cell">17:00 23/2/2568</div>
-                <div class="table-cell status-offline" role="cell">Offline</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row13" />
-                <label for="row13" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Nattapat</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Nattapat@gmail.com</div>
-                <div class="table-cell" role="cell">3333333</div>
-                <div class="table-cell" role="cell">Moderator</div>
-                <div class="table-cell" role="cell">17:30 22/2/2568</div>
-                <div class="table-cell status-active" role="cell">Active</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/3e2f19f9cc287a6ca25dbb3d0394a5d866cd0a0c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-
-            <div class="table-row" role="row">
-              <div class="checkbox" role="cell">
-                <input type="checkbox" aria-label="Select row" id="row14" />
-                <label for="row14" class="visually-hidden">Select row</label>
-              </div>
-              <div class="table-grid">
-                <div class="table-cell" role="cell">Vasuphon</div>
-                <div class="table-cell" role="cell">0123456789</div>
-                <div class="table-cell" role="cell">Vasuphon@gmail.com</div>
-                <div class="table-cell" role="cell">2222222</div>
-                <div class="table-cell" role="cell">Manager</div>
-                <div class="table-cell" role="cell">17:00 22/2/2568</div>
-                <div class="table-cell status-active" role="cell">Active</div>
-                <div class="table-cell" role="cell">See Profile</div>
-              </div>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/cc6e40ed6bb0bdcc6fa6c5cab97636b727bed610?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="View details"
-                class="action-icon"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="pagination-container">
-          <div class="pagination-controls">
-            <button class="pagination-button" aria-label="Previous page">
-              Previous
-            </button>
-            <button class="pagination-button" aria-label="Next page">
-              Next
-            </button>
-          </div>
-          <div class="pagination-info">Showing 1-10 of 100 entries</div>
-        </div>
-      </section>
+        </section>
     </main>
 
     <script>
-      // This script will handle the initial loading state
-      document.addEventListener("DOMContentLoaded", function () {
-        // Show loading state in the table until data is loaded
-        const tableContainer = document.querySelector(".user-table");
-        const tableRows = tableContainer.querySelectorAll(
-          ".table-row:not(.table-header)",
-        );
+        // This script will handle the initial loading state
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show loading state in the table until data is loaded
+            const tableContainer = document.querySelector(".user-table");
+            const tableRows = tableContainer.querySelectorAll(".table-row:not(.table-header)");
 
-        // Hide all rows initially except header
-        tableRows.forEach((row) => {
-          row.style.display = "none";
+            // Hide all rows initially except header
+            tableRows.forEach(row => {
+                row.style.display = "none";
+            });
+
+            // Add a loading indicator
+            const loadingRow = document.createElement("div");
+            loadingRow.className = "table-row loading-row";
+            loadingRow.textContent = "Loading login data...";
+            tableContainer.appendChild(loadingRow);
         });
-
-        // Add a loading indicator
-        const loadingRow = document.createElement("div");
-        loadingRow.className = "table-row loading-row";
-        loadingRow.textContent = "Loading login data...";
-        tableContainer.appendChild(loadingRow);
-      });
     </script>
     <script src="login-log.js"></script>
-  </body>
+</body>
 </html>
