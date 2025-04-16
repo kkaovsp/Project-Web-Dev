@@ -66,7 +66,7 @@
     });
 
     // If we have data, render the rows
-    if (state.users && state.users.length > 0) {
+    if (state.users.length > 0) {
       state.users.forEach((user) => {
         const row = renderTableRow(user);
         tableContainer.appendChild(row);
@@ -242,10 +242,9 @@
     if (direction === "prev" && state.currentPage > 1) {
       state.currentPage--;
       fetchLoginData();
+      
     } else if (
-      direction === "next" &&
-      state.currentPage * state.itemsPerPage < state.totalUsers
-    ) {
+      direction === "next" && state.currentPage * state.itemsPerPage < state.totalUsers) {
       state.currentPage++;
       fetchLoginData();
     }

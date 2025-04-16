@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="search-page.css" />
+    <title>Search - JaJongTee</title>
+  </head>
+  <body>
+    <main class="search-page">
+      <header class="header-tab">
+        <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/50b9c1a10b1b6d9f016658928daf3e9eccc280bc?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="JaJongTee Logo" class="logo-image" />
+
+        <div class="search-bar" role="search">
+          <div class="fab-container">
+            <button class="fab-button" aria-label="Search">
+              <div class="button-content">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/40d8bde33849d067b0b32caa7ed20e348763fbfb?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Search" class="fab-icon" />
+              </div>
+            </button>
+          </div>
+          <div class="search-icon-container">
+            <div class="search-icon-wrapper">
+              <div class="icon-content">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cef9fa138ea3cceb7a78d37bb4a95a7124782853?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Search Icon" class="search-icon" />
+              </div>
+            </div>
+          </div>
+          <div class="search-input-container">
+            <div class="search-input"></div>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <a href="AdminLogin.html">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e4c8c8ec3f83c27319c85c073fc4227505c84178?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Admin Login" class="admin-icon" />
+          </a>
+          <a href="UserLogin.html">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/24bec2b08ae5ed6fe80d6b9edc43ed0dde918905?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="User Login" class="user-icon" />
+          </a>
+        </div>
+      </header>
+
+      <section class="search-filters-section">
+        <div class="search-filters-container">
+          <div class="filters-content">
+            <div class="filters-layout">
+              <div class="filter-labels">
+                <div class="filter-label">Cafe</div>
+                <div class="filter-label location-label">Location</div>
+                <div class="filter-label hours-label">Opening Hours</div>
+              </div>
+
+              <div class="filter-selectors">
+                <div class="filter-selectors-container">
+                  <div class="filter-dropdown cafe-dropdown">
+                    <div class="dropdown-header">
+                      <div class="dropdown-title">Select Cafe</div>
+                      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/110615a5faa52d45fd40560a2469c957dd13bf66?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Expand" class="dropdown-icon" />
+                    </div>
+                  </div>
+
+                  <div class="filter-dropdown location-dropdown">
+                    <div class="dropdown-header">
+                      <div class="dropdown-title">Select Location</div>
+                      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5789427b73b08db4f1eff147a40c8a29e076e8d?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Expand" class="dropdown-icon" />
+                    </div>
+                  </div>
+
+                  <div class="filter-dropdown hours-dropdown">
+                    <div class="dropdown-header">
+                      <div class="dropdown-title">Select Opening Hours</div>
+                      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/01a44117d6261c2ac2fba3553fb80ff782a1b595?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Expand" class="dropdown-icon" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="search-actions">
+            <button type="button" class="search-button">Search</button>
+            <button type="button" class="reset-button">Reset</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Make dropdowns interactive
+        const dropdowns = document.querySelectorAll(".filter-dropdown");
+
+        dropdowns.forEach((dropdown) => {
+          dropdown.addEventListener("click", function () {
+            // Toggle active class for styling
+            this.classList.toggle("active");
+
+            // In a real implementation, this would show/hide dropdown options
+            console.log(
+              `Clicked on ${this.querySelector(".dropdown-title").textContent}`,
+            );
+          });
+        });
+
+        // Search button functionality
+        document
+          .querySelector(".search-button")
+          .addEventListener("click", function () {
+            // In a real implementation, this would gather filter values and perform search
+            console.log("Search button clicked");
+          });
+
+        // Reset button functionality
+        document
+          .querySelector(".reset-button")
+          .addEventListener("click", function () {
+            // In a real implementation, this would reset all filters
+            console.log("Reset button clicked");
+            dropdowns.forEach((dropdown) =>
+              dropdown.classList.remove("active"),
+            );
+          });
+      });
+    </script>
+  </body>
+</html>
