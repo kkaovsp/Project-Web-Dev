@@ -1,0 +1,319 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          rel="stylesheet"/>
+        <link rel="stylesheet" href="styles.css" />
+        <title>Location</title>
+    </head>
+        <header>
+            <nav>
+                <a href="homepage.html">
+                    <img src="/Front-end/img/Logo.png" class = "logo">
+                </a>
+      
+                    <div class="searchbar">
+                            <input type="text" id="searchInput" placeholder="">
+                            <img src="/Front-end/img/SearchIcon.png" class="search-icon">
+                            <a href="SearchPage.html">
+                                <img src="/Front-end/img/SelectBox.png" class="select-box-icon"></img>
+                            </a>
+                    </div>
+                    <div class="right-links">
+                        <a href="AdminLogin.html">
+                            <img src="/Front-end/img/AdminLogin.png" class="icon"></img>
+                        </a>
+                        <a href="UserLogin.html">
+                            <img src="/Front-end/img/UserLogin.png"class="icon"></img>
+                        </a>
+                    </div>
+            </nav>
+        </header>
+
+        <main class="filter-section">
+            <form class="filter-form">
+              <div class="filter-group">
+                <label class="filter-label">Cafe</label>
+                <div class="select-wrapper">
+                    <select class="filter-select" id="Cafe" name="Cafe">
+                        <option value="" disabled selected hidden>Select Cafe</option>
+                        <option value="Starbucks">Starbucks</option>
+                        <option value="Amazon Cafe">Amazon Cafe</option>
+                        <option value="Punthai Coffee">Punthai Coffee</option>
+                    </select>
+                  <svg
+                    class="arrow-icon"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M11.5303 2.72593C11.2375 2.42491 10.7626 2.42491 10.4697 2.72593L6.00023 7.31976L1.53073 2.72593C1.23785 2.42491 0.762994 2.42491 0.470112 2.72593C0.17723 3.02696 0.17723 3.51503 0.470112 3.81606L6.00023 9.5L11.5303 3.81606C11.8232 3.51503 11.8232 3.02696 11.5303 2.72593Z"
+                      fill="#8F9098"
+                    />
+                  </svg>
+                </div>
+              </div>
+    
+              <div class="filter-group">
+                <label class="filter-label">Location</label>
+                <div class="select-wrapper">
+                    <select class="filter-select" id="Location" name="Location">
+                        <option value="" disabled selected hidden>Select Location</option>
+                        <option value="Nearme">Nearme</option>
+                        <option value="Bangkok">Bangkok</option>
+                        <option value="Nakhon Pathom">Nakhon Pathom</option>
+                    </select>
+                  <svg
+                    class="arrow-icon"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M11.5303 2.72593C11.2375 2.42491 10.7626 2.42491 10.4697 2.72593L6.00023 7.31976L1.53073 2.72593C1.23785 2.42491 0.762994 2.42491 0.470112 2.72593C0.17723 3.02696 0.17723 3.51503 0.470112 3.81606L6.00023 9.5L11.5303 3.81606C11.8232 3.51503 11.8232 3.02696 11.5303 2.72593Z"
+                      fill="#8F9098"
+                    />
+                  </svg>
+                </div>
+              </div>
+    
+              <div class="filter-group">
+                <label class="filter-label">Opening Hours</label>
+                <div class="select-wrapper">
+                    <select class="filter-select" id="OpeningHours" name="OpeningHours">
+                        <option value="" disabled selected hidden>Select Opening Hours</option>
+                        <option value="Standart Hours">Standart Hours</option>
+                        <option value="Open 24 Hours">Open 24 Hours</option>
+                    </select>
+                    <svg
+                      class="arrow-icon"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M11.5303 2.72593C11.2375 2.42491 10.7626 2.42491 10.4697 2.72593L6.00023 7.31976L1.53073 2.72593C1.23785 2.42491 0.762994 2.42491 0.470112 2.72593C0.17723 3.02696 0.17723 3.51503 0.470112 3.81606L6.00023 9.5L11.5303 3.81606C11.8232 3.51503 11.8232 3.02696 11.5303 2.72593Z"
+                        fill="#8F9098"
+                      />
+                    </svg>
+                </div>
+              </div>
+              <!-- For arrow to rotate -->
+              <script>
+                document.querySelectorAll('.filter-select').forEach((select) => {
+                  select.addEventListener('click', function () {
+                    const wrapper = this.closest('.select-wrapper'); // Get the parent .select-wrapper
+                    wrapper.classList.toggle('open'); // Toggle the 'open' class
+                  });
+                  select.addEventListener('blur', function () {
+                    const wrapper = this.closest('.select-wrapper'); // Get the parent .select-wrapper
+                    wrapper.classList.remove('open'); // Remove the 'open' class when focus is lost
+                  });
+                });
+              </script>
+              <div class="button-group">
+                <button type="submit" class="search-btn">Search</button>
+                <button type="reset" class="reset-btn">Reset</button>
+              </div>
+            </form>
+          </main>
+        </div>
+        <!-- UNDER SEARCH .......................................................-->
+        <main class="locations-container">
+            <article class="location-card">
+                <img
+                    src="location-image.jpg"
+                    alt="Location Image"
+                    class="location-image"
+                />
+                <div class="location-content">
+                    <h2 class="location-title">Location Title</h2>
+                    <p class="location-address">123 Main Street, City, Country</p>
+                </div>
+                <div class="operating-hours">
+                    <p>Monday: 9:00 AM - 5:00 PM</p>
+                    <p>Tuesday: 9:00 AM - 5:00 PM</p>
+                </div>
+            </article>
+            <!-- TEST2 -->
+            <article class="location-card">
+                <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/523eda8d04e997c4b52a497c0507e71004d7ed53?placeholderIfAbsent=true"
+                alt="Mahidol University - Salaya Campus"
+                class="location-image"
+                />
+                <div class="location-content">
+                    <h2 class="location-title">Mahidol University - Salaya Campus</h2>
+                    <img src="/Front-end/img/Pin.png"></img>
+                    <p class="location-address">999 Phutthamonthon 4 Road , Salaya , Nakhon Patthom 73170</p>
+                </div>
+                <div class="operating-hours">
+                    <time>Monday 07:00 to 19:00</time><br />
+                    <time>Tuesday 07:00 to 19:00</time><br />
+                    <time>Wednesday 07:00 to 19:00</time><br />
+                    <time>Thursday 07:00 to 19:00</time><br />
+                    <time>Friday 07:00 to 19:00</time><br />
+                    <time>Saturday 08:00 to 17:00</time><br />
+                    <time>Sunday 08:00 to 17:00</time>
+                </div>
+            </article>
+            <article class="location-card">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/523eda8d04e997c4b52a497c0507e71004d7ed53?placeholderIfAbsent=true"
+                alt="Mahidol University - Salaya Campus"
+                class="location-image"
+              />
+              <div class="location-content">
+                <h2 class="location-title">Mahidol University - Salaya Campus</h2>
+                <address class="location-address">
+                  <svg
+                    width="315"
+                    height="52"
+                    viewBox="0 0 315 52"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="location-icon"
+                  >
+                  <!-- <img src="/Front-end/img/Pin.png" class="location-icon"></img> -->
+                    <text
+                      fill="#68717A"
+                      xml:space="preserve"
+                      style="white-space: pre"
+                      font-family="Inter"
+                      font-size="13"
+                      letter-spacing="0em"
+                    >
+                      <tspan x="28" y="22.7273">999 Phutthamonthon 4 Road , Salaya , Nakhon</tspan>
+                      <tspan x="28" y="50.7273">Patthom 73170</tspan>
+                    </text>
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9 31C9 31 18 22.471 18 16C18 13.6131 17.0518 11.3239 15.364 9.63604C13.6761 7.94821 11.3869 7 9 7C6.61305 7 4.32387 7.94821 2.63604 9.63604C0.948211 11.3239 3.55683e-08 13.6131 0 16C0 22.471 9 31 9 31ZM9 20.5C10.1935 20.5 11.3381 20.0259 12.182 19.182C13.0259 18.3381 13.5 17.1935 13.5 16C13.5 14.8065 13.0259 13.6619 12.182 12.818C11.3381 11.9741 10.1935 11.5 9 11.5C7.80653 11.5 6.66193 11.9741 5.81802 12.818C4.97411 13.6619 4.5 14.8065 4.5 16C4.5 17.1935 4.97411 18.3381 5.81802 19.182C6.66193 20.0259 7.80653 20.5 9 20.5Z"
+                      fill="black"
+                    ></path>
+                  </svg>
+                </address>
+                <div class="operating-hours">
+                  <time>Monday 07:00 to 19:00</time><br />
+                  <time>Tuesday 07:00 to 19:00</time><br />
+                  <time>Wednesday 07:00 to 19:00</time><br />
+                  <time>Thursday 07:00 to 19:00</time><br />
+                  <time>Friday 07:00 to 19:00</time><br />
+                  <time>Saturday 08:00 to 17:00</time><br />
+                  <time>Sunday 08:00 to 17:00</time>
+                </div>
+              </div>
+            </article>
+          
+            <article class="location-card">
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/150f29f9f9b4fea62aa68e9b68fde01661f087f1?placeholderIfAbsent=true"
+                alt="The Fourth Putthamonthon Sai 4"
+                class="location-image"
+              />
+              <div class="location-content">
+                <h2 class="location-title">The Fourth Putthamonthon Sai 4</h2>
+                <address class="location-address">
+                  <svg
+                    width="315"
+                    height="54"
+                    viewBox="0 0 315 54"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="location-icon"
+                  >
+                    <text
+                      fill="#68717A"
+                      xml:space="preserve"
+                      style="white-space: pre"
+                      font-family="Inter"
+                      font-size="13"
+                      letter-spacing="0em"
+                    >
+                      <tspan x="28" y="22.9773">Phutthamonthon Sai 4 Road ,Kratumlom,Sam</tspan>
+                      <tspan x="28" y="50.9773">Phran,Nakornpathom</tspan>
+                    </text>
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9 31.25C9 31.25 18 22.721 18 16.25C18 13.8631 17.0518 11.5739 15.364 9.88604C13.6761 8.19821 11.3869 7.25 9 7.25C6.61305 7.25 4.32387 8.19821 2.63604 9.88604C0.948211 11.5739 3.55683e-08 13.8631 0 16.25C0 22.721 9 31.25 9 31.25ZM9 20.75C10.1935 20.75 11.3381 20.2759 12.182 19.432C13.0259 18.5881 13.5 17.4435 13.5 16.25C13.5 15.0565 13.0259 13.9119 12.182 13.068C11.3381 12.2241 10.1935 11.75 9 11.75C7.80653 11.75 6.66193 12.2241 5.81802 13.068C4.97411 13.9119 4.5 15.0565 4.5 16.25C4.5 17.4435 4.97411 18.5881 5.81802 19.432C6.66193 20.2759 7.80653 20.75 9 20.75Z"
+                      fill="black"
+                    ></path>
+                  </svg>
+                </address>
+                <div class="operating-hours">
+                  <time>Monday 07:00 to 21:00</time><br />
+                  <time>Tuesday 07:00 to 21:00</time><br />
+                  <time>Wednesday 07:00 to 21:00</time><br />
+                  <time>Thursday 07:00 to 21:00</time><br />
+                  <time>Friday 07:00 to 21:00</time><br />
+                  <time>Saturday Closed</time><br />
+                  <time>Sunday Closed</time>
+                </div>
+              </div>
+            </article>
+          
+            <article class="location-card">
+              <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/04211ca6386875b37989726866ea8a8b17aa413f?placeholderIfAbsent=true" alt="Central Plaza Salaya" class="location-image" />
+              <div class="location-content">
+                <h2 class="location-title">Central Plaza Salaya</h2>
+                <address class="location-address">
+                  <svg
+                    width="341"
+                    height="55"
+                    viewBox="0 0 341 55"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="location-icon"
+                  >
+                    <text
+                      fill="#68717A"
+                      xml:space="preserve"
+                      style="white-space: pre"
+                      font-family="Inter"
+                      font-size="13"
+                      letter-spacing="0em"
+                    >
+                      <tspan x="28" y="23.2273">99/19, 99/20 Moo.2 Borommaratchachonnani Road</tspan>
+                      <tspan x="28" y="51.2273">Bang Toey Sam Phran Nakhon Phatom 73210</tspan>
+                    </text>
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M9 31.5C9 31.5 18 22.971 18 16.5C18 14.1131 17.0518 11.8239 15.364 10.136C13.6761 8.44821 11.3869 7.5 9 7.5C6.61305 7.5 4.32387 8.44821 2.63604 10.136C0.948211 11.8239 3.55683e-08 14.1131 0 16.5C0 22.971 9 31.5 9 31.5ZM9 21C10.1935 21 11.3381 20.5259 12.182 19.682C13.0259 18.8381 13.5 17.6935 13.5 16.5C13.5 15.3065 13.0259 14.1619 12.182 13.318C11.3381 12.4741 10.1935 12 9 12C7.80653 12 6.66193 12.4741 5.81802 13.318C4.97411 14.1619 4.5 15.3065 4.5 16.5C4.5 17.6935 4.97411 18.8381 5.81802 19.682C6.66193 20.5259 7.80653 21 9 21Z"
+                      fill="black"
+                    ></path>
+                  </svg>
+                </address>
+                <div class="operating-hours">
+                  <time>Monday 07:00 to 21:00</time><br />
+                  <time>Tuesday 07:00 to 21:00</time><br />
+                  <time>Wednesday 07:00 to 21:00</time><br />
+                  <time>Thursday 07:00 to 21:00</time><br />
+                  <time>Friday 07:00 to 21:00</time><br />
+                  <time>Saturday Closed</time><br />
+                  <time>Sunday Closed</time>
+                </div>
+              </div>
+            </article>
+          </main>
+      </body>
+
+</html>
