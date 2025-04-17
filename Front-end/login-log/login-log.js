@@ -17,7 +17,6 @@
   // Fetch login log data from the server
   async function fetchLoginData() {
     state.loading = true;
-    update();
 
     try {
       console.log("Fetching login data...");
@@ -38,12 +37,10 @@
       state.error = null;
 
       renderTable();
-      update();
     } catch (error) {
       console.error("Error fetching login data:", error);
       state.loading = false;
       state.error = `Failed to load login data: ${error.message}`;
-      update();
     }
   }
 
@@ -131,19 +128,16 @@
     row.appendChild(roleCell);
 
     const loginDateCell = document.createElement("div");
-    loginDateCell.className = "table-cell";
-    loginDateCell.textContent = user.login_date;
-    row.appendChild(loginDateCell);
-
-    // Format the login date
     const loginDate = new Date(user.login_date);
+    loginDateCell.className = "table-cell";
     loginDateCell.textContent = loginDate.toLocaleString("en-US", {
       year: "numeric",
       month: "short",
       day: "2-digit",
       hour: "2-digit",
       minute: "2-digit",
-      hour12: true,
+      second: "2-digit",
+      hour12: false,
     });
     row.appendChild(loginDateCell);
 
@@ -204,58 +198,72 @@
     });
   }
 
-  // Add event listeners to the pagination buttons and search input
-  // Update the UI based on state changes
-  function update() {
-    if (pendingUpdate) {
-      return;
-    }
-    pendingUpdate = true;
+  // Add event listeners for sorting and searching
+  document.querySelectorAll(".table-cell").forEach((header) => {
+    header.addEventListener("click", function () {
+      const sortBy = header.textContent.trim();
+      console.log("Sorting by:", sortBy);
 
-    // Update search input value
-    document.querySelectorAll(".search-input").forEach((el) => {
-      el.value = state.searchTerm;
-      el.removeEventListener("input", onSearchInput);
-      el.addEventListener("input", onSearchInput);
+      if (sortBy === "Login Date") {
+        state.sortBy = "login_date";
+        state.sortDirection = state.sortDirection === "asc" ? "desc" : "asc";
+      } else if (sortBy === "Name") {
+        state.sortBy = "name";
+        state.sortDirection = state.sortDirection === "asc" ? "desc" : "asc";
+      } else if (sortBy === "Mobile No") {
+        state.sortBy = "mobile";
+        state.sortDirection = state.sortDirection === "asc" ? "desc" : "asc";
+      } else if (sortBy === "Email Address") {
+        state.sortBy = "email";
+        state.sortDirection = state.sortDirection === "asc" ? "desc" : "asc";
+      } else if (sortBy === "Account ID") {
+        state.sortBy = "accountId";
+        state.sortDirection = state.sortDirection === "asc" ? "desc" : "asc";
+      } else if (sortBy === "Role") {
+        state.sortBy = "role";
+        state.sortDirection = state.sortDirection === "asc" ? "desc" : "asc";
+      } else return; // Ignore clicks on other headers
+
+      fetchLoginData(); // Fetch data with the new sorting
     });
+  });
 
-    // Add click event listeners to pagination buttons
-    document.querySelectorAll(".pagination-button").forEach((button, index) => {
-      button.removeEventListener("click", onPaginationClick);
-      button.addEventListener("click", () =>
-        onPaginationClick(index === 0 ? "prev" : "next"),
-      );
-    });
-
-    pendingUpdate = false;
-  }
-
-  // Event handler for search input
-  function onSearchInput(event) {
-    state.searchTerm = event.target.value;
+  document.querySelector(".search-input").addEventListener("input", function (event) {
+    const searchValue = event.target.value.trim();
+    state.searchTerm = searchValue;
     state.currentPage = 1; // Reset to first page when searching
     fetchLoginData(); // Fetch data with the new search term
-  }
+  });
 
-  // Event handler for pagination button click
-  function onPaginationClick(direction) {
-    if (direction === "prev" && state.currentPage > 1) {
+  // Add click event listeners to pagination buttons
+  document.querySelector(".pagination-button-prev").addEventListener("click", () => {
+    if (state.currentPage > 1) {
       state.currentPage--;
       fetchLoginData();
-      
-    } else if (
-      direction === "next" && state.currentPage * state.itemsPerPage < state.totalUsers) {
+    }
+  });
+
+  document.querySelector(".pagination-button-next").addEventListener("click", () => {
+    if (state.currentPage * state.itemsPerPage < state.totalUsers) {
       state.currentPage++;
       fetchLoginData();
     }
-  }
+  });
+
+  document.querySelector(".filter-select").addEventListener("change", function (event) {
+    const selectedValue = event.target.value;
+    console.log("Selected value:", selectedValue);
+    if (!selectedValue === "All Roles") {
+      state.searchTerm = selectedValue;
+      fetchLoginData();
+    }
+  });
 
   // Initialize by fetching data and setting up the UI
   async function initialize() {
     console.log("Initializing login log page...");
     await fetchLoginData(); // Fetch data first
     addSelectAllFunctionality(); // Add select-all functionality
-    update(); // Update the UI
   }
 
   // Start initialization

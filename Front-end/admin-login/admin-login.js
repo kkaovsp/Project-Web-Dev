@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
           console.log("Server response:", result);
           
           // Redirect to admin dashboard or another page
-          window.location.href = "/admin-home";
+          window.location.href = "/admin/home";
         } else {
           const error = await response.json();
           alert(`Login failed: ${error.message}`);
