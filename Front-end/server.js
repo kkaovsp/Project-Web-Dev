@@ -73,7 +73,7 @@ app.get("/admin/service-management", (req, res) => {
 
 app.get("/search", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "search/search.html"));
-  console.log("Service management page requested");
+  console.log("Search page requested");
 });
 
 
