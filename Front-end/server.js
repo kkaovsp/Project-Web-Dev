@@ -5,7 +5,12 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/home", express.static(path.join(__dirname, "home")));
+app.use("/admin-login", express.static(path.join(__dirname, "admin-login")));
+app.use("/admin-home", express.static(path.join(__dirname, "admin-home")));
+app.use("/login-log", express.static(path.join(__dirname, "login-log")));
+app.use("/service-management", express.static(path.join(__dirname, "service-management")));
+app.use("/Image", express.static(path.join(__dirname, "Image")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -35,27 +40,33 @@ app.get("/", (req, res) => {
     });
 });
 
+// Home page
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "home/home.html"));
+  console.log("Home page requested");
+});
+
 // Admin login page
 app.get("/admin-login", (req, res) => {
-  res.sendFile(path.join(__dirname, "/", "admin-login.html"));
+  res.sendFile(path.join(__dirname, "/", "admin-login/admin-login.html"));
   console.log("Admin login page requested");
 });
 
 // Admin home page
 app.get("/admin-home", (req, res) => {
-  res.sendFile(path.join(__dirname, "/", "admin-home.html"));
+  res.sendFile(path.join(__dirname, "/", "admin-home/admin-home.html"));
   console.log("Admin home page requested");
 });
 
 // Login log page
 app.get("/login-log", (req, res) => {
-  res.sendFile(path.join(__dirname, "/", "login-log.html"));
+  res.sendFile(path.join(__dirname, "/", "login-log/login-log.html"));
   console.log("Login log page requested");
 });
 
 // Service management page
 app.get("/service-management", (req, res) => {
-  res.sendFile(path.join(__dirname, "/", "service-management.html"));
+  res.sendFile(path.join(__dirname, "/", "service-manage/service-manage.html"));
   console.log("Service management page requested");
 });
 
