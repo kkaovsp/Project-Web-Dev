@@ -22,7 +22,6 @@ body {
   flex-direction: column;
   width: 30%;
   height: 100%;
-  background: #BBBBBB;
 }
 
 .sidebar {
@@ -35,6 +34,8 @@ body {
   position: absolute;
   width: 254px;
   height: 1024px;
+  left: 0px;
+  top: 0px;
 
   background: #BBBBBB;
 }
@@ -375,95 +376,4 @@ body {
   color: #fff;
   font-weight: 700;
   cursor: pointer;
-}
-
-/* Media Queries */
-@media (max-width: 991px) {
-  .admin-homepage {
-    padding-right: 20px;
-  }
-
-  .layout-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-
-  .sidebar-column {
-    width: 100%;
-  }
-
-  .sidebar {
-    margin-top: 40px;
-  }
-
-  .sidebar-header {
-    padding: 91px 20px;
-    white-space: initial;
-  }
-
-  .signout-container {
-    padding: 12px 20px;
-  }
-
-  .content-column {
-    width: 100%;
-  }
-
-  .profile-section {
-    max-width: 100%;
-    margin-top: 40px;
-  }
-
-  .admin-title-container {
-    margin-top: 40px;
-  }
-
-  .admin-title {
-    margin-right: 9px;
-  }
-
-  .admin-profile-image {
-    margin-top: 40px;
-  }
-
-  .admin-details-column {
-    width: 100%;
-  }
-
-  .admin-details-container {
-    max-width: 100%;
-    margin-top: 40px;
-  }
-
-  .profile-picture-container {
-    padding: 89px 20px;
-  }
-
-  .info-value,
-  .fullname,
-  .email {
-    max-width: 100%;
-    padding: 18px 20px;
-  }
-
-  .mobile-container {
-    padding-right: 20px;
-  }
-
-  .id-container {
-    max-width: 100%;
-  }
-
-  .id-value {
-    padding-right: 20px;
-    white-space: initial;
-  }
-
-  .phone-number-container,
-  .user-link,
-  .home-link,
-  .email {
-    white-space: initial;
-  }
 }
