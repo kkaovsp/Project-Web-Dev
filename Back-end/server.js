@@ -90,7 +90,7 @@ app.post("/api/admin/login", (req, res) => {
 
     const accountId = results[0].Account_ID;
     const accountName = results[0].Username;
-    console.log(`Login attempt by ${accountName} (Account ID: ${accountId})`);
+    console.log(`Login attempt by ${accountName} (Account ID: ${accountId}) at ${new Date().toISOString()}`);
     console.log("Recording login in Login_log table");
 
     // Record the login in the Login_log table
@@ -121,7 +121,7 @@ app.post("/api/admin/login", (req, res) => {
 // This endpoint retrieves login logs from the database and returns them in a paginated format
 // It allows searching by name, email, account ID, and role
 app.get("/api/login-logs", (req, res) => {
-  console.log("Request for login logs at", req.url);
+  console.log("Request at ", req.url);
 
   // Get query parameters
   const page = parseInt(req.query.page) || 1;
@@ -138,6 +138,7 @@ app.get("/api/login-logs", (req, res) => {
   SELECT * FROM vw_login_logs
   WHERE
       name LIKE ? OR
+      mobile LIKE ? OR
       email LIKE ? OR
       accountId LIKE ? OR
       role LIKE ?
@@ -154,6 +155,7 @@ app.get("/api/login-logs", (req, res) => {
       vw_login_logs
   WHERE
       name LIKE ? OR
+      mobile LIKE ? OR
       email LIKE ? OR
       accountId LIKE ? OR
       role LIKE ?
@@ -165,7 +167,7 @@ app.get("/api/login-logs", (req, res) => {
   // Execute the count query first
   Database.query(
     countQuery,
-    [searchParam, searchParam, searchParam, searchParam],
+    [searchParam, searchParam, searchParam, searchParam, searchParam],
     function (error, countResults) {
       if (error) {
         console.error("Error executing count query:", error);
@@ -177,7 +179,7 @@ app.get("/api/login-logs", (req, res) => {
       // Execute the main query
       Database.query(
         query,
-        [searchParam, searchParam, searchParam, searchParam, limit, offset],
+        [searchParam, searchParam, searchParam, searchParam, searchParam, limit, offset],
         function (error, results) {
           if (error) {
             console.error("Error executing main query:", error);

@@ -5,7 +5,13 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/home", express.static(path.join(__dirname, "home")));
+app.use("/search", express.static(path.join(__dirname, "search")));
+app.use("/admin-login", express.static(path.join(__dirname, "admin-login")));
+app.use("/admin-home", express.static(path.join(__dirname, "admin-home")));
+app.use("/login-log", express.static(path.join(__dirname, "login-log")));
+app.use("/service-management", express.static(path.join(__dirname, "service-management")));
+app.use("/Image", express.static(path.join(__dirname, "Image")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -35,31 +41,71 @@ app.get("/", (req, res) => {
     });
 });
 
+// Home page
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "home/home.html"));
+  console.log("Home page requested");
+});
+
 // Admin login page
-app.get("/admin-login", (req, res) => {
-  res.sendFile(path.join(__dirname, "/", "admin-login.html"));
+app.get("/admin/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "admin-login/admin-login.html"));
   console.log("Admin login page requested");
 });
 
 // Admin home page
-app.get("/admin-home", (req, res) => {
-  res.sendFile(path.join(__dirname, "/", "admin-home.html"));
+app.get("/admin/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "admin-home/admin-home.html"));
   console.log("Admin home page requested");
 });
 
 // Login log page
-app.get("/login-log", (req, res) => {
-  res.sendFile(path.join(__dirname, "/", "login-log.html"));
+app.get("/admin/login-log", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "login-log/login-log.html"));
   console.log("Login log page requested");
 });
 
 // Service management page
-app.get("/service-management", (req, res) => {
-  res.sendFile(path.join(__dirname, "/", "service-management.html"));
+app.get("/admin/service-management", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "service-manage/service-manage.html"));
   console.log("Service management page requested");
 });
 
+app.get("/search", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "search/search.html"));
+  console.log("Service management page requested");
+});
+
+
+// Admin login API
+// This endpoint is used to handle admin login requests from the frontend
+// It forwards the request to the backend API and returns the response to the frontend
+app.post("/api/admin/login", async (req, res) => {
+  try {
+    const response = await fetch("http://localhost:5000/api/admin/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(req.body),
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      return res.status(response.status).json(data);
+    }
+    res.json(data);
+    console.log("Admin login successful:", data.user.Username);
+
+  } catch (error) {
+    console.error("Error during login:", error);
+    res.status(500).json({ error: "Login process failed" });
+  }
+});
+
 // API proxy endpoints
+// This endpoint is used to fetch login logs from the backend API
+// It forwards the request to the backend API and returns the login logs data to the frontend
 app.get("/api/login-logs", async (req, res) => {
   try {
     // Get query parameters
@@ -88,48 +134,6 @@ app.get("/api/login-logs", async (req, res) => {
   }
 });
 
-// app.get("/api/total-logins-today", async (req, res) => {
-//   try {
-//     const response = await fetch(
-//       "http://localhost:5000/api/total-logins-today",
-//       get,
-//     );
-
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-
-//     const data = await response.json();
-//     res.json(data);
-//   } catch (error) {
-//     console.error("Error fetching total logins today:", error);
-//     res.status(500).json({ error: "Failed to fetch total logins today" });
-//   }
-// });
-
-// Admin login API
-app.post("/api/admin/login", async (req, res) => {
-  try {
-    const response = await fetch("http://localhost:5000/api/admin/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(req.body),
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      return res.status(response.status).json(data);
-    }
-    res.json(data);
-    console.log("Admin login successful:", data);
-
-  } catch (error) {
-    console.error("Error during login:", error);
-    res.status(500).json({ error: "Login process failed" });
-  }
-});
 
 // Start the server
 app.listen(port, () => {
