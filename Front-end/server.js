@@ -6,6 +6,7 @@ const app = express();
 const port = 3000;
 
 app.use("/home", express.static(path.join(__dirname, "home")));
+app.use("/search", express.static(path.join(__dirname, "search")));
 app.use("/admin-login", express.static(path.join(__dirname, "admin-login")));
 app.use("/admin-home", express.static(path.join(__dirname, "admin-home")));
 app.use("/login-log", express.static(path.join(__dirname, "login-log")));
@@ -67,6 +68,11 @@ app.get("/admin/login-log", (req, res) => {
 // Service management page
 app.get("/admin/service-management", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "service-manage/service-manage.html"));
+  console.log("Service management page requested");
+});
+
+app.get("/search", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "search/search.html"));
   console.log("Service management page requested");
 });
 
