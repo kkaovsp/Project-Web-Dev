@@ -5,6 +5,7 @@ const path = require("path");
 const app = express();
 const port = 3000;
 
+app.use("/Location", express.static(path.join(__dirname, "Location")));
 app.use("/home", express.static(path.join(__dirname, "home")));
 app.use("/search", express.static(path.join(__dirname, "search")));
 app.use("/admin-login", express.static(path.join(__dirname, "admin-login")));
@@ -70,10 +71,20 @@ app.get("/admin/service-management", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "service-manage/service-manage.html"));
   console.log("Service management page requested");
 });
-
-app.get("/search", (req, res) => {
+// Home page
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "home.html"));
+  console.log("Home page requested");
+});
+// Search page
+app.get("/Search", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "search/search.html"));
   console.log("Search page requested");
+});
+// Location page
+app.get("/Location", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "Location/Location.html"));
+  console.log("Location page requested");
 });
 
 
