@@ -1,0 +1,329 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family:
+      Inter,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+  }
+  
+  /* Main container */
+  .add-new-cafe {
+    background-color: rgba(255, 255, 255, 1);
+    display: flex;
+    padding-bottom: 24px;
+    flex-direction: column;
+    overflow: hidden;
+    align-items: center;
+  }
+  
+  /* Header section */
+  .header-section {
+    background-color: rgba(217, 217, 217, 1);
+    align-self: stretch;
+    display: flex;
+    padding-left: 44px;
+    padding-right: 44px;
+    padding-top: 45px;
+    padding-bottom: 45px;
+    align-items: flex-start;
+    gap: 20px;
+    font-family:
+      Inter,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 36px;
+    color: rgba(0, 0, 0, 1);
+    font-weight: 400;
+    line-height: 1;
+    flex-wrap: wrap;
+  }
+  
+  .add-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 40px;
+    align-self: start;
+    flex-shrink: 0;
+  }
+  
+  .header-title {
+    margin-top: auto;
+    margin-bottom: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: 1284px;
+    flex-basis: auto;
+    font-size: 36px;
+    font-weight: 400;
+  }
+  
+  /* Image placeholder section */
+  .image-placeholder {
+    background-color: rgba(217, 217, 217, 1);
+    display: flex;
+    margin-top: 105px;
+    min-height: 462px;
+    width: 702px;
+    max-width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 163px 283px;
+  }
+  
+  .upload-image {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 136px;
+    align-self: stretch;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  
+  /* Cafe detail section */
+  .cafe-detail {
+    border-radius: 8px;
+    background-color: #fff;
+    margin-top: 65px;
+    width: 100%;
+    max-width: 1070px;
+    font-family:
+      Inter,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    padding-top: 17px;
+  }
+  
+  .cafe-info {
+    display: flex;
+    margin-left: 32px;
+    width: 870px;
+    max-width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .cafe-header {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .cafe-name {
+    color: rgba(117, 117, 117, 1);
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 52px;
+  }
+  
+  .add-detail-btn {
+    align-self: stretch;
+    max-width: 386px;
+    border-radius: 8px;
+    background-color: #f7f8fa;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 12px 36px;
+    font-size: 16px;
+    color: #354052;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .rating-container {
+    align-self: start;
+    display: flex;
+    margin-top: 11px;
+    align-items: stretch;
+    gap: 8px;
+    white-space: nowrap;
+  }
+  
+  .rating-display {
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
+    font-size: 17px;
+    color: #11141a;
+    font-weight: 600;
+    line-height: 1;
+  }
+  
+  .rating-value {
+    flex-grow: 1;
+  }
+  
+  .rating-stars {
+    aspect-ratio: 5.49;
+    object-fit: contain;
+    object-position: center;
+    width: 88px;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex-shrink: 0;
+  }
+  
+  .rating-count {
+    color: #322a7d;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+  }
+  
+  /* Cafe details section */
+  .cafe-details {
+    align-items: start;
+    border-top: 1px solid var(--d-3-d-3-d-3, #d3d3d3);
+    display: flex;
+    margin-top: 20px;
+    width: 100%;
+    padding: 20px 32px;
+    gap: 32px;
+    font-size: 16px;
+    color: #11141a;
+    font-weight: 400;
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+  
+  .address-info {
+    display: flex;
+    min-width: 240px;
+    padding: 0 3px 48px 3px;
+    align-items: start;
+    gap: 14px;
+    white-space: nowrap;
+    width: 350px;
+  }
+  
+  .location-icon {
+    aspect-ratio: 0.75;
+    object-fit: contain;
+    object-position: center;
+    width: 15px;
+    flex-shrink: 0;
+  }
+  
+  .address-text {
+    flex-basis: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+  
+  .time-info {
+    display: flex;
+    min-width: 240px;
+    padding-bottom: 26px;
+    align-items: start;
+    gap: 39px;
+    width: 296px;
+  }
+  
+  .time-container {
+    display: flex;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .clock-icon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
+    flex-shrink: 0;
+  }
+  
+  .additional-time {
+    flex-basis: auto;
+  }
+  
+  .table-info {
+    display: flex;
+    min-width: 240px;
+    padding-bottom: 50px;
+    align-items: start;
+    gap: 13px;
+    width: 257px;
+  }
+  
+  .table-icon {
+    aspect-ratio: 1.32;
+    object-fit: contain;
+    object-position: center;
+    width: 25px;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  
+  .table-availability {
+    flex-basis: auto;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 991px) {
+    .header-section {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .header-title {
+      max-width: 100%;
+    }
+  
+    .image-placeholder {
+      padding: 100px 20px;
+      margin-top: 40px;
+    }
+  
+    .cafe-detail {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  
+    .cafe-header {
+      max-width: 100%;
+    }
+  
+    .add-detail-btn {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .rating-container {
+      white-space: initial;
+    }
+  
+    .rating-display {
+      white-space: initial;
+    }
+  
+    .cafe-details {
+      max-width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  
+    .address-info {
+      white-space: initial;
+    }
+  }
+  

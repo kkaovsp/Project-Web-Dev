@@ -1,5 +1,6 @@
 const port = 5000;
 const express = require('express');
+const multer = require('multer');
 const path = require('path');
 const mysql = require('mysql2');
 const app = express();
@@ -90,8 +91,19 @@ app.post("/api/admin/login", (req, res) => {
 
     const accountId = results[0].Account_ID;
     const accountName = results[0].Username;
-    console.log(`Login attempt by ${accountName} (Account ID: ${accountId}) at ${new Date().toISOString()}`);
+    const dateTime = new Date().toLocaleString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+
+    console.log(`Login attempt by ${accountName} (Account ID: ${accountId}) at ${dateTime}`);
     console.log("Recording login in Login_log table");
+
 
     // Record the login in the Login_log table
     // This is a separate query to log the login attempt
@@ -115,6 +127,64 @@ app.post("/api/admin/login", (req, res) => {
     });
   });
 });
+
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "Image"));
+  },
+  filename: function (req, file, cb) {
+    // Extract the cafe name and location (street) from the request body
+    const cafeName = req.body.name.replace(/\s+/g, "_"); // Replace spaces with underscores
+    const location = req.body.street.replace(/\s+/g, "_"); // Replace spaces with underscores
+    const fileExtension = path.extname(file.originalname); // Get the file extension (e.g., .jpg, .png)
+    const filename = `${cafeName}_${location}${fileExtension}`;
+    cb(null, filename); //
+  },
+});
+const upload = multer({ storage });
+
+// Endpoint to handle adding a new cafe
+app.post("/api/add-cafe", upload.field([{ name: "cafe_pictures", maxCount: 10 }, // Multiple cafe pictures
+{ name: "menu_pictures", maxCount: 5 },  // Multiple menu pictures
+]),
+  (req, res) => {
+    const {
+      name,
+      pin_code,
+      city,
+      street,
+      contact_number,
+      open_hour,
+      close_hour,
+      account_id,
+    } = req.body;
+
+    const cafePictures = req.files ? req.files.map((file) => file.filename) : [];
+
+    if (!name || !pin_code || !city || !street || !contact_number || !open_hour || close_hour || !account_id || !cafePicture) {
+      return res.status(400).json({ error: "All fields are required" });
+    }
+
+    const query = `
+    INSERT INTO Restaurant_Cafe (Name, pin_code, City, Street, Contact_number, Open_hour, Close_hour, Account_ID, Picture)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `;
+
+    Database.query(
+      query,
+      [name, pin_code, city, street, contact_number, open_hour, account_id, cafePicture],
+      (error, results) => {
+        if (error) {
+          console.error("Error adding cafe:", error);
+          return res.status(500).json({ error: "Database error" });
+        }
+
+        res.status(201).json({ message: "Cafe added successfully" });
+      }
+    );
+  });
+
 
 
 // API endpoint to get login logs with pagination, search, and sorting

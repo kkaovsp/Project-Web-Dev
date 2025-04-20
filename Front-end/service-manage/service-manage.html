@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service Management</title>
-    <link rel="stylesheet" href="service-manage.css" type="text/css" />
+    <link rel="stylesheet" href="/service-manage/service-manage.css" type="text/css" />
 </head>
 <body>
     <div class="management-default">
@@ -46,7 +46,7 @@
                     </div>
                     <button class="reset-button" aria-label="Reset filters">Reset</button>
                 </div>
-                <button class="add-new-button" aria-label="Add new cafe">Add New +</button>
+                <button onclick="window.location.href = '/admin/service-management/add-new'" class="add-new-button" aria-label="Add new cafe">Add New +</button>
             </div>
         </header>
         <main class="service-manager-list" aria-label="Service Manager List">
@@ -62,7 +62,7 @@
                     </div>
                 </div>
                 <div class="card-actions">
-                    <button class="action-button" aria-label="Edit Caltex Borom Inbound">
+                    <button onclick = "window.location.href = '/admin/service-management/edit'" class="action-button" aria-label="Edit Caltex Borom Inbound">
                         <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/342c30213b2cf65bf1ea3dde2b6ceb494f053c76?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Edit" class="action-icon" />
                     </button>
                     <button class="action-button" aria-label="Delete Caltex Borom Inbound">

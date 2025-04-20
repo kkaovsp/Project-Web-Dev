@@ -253,10 +253,12 @@
   document.querySelector(".filter-select").addEventListener("change", function (event) {
     const selectedValue = event.target.value;
     console.log("Selected value:", selectedValue);
-    if (!selectedValue === "All Roles") {
-      state.searchTerm = selectedValue;
+    if (selectedValue == "All Roles") {
+      state.searchTerm = ""; // Reset search term for "All Roles"
       fetchLoginData();
     }
+      state.searchTerm = selectedValue;
+      fetchLoginData();
   });
 
   // Initialize by fetching data and setting up the UI
