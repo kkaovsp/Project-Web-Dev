@@ -1,122 +1,131 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/service-manage/add-new.css" />
     <title>Add New Cafe</title>
-  </head>
-  <body>
-    <main class="add-new-cafe">
-      <header class="header-section">
-        <img
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/dd93403c888d282e2b7a9cb8cec1fddb695a25d0?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-          alt="Add icon"
-          class="add-icon"
-        />
-        <h1 class="header-title">Add New Cafe</h1>
-      </header>
+</head>
 
-      <!-- Cafe Details Section -->
-      <article class="cafe-detail">
-        <div class="cafe-info">
-          <div class="cafe-header">
-            <h2 class="cafe-name">Name</h2>
-            <button class="add-detail-btn" id="open-popup-btn">Add Detail</button>
-          </div>
-          <div class="rating-container">
-            <div class="rating-display">
-              <span class="rating-value">0.0</span>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/6deeb1448f01409c9b46917507605ecc7cd703c6?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="Rating stars"
-                class="rating-stars"
-              />
+<body>
+    <main class="cafe-detail">
+        <header class="header-banner">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/dd93403c888d282e2b7a9cb8cec1fddb695a25d0?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
+                alt="Back button" class="back-icon" />
+            <h1 class="edit-heading">Add New Cafe</h1>
+        </header>
+
+        <!-- Cafe Details Section -->
+        <section class="cafe-gallery">
+            <div class="gallery-container">
+                <div class="cafe-header">
+                    <div class="main-image-column">
+                        <img id="main-image" src="/Image/Upload.png" class="upload-placeholder" />
+                    </div>
+                    <div class="thumbnail-column">
+                        <div class="thumbnail-container">
+                            <img src="" class="cafe-thumbnail" />
+                            <img src="" class="cafe-thumbnail" />
+                            <img src="" class="cafe-thumbnail" />
+                        </div>
+                    </div>
+                </div>
             </div>
-            <span class="rating-count">(0)</span>
-          </div>
-        </div>
+        </section>
 
-        <div class="cafe-details">
-          <div class="address-info">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/e60ab75e12e6f051171985297ee82925d3e865fc?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-              alt="Location icon"
-              class="location-icon"
-            />
-            <span class="address-text">Address</span>
-          </div>
-          <div class="time-info">
-            <div class="time-container">
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/b378ef4213ea102da4c3ed2c30bd517e6de7e931?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="Clock icon"
-                class="clock-icon"
-              />
-              <span class="time-text">XX - XX</span>
+        <!-- Cafe Info Section -->
+        <section class="cafe-info">
+            <div class="info-container">
+                <div class="cafe-header">
+                    <h2 class="cafe-name">Branch's name</h2>
+                    <button class="add-detail-btn" id="open-popup-btn">Add Detail</button>
+                </div>
+                <div class="cafe-meta">
+                    <div class="rating-container">
+                        <div class="rating-score">
+                            <span class="score-value">0.0</span>
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/6deeb1448f01409c9b46917507605ecc7cd703c6?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
+                                class="stars-image" />
+                        </div>
+                        <span class="review-count">(0)</span>
+                    </div>
+                </div>
             </div>
-            <span class="additional-time">XX - XX</span>
-          </div>
-          <div class="table-info">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/ae587be90a17568fad802152994c5a040555c3d7?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-              alt="Table icon"
-              class="table-icon"
-            />
-            <span class="table-availability">Table Available : X</span>
-          </div>
+
+            <div class="cafe-details">
+                <div class="address-info">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c47e3fa22692b512e1208130d9986a888fd1fa2c?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
+                        alt="Location icon" class="location-icon" />
+                    <address class="address-text">-</address>
+                </div>
+                <div class="hours-info">
+                    <div class="days-column">
+                        <div class="weekday-container">
+                            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/c5f539e8f95a4be89c42b3b0766dbadda6f6e074?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
+                                alt="Clock icon" class="clock-icon" />
+                            <span class="weekdays">-</span>
+                        </div>
+                    </div>
+                    <div class="time-column">
+                        <span class="open-hours"></span>
+                    </div>
+                </div>
+                <!-- Page-Level Buttons -->
+                <div class="page-actions">
+                    <button id="final-confirm-btn">Confirm</button>
+                    <button id="final-cancel-btn">Cancel</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popup Form -->
+        <div class="popup-form" id="popup-form">
+            <div class="popup-content">
+                <h2>Add Cafe Details</h2>
+                <form action="/api/upload" method="POST" enctype="multipart/form-data">
+                    <label for="name">Cafe Name:</label>
+                    <input type="text" id="popup-name" name="name" placeholder="Enter cafe name" required />
+
+                    <label for="branch">Branch:</label>
+                    <input type="text" id="popup-branch" name="branch" placeholder="Enter branch name" required />
+
+                    <label for="address">Address:</label>
+                    <input type="text" id="popup-address" name="address" placeholder="Enter full address" required />
+
+                    <label for="province">Province:</label>
+                    <input type="text" id="popup-province" name="province" placeholder="Enter province" required />
+
+                    <label for="district">District:</label>
+                    <input type="text" id="popup-district" name="district" placeholder="Enter district" required />
+
+                    <label for="pin_code">Pin Code:</label>
+                    <input type="text" id="popup-pin-code" name="pin_code" placeholder="Enter pin code" required />
+
+                    <label for="contact_number">Contact Number:</label>
+                    <input type="text" id="popup-contact-number" name="contact_number"
+                        placeholder="Enter contact number" required />
+
+                    <label for="open_hour">Open Hour:</label>
+                    <input type="time" id="popup-open-hour" name="open_hour" required />
+
+                    <label for="close_hour">Close Hour:</label>
+                    <input type="time" id="popup-close-hour" name="close_hour" required />
+
+                    <label for="account_id">Admin Account ID:</label>
+                    <input type="text" id="popup-account-id" name="account_id" placeholder="Enter your account ID"
+                        required />
+
+                    <label for="cafe_pictures">Upload Cafe Images:</label>
+                    <input type="file" id="popup-cafe-pictures" name="cafe_pictures" multiple accept="image/*"
+                        required />
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
         </div>
-      </article>
-
-      <!-- Popup Form -->
-      <div class="popup-form" id="popup-form">
-        <div class="popup-content">
-          <h2>Add Cafe Details</h2>
-          <form action="/api/upload" method="POST" enctype="multipart/form-data">
-            <label for="name">Cafe Name:</label>
-            <input type="text" id="popup-name" name="name" placeholder="Enter cafe name" required />
-
-            <label for="branch">Branch:</label>
-            <input type="text" id="popup-branch" name="branch" placeholder="Enter branch name" required />
-
-            <label for="address">Address:</label>
-            <input type="text" id="popup-address" name="address" placeholder="Enter full address" required />
-
-            <label for="province">Province:</label>
-            <input type="text" id="popup-province" name="province" placeholder="Enter province" required />
-
-            <label for="district">District:</label>
-            <input type="text" id="popup-district" name="district" placeholder="Enter district" required />
-
-            <label for="pin_code">Pin Code:</label>
-            <input type="text" id="popup-pin-code" name="pin_code" placeholder="Enter pin code" required />
-
-            <label for="contact_number">Contact Number:</label>
-            <input type="text" id="popup-contact-number" name="contact_number" placeholder="Enter contact number" required />
-
-            <label for="open_hour">Open Hour:</label>
-            <input type="time" id="popup-open-hour" name="open_hour" required />
-
-            <label for="close_hour">Close Hour:</label>
-            <input type="time" id="popup-close-hour" name="close_hour" required />
-
-            <label for="account_id">Admin Account ID:</label>
-            <input type="text" id="popup-account-id" name="account_id" placeholder="Enter your account ID" required />
-
-            <label for="cafe_pictures">Upload Cafe Images:</label>
-            <input type="file" id="popup-cafe-pictures" name="cafe_pictures" multiple accept="image/*" required />
-
-            <button type="submit">Submit</button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Page-Level Buttons -->
-      <div class="page-actions">
-        <button id="final-confirm-btn">Confirm</button>
-        <button id="final-cancel-btn">Cancel</button>
-      </div>
     </main>
     <script src="/service-manage/add-detail.js"></script>
-  </body>
+</body>
+
 </html>

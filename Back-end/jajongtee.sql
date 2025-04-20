@@ -38,14 +38,14 @@ CREATE TABLE IF NOT EXISTS Login_log (
 CREATE TABLE IF NOT EXISTS Restaurant_Cafe (
     Restaurant_ID INT PRIMARY KEY,
     Name VARCHAR(20) NOT NULL,
+    Branch VARCHAR(20) NOT NULL,
     pin_code INT NOT NULL,
     Province VARCHAR(20) NOT NULL,
     District VARCHAR(20) NOT NULL,
     Address VARCHAR(255) NOT NULL,
-    Contact_number CHAR(10) NOT NULL,
+    Contact_number CHAR(12) NOT NULL,
     Open_hour TIME NOT NULL,
     Close_hour TIME NOT NULL,
-    Image_Path VARCHAR(50),
     Account_ID INT NOT NULL,
     FOREIGN KEY (Account_ID) REFERENCES Admin_Account(Account_ID)
 );
@@ -85,12 +85,9 @@ INSERT INTO Login_log (Login_log, Account_ID) VALUES
 (NOW() - INTERVAL 5 DAY - INTERVAL 1 HOUR, 2222222);
 
 -- Insert sample data for Restaurant_Cafe
-INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, pin_code, Province, District, Address, Contact_number, Open_hour, Close_hour, Image_Path, Account_ID) VALUES
-(101, 'Starbucks', 10330, 'Bangkok', 'Sukhumvit', '026121222', '08:00:00', 1111111),
-(102, 'Starbucks', 10110, 'Bangkok', 'Siam Paragon', '026108048', '08:00:00', 2222222),
-(103, 'Starbucks', 10500, 'Bangkok', 'Silom Complex', '026314607', '08:00:00', 3333333),
-(104, 'Starbucks', 10120, 'Bangkok', 'Central Rama 3', '026736409', '08:00:00', 5555555),
-(105, 'Starbucks', 10310, 'Bangkok', 'Central Ladprao', '025411163', '08:00:00', 4444444);
+INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, Branch, Province, District, pin_code, Address, Contact_number, Open_hour, Close_hour, Account_ID) VALUES
+(101, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+
 
 
 -- Display created tables
