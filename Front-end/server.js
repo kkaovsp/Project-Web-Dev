@@ -1,5 +1,5 @@
-// ===== UPDATED FRONTEND SERVER CODE FOR JAJONGTEE DATABASE =====
-
+const multer = require("multer");
+const FormData = require("form-data");
 const express = require("express");
 const path = require("path");
 const app = express();
@@ -92,6 +92,46 @@ app.get("/Location", (req, res) => {
   console.log("Location page requested");
 });
 
+
+
+//upload images API
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+app.post("/api/upload", upload.array("cafe_pictures", 4), async (req, res) => {
+  try {
+    const formData = new FormData();
+    // Append form fields
+    Object.keys(req.body).forEach((key) => {
+      formData.append(key, req.body[key]);
+    });
+
+    // Append files
+    req.files.forEach((file) => {
+      formData.append("cafe_pictures", file.buffer, {
+        filename: file.originalname,
+        contentType: file.mimetype,
+      });
+    });
+    console.log("FormData keys:", formData.getHeaders());
+
+    const response = await fetch("http://localhost:5000/api/upload", {
+      method: "POST",
+      body: formData,
+      headers: formData.getHeaders(),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to upload to backend");
+    }
+
+    const data = await response.json();
+    res.status(200).json(data);
+  } catch (error) {
+    console.error("Error forwarding upload request:", error);
+    res.status(500).json({ error: "Failed to upload files" });
+  }
+});
 
 // Admin login API
 // This endpoint is used to handle admin login requests from the frontend

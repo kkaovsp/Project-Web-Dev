@@ -39,8 +39,9 @@ CREATE TABLE IF NOT EXISTS Restaurant_Cafe (
     Restaurant_ID INT PRIMARY KEY,
     Name VARCHAR(20) NOT NULL,
     pin_code INT NOT NULL,
-    City VARCHAR(20) NOT NULL,
-    Street VARCHAR(30) NOT NULL,
+    Province VARCHAR(20) NOT NULL,
+    District VARCHAR(20) NOT NULL,
+    Address VARCHAR(255) NOT NULL,
     Contact_number CHAR(10) NOT NULL,
     Open_hour TIME NOT NULL,
     Close_hour TIME NOT NULL,
@@ -84,29 +85,12 @@ INSERT INTO Login_log (Login_log, Account_ID) VALUES
 (NOW() - INTERVAL 5 DAY - INTERVAL 1 HOUR, 2222222);
 
 -- Insert sample data for Restaurant_Cafe
-INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, pin_code, City, Street, Contact_number, Open_hour, Close_hour, Image_Path, Account_ID) VALUES
+INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, pin_code, Province, District, Address, Contact_number, Open_hour, Close_hour, Image_Path, Account_ID) VALUES
 (101, 'Starbucks', 10330, 'Bangkok', 'Sukhumvit', '026121222', '08:00:00', 1111111),
 (102, 'Starbucks', 10110, 'Bangkok', 'Siam Paragon', '026108048', '08:00:00', 2222222),
 (103, 'Starbucks', 10500, 'Bangkok', 'Silom Complex', '026314607', '08:00:00', 3333333),
 (104, 'Starbucks', 10120, 'Bangkok', 'Central Rama 3', '026736409', '08:00:00', 5555555),
-(105, 'Starbucks', 10310, 'Bangkok', 'Central Ladprao', '025411163', '08:00:00', 4444444),
-(106, 'Starbucks', 10700, 'Bangkok', 'Victory Monument', '026429876', '08:00:00', 2222222),
-(107, 'Starbucks', 73000, 'Nakhon Pathom', 'Phutthamonthon Sai 4', '024419401', '08:00:00', 1111111),
-(108, 'Starbucks', 73170, 'Nakhon Pathom', 'Salaya', '024413444', '08:00:00', 3333333),
-(109, 'Starbucks', 73120, 'Nakhon Pathom', 'Nakhon Chaisi', '034340901', '08:00:00', 4444444),
-(110, 'Starbucks', 73000, 'Nakhon Pathom', 'Central Nakhon Pathom', '034100847', '08:00:00', 5555555),
-
-(201, 'Amazon Cafe', 10400, 'Bangkok', 'Silom', '026382000', '07:30:00', 2222222),
-(202, 'Amazon Cafe', 10240, 'Bangkok', 'Ramkhamhaeng', '023189011', '07:30:00', 3333333),
-(203, 'Amazon Cafe', 10510, 'Bangkok', 'Lat Krabang', '023268232', '07:30:00', 5555555),
-(204, 'Amazon Cafe', 73000, 'Nakhon Pathom', 'Sam Phran', '034312444', '07:30:00', 1111111),
-(205, 'Amazon Cafe', 73110, 'Nakhon Pathom', 'Don Tum', '034398199', '07:30:00', 4444444),
-
-(301, 'Punthai Coffee', 10330, 'Bangkok', 'Asoke', '021501434', '09:00:00', 3333333),
-(302, 'Punthai Coffee', 10110, 'Bangkok', 'Chidlom', '021510660', '09:00:00', 5555555),
-(303, 'Punthai Coffee', 10260, 'Bangkok', 'Bangna', '021540032', '09:00:00', 2222222),
-(304, 'Punthai Coffee', 73000, 'Nakhon Pathom', 'Phutthamonthon Sai 5', '034100774', '09:00:00', 4444444),
-(305, 'Punthai Coffee', 73170, 'Nakhon Pathom', 'Salaya', '024442201', '09:00:00', 1111111);
+(105, 'Starbucks', 10310, 'Bangkok', 'Central Ladprao', '025411163', '08:00:00', 4444444);
 
 
 -- Display created tables

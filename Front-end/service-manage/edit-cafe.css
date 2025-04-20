@@ -55,7 +55,7 @@
     margin-bottom: auto;
     flex-grow: 1;
     flex-shrink: 1;
-    width: 1284px;
+    width: fit-content;
     flex-basis: auto;
     font-size: 36px;
     font-weight: 400;
@@ -63,62 +63,61 @@
   
   /* Gallery section */
   .cafe-gallery {
-    margin-top: 32px;
-    width: 100%;
-    max-width: 999px;
+    margin-top: 30px;
+    width: 1000px;
+    height: 525px;
   }
   
   .gallery-container {
     display: flex;
-    gap: 20px;
+    width: 100%;
+    height: 100%;
   }
   
   .main-image-column {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
     line-height: normal;
     width: 80%;
+    height: 100%;
   }
   
   .main-cafe-image {
-    aspect-ratio: 1.33;
-    object-fit: contain;
-    object-position: center;
+    aspect-ratio: 800 / 525;
+    object-fit: cover;
+    object-position: 0% 100%;
+    image-rendering: crisp-edges;
     width: 100%;
-    flex-grow: 1;
+    height: 100%;
   }
   
   .thumbnail-column {
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    line-height: normal;
-    width: 20%;
-    margin-left: 20px;
   }
   
   .thumbnail-container {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    width: 100%;
+    height: 100%
   }
   
   .cafe-thumbnail {
-    aspect-ratio: 1;
-    object-fit: contain;
-    object-position: center;
-    width: 199px;
+    aspect-ratio: 200/175;
+    object-position:center;
+    width: 200px;
   }
-  
+.cafe-thumbnail:hover {
+    filter: brightness(80%);
+    transition: filter 0.3s ease;
+}
+
   /* Cafe info section */
   .cafe-info {
     border-radius: 8px;
     background-color: #fff;
-    width: 100%;
-    max-width: 1070px;
-    padding-top: 17px;
+    width: 1100px;
+    padding-top: 20px;
     font-family:
       Inter,
       -apple-system,
@@ -139,7 +138,7 @@
     display: flex;
     width: 100%;
     align-items: center;
-    gap: 40px 100px;
+    gap: 100px 100px;
     flex-wrap: wrap;
   }
   
@@ -170,7 +169,7 @@
     cursor: pointer;
   }
   
-  .share-icon {
+  .edit-icon {
     aspect-ratio: 1;
     object-fit: contain;
     object-position: center;
@@ -354,70 +353,5 @@
     width: 25px;
     margin-top: 5px;
     flex-shrink: 0;
-  }
-  
-  /* Responsive styles */
-  @media (max-width: 991px) {
-    .header-banner {
-      padding: 45px 20px;
-    }
-  
-    .edit-heading {
-      max-width: 100%;
-    }
-  
-    .cafe-gallery {
-      max-width: 100%;
-    }
-  
-    .gallery-container {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-    }
-  
-    .main-image-column {
-      width: 100%;
-    }
-  
-    .main-cafe-image {
-      max-width: 100%;
-    }
-  
-    .thumbnail-column {
-      width: 100%;
-      margin-left: 0;
-    }
-  
-    .cafe-info {
-      max-width: 100%;
-    }
-  
-    .info-container {
-      max-width: 100%;
-      padding: 0 20px;
-    }
-  
-    .cafe-header {
-      max-width: 100%;
-    }
-  
-    .cafe-name {
-      max-width: 100%;
-    }
-  
-    .contact-button {
-      padding: 12px 20px;
-      white-space: initial;
-    }
-  
-    .cafe-details {
-      max-width: 100%;
-      padding: 20px;
-    }
-  
-    .weekday-container {
-      margin-right: 2px;
-    }
   }
   
