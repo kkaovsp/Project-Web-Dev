@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS Login_log (
 CREATE TABLE IF NOT EXISTS Restaurant_Cafe (
     Restaurant_ID INT PRIMARY KEY,
     Name VARCHAR(20) NOT NULL,
-    Branch VARCHAR(20) NOT NULL,
+    Branch VARCHAR(50) NOT NULL,
     pin_code INT NOT NULL,
     Province VARCHAR(20) NOT NULL,
     District VARCHAR(20) NOT NULL,
@@ -139,4 +139,11 @@ WHERE
 ORDER BY login_date DESC
 LIMIT 10 OFFSET 0;
 
+select * from restaurant_cafe;
 SHOW FULL COLUMNS FROM vw_login_logs;
+
+SELECT Restaurant_ID
+    FROM Restaurant_Cafe
+    WHERE Name LIKE 'Starbucks'
+    ORDER BY Restaurant_ID DESC
+    LIMIT 1

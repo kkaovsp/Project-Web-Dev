@@ -14,39 +14,39 @@ openPopupBtn.addEventListener("click", () => {
 
 // Handle popup form submission
 popupForm.addEventListener("submit", (event) => {
-    event.preventDefault(); // Prevent the default form submission\
-    console.log("Form submitted");
+    event.preventDefault(); // Prevent the default form submission
+
     // Collect form data
     const name = document.getElementById("popup-name").value;
     const branch = document.getElementById("popup-branch").value;
     const address = document.getElementById("popup-address").value;
     const province = document.getElementById("popup-province").value;
     const district = document.getElementById("popup-district").value;
-    const pinCode = document.getElementById("popup-pin-code").value;
-    const contactNumber = document.getElementById("popup-contact-number").value;
-    const openHour = document.getElementById("popup-open-hour").value;
-    const closeHour = document.getElementById("popup-close-hour").value;
-    const accountId = document.getElementById("popup-account-id").value;
+    const pin_code = document.getElementById("popup-pin-code").value; // Fix: match 'pin_code'
+    const contact_number = document.getElementById("popup-contact-number").value; // Fix: match 'contact_number'
+    const open_hour = document.getElementById("popup-open-hour").value; // Fix: match 'open_hour'
+    const close_hour = document.getElementById("popup-close-hour").value; // Fix: match 'close_hour'
+    const account_id = document.getElementById("popup-account-id").value; // Fix: match 'account_id'
     const cafePictures = document.getElementById("popup-cafe-pictures").files;
 
     // Save data locally
     cafeDetails = {
         name,
         branch,
-        address,
         province,
         district,
-        pinCode,
-        contactNumber,
-        openHour,
-        closeHour,
-        accountId,
+        pin_code,       // Backend expects 'pin_code'
+        address,
+        contact_number, // Backend expects 'contact_number'
+        open_hour,      // Backend expects 'open_hour'
+        close_hour,     // Backend expects 'close_hour'
+        account_id,     // Backend expects 'account_id'
     };
 
     // Save uploaded images locally
     uploadedImages = Array.from(cafePictures);
 
-    // Render preview
+    // Render a preview
     renderPreview();
 
     // Close the popup form
@@ -58,7 +58,7 @@ function renderPreview() {
     // Update text fields
     document.querySelector(".cafe-name").textContent = cafeDetails.branch || "Branch's name";
     document.querySelector(".address-text").textContent = cafeDetails.address || "-";
-    document.querySelector(".weekdays").textContent = `${cafeDetails.openHour || "-"} - ${cafeDetails.closeHour || "-"}`;
+    document.querySelector(".weekdays").textContent = `${cafeDetails.open_hour || "-"} - ${cafeDetails.close_hour || "-"}`;
 
     // Set CSS styles to preview gallery
     const thumbnails = document.querySelectorAll(".cafe-thumbnail");
@@ -83,8 +83,6 @@ function renderPreview() {
             }
         }
     }        
-
-    
 }
 
 // Handle final confirmation
@@ -111,7 +109,6 @@ finalConfirmBtn.addEventListener("click", async () => {
             throw new Error("Failed to add cafe");
         }
 
-        const data = await response.json();
         alert("Cafe added successfully!");
         location.reload(); // Reload the page
     } catch (error) {

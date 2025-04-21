@@ -131,7 +131,7 @@ app.post("/api/admin/login", (req, res) => {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "Image"));
+    cb(null, path.join(__dirname, "../Front-end/Image"));
   },
   filename: function (req, file, cb) {
     // Extract the cafe name and location (street) from the request body
@@ -152,29 +152,64 @@ const upload = multer({ storage });
 
 // Endpoint to handle adding a new cafe
 app.post("/api/upload", upload.array("cafe_pictures", 4), (req, res) => {
-  const { name, branch, address, province, district, pin_code, contact_number, open_hour, close_hour, account_id } = req.body;
-  console.log("Request at ", req.url);
-  if (!name || !branch || !address || !province || !district || !pin_code || !contact_number || !open_hour || !close_hour || !account_id) {
+  console.log("Form data:", req.body);
+
+  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id } = req.body;
+  if (!name || !branch || !province || !district || !pin_code || !address || !contact_number || !open_hour || !close_hour || !account_id) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  const query = `
-    INSERT INTO Restaurant_Cafe (Name, Branch, Address, Province, District, pin_code, Contact_number, Open_hour, Close_hour, Account_ID)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+
+  // Format the ID of each cafe
+  const resID = {
+    "Starbucks": "101",
+    "Amazon": "201",
+    "Punthai": "301",
+  };
+
+  const getLastIdQuery = `
+    SELECT Restaurant_ID
+    FROM Restaurant_Cafe
+    WHERE Name LIKE '${name}'
+    ORDER BY Restaurant_ID DESC
+    LIMIT 1
   `;
 
-  Database.query(
-    query,
-    [name, branch, address, province, district, pin_code, contact_number, open_hour, close_hour, account_id],
-    (error, results) => {
-      if (error) {
-        console.error("Error adding cafe:", error);
-        return res.status(500).json({ error: "Database error" });
-      }
-
-      res.status(200).json({ message: "Cafe added successfully" });
+  let restaurantId;
+  Database.query(getLastIdQuery, (error, results) => {
+    if (error) {
+      console.error("Error fetching last Restaurant_ID:", error);
+      return res.status(500).json({ error: "Database error" });
     }
-  );
+    // Set the ID of the new cafe if it doesn't exist
+    console.log("Last Restaurant_ID:", results);
+    if (results.length > 0 && results[0].Restaurant_ID) {
+      restaurantId = parseInt(results[0].Restaurant_ID) + 1; // Increment the last ID by 1
+    } else {
+      restaurantId = resID[name]; // Use the default ID based on the cafe name
+    }
+
+    //Insert the new cafe into the Restaurant_Cafe table
+    //This query inserts a new record into the Restaurant_Cafe table with the provided details
+    const query = `
+  INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, Branch, Province, District, pin_code, Address, Contact_number, Open_hour, Close_hour, Account_ID)
+  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+`;
+
+    Database.query(
+      query,
+      [restaurantId, name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id],
+      (error, results) => {
+        if (error) {
+          console.error("Error adding cafe:", error);
+          return res.status(500).json({ error: "Database error" });
+        }
+
+        console.log("Cafe added successfully:");
+        res.status(200).json({ message: "Cafe added successfully" });
+      }
+    );
+  });
 });
 
 
@@ -270,11 +305,7 @@ app.get("/api/login-logs", (req, res) => {
   );
 });
 
-// Invalid path handler
-app.use((req, res, next) => {
-  console.log("404: Invalid accessed");
-  res.status(404).send("Invalid Path");
-});
+
 
 // Server listening
 app.listen(port, function () {
