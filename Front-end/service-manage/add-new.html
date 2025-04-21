@@ -11,24 +11,23 @@
 <body>
     <main class="cafe-detail">
         <header class="header-banner">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/dd93403c888d282e2b7a9cb8cec1fddb695a25d0?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7"
-                alt="Back button" class="back-icon" />
+            <a href="/admin/service-management">
+                <img src="/Image/back-icon.svg" id="back-icon" alt="Back">
+            </a>
             <h1 class="edit-heading">Add New Cafe</h1>
         </header>
 
         <!-- Cafe Details Section -->
         <section class="cafe-gallery">
             <div class="gallery-container">
-                <div class="cafe-header">
-                    <div class="main-image-column">
-                        <img id="main-image" src="/Image/Upload.png" class="upload-placeholder" />
-                    </div>
-                    <div class="thumbnail-column">
-                        <div class="thumbnail-container">
-                            <img src="" class="cafe-thumbnail" />
-                            <img src="" class="cafe-thumbnail" />
-                            <img src="" class="cafe-thumbnail" />
-                        </div>
+                <div class="main-image-column">
+                    <img id="main-image" src="/Image/Upload.png" class="upload-placeholder" />
+                </div>
+                <div class="thumbnail-column">
+                    <div class="thumbnail-container">
+                        <img src="" class="cafe-thumbnail" />
+                        <img src="" class="cafe-thumbnail" />
+                        <img src="" class="cafe-thumbnail" />
                     </div>
                 </div>
             </div>
@@ -83,7 +82,7 @@
         <div class="popup-form" id="popup-form">
             <div class="popup-content">
                 <h2>Add Cafe Details</h2>
-                <form action="/api/upload" method="POST" enctype="multipart/form-data">
+                <form id="popup-form" enctype="multipart/form-data">
                     <label for="name">Cafe Name:</label>
                     <input type="text" id="popup-name" name="name" placeholder="Enter cafe name" required />
 

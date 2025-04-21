@@ -153,7 +153,7 @@ const upload = multer({ storage });
 // Endpoint to handle adding a new cafe
 app.post("/api/upload", upload.array("cafe_pictures", 4), (req, res) => {
   const { name, branch, address, province, district, pin_code, contact_number, open_hour, close_hour, account_id } = req.body;
-
+  console.log("Request at ", req.url);
   if (!name || !branch || !address || !province || !district || !pin_code || !contact_number || !open_hour || !close_hour || !account_id) {
     return res.status(400).json({ error: "All fields are required" });
   }

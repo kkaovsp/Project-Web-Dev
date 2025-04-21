@@ -257,8 +257,10 @@
       state.searchTerm = ""; // Reset search term for "All Roles"
       fetchLoginData();
     }
+    else {
       state.searchTerm = selectedValue;
       fetchLoginData();
+    }
   });
 
   // Initialize by fetching data and setting up the UI

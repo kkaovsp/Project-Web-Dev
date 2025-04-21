@@ -1,26 +1,22 @@
 // Get elements
 const openPopupBtn = document.getElementById("open-popup-btn");
 const popupForm = document.getElementById("popup-form");
-const popupConfirmBtn = document.getElementById("popup-confirm-btn");
-const popupCancelBtn = document.getElementById("popup-cancel-btn");
 const finalConfirmBtn = document.getElementById("final-confirm-btn");
 const finalCancelBtn = document.getElementById("final-cancel-btn");
 
-let cafeDetails = {}; // To store cafe details
-let uploadedImages = []; // To store uploaded image paths
+let cafeDetails = {}; // Object to store form data locally
+let uploadedImages = []; // Array to store uploaded images
 
 // Open popup
 openPopupBtn.addEventListener("click", () => {
     popupForm.style.display = "flex";
 });
 
-// Close popup
-popupCancelBtn.addEventListener("click", () => {
-    popupForm.style.display = "none";
-});
-
-// Confirm popup details
-popupConfirmBtn.addEventListener("click", async () => {
+// Handle popup form submission
+popupForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent the default form submission\
+    console.log("Form submitted");
+    // Collect form data
     const name = document.getElementById("popup-name").value;
     const branch = document.getElementById("popup-branch").value;
     const address = document.getElementById("popup-address").value;
@@ -30,53 +26,83 @@ popupConfirmBtn.addEventListener("click", async () => {
     const contactNumber = document.getElementById("popup-contact-number").value;
     const openHour = document.getElementById("popup-open-hour").value;
     const closeHour = document.getElementById("popup-close-hour").value;
-    const accountId = document.getElementById("popup-account-id").value; // Get Account_ID
+    const accountId = document.getElementById("popup-account-id").value;
     const cafePictures = document.getElementById("popup-cafe-pictures").files;
 
-    if (!name || !branch || !accountId) {
-        alert("Please enter the cafe name, branch, and your account ID.");
-        return;
-    }
-
+    // Save data locally
     cafeDetails = {
         name,
         branch,
         address,
         province,
         district,
-        pin_code: pinCode,
-        contact_number: contactNumber,
-        open_hour: openHour,
-        close_hour: closeHour,
-        account_id: accountId,
+        pinCode,
+        contactNumber,
+        openHour,
+        closeHour,
+        accountId,
     };
 
+    // Save uploaded images locally
     uploadedImages = Array.from(cafePictures);
-    document.querySelector(".cafe-name").textContent = `${name} (${branch})`;
-    document.querySelector(".address-text").textContent = `${address}, ${district}, ${province}, ${pinCode}`;
-    document.querySelector(".time-text").textContent = `${openHour} - ${closeHour}`;
-    document.querySelector(".additional-time").textContent = `${openHour} - ${closeHour}`;
-    popupForm.style.display = "none"; // Close the popup
+
+    // Render preview
+    renderPreview();
+
+    // Close the popup form
+    document.getElementById("popup-form").style.display = "none";
 });
 
-// Final confirm
-// Final confirm button
-// This button will be used to send the data to the backend
+// Render preview on the page
+function renderPreview() {
+    // Update text fields
+    document.querySelector(".cafe-name").textContent = cafeDetails.branch || "Branch's name";
+    document.querySelector(".address-text").textContent = cafeDetails.address || "-";
+    document.querySelector(".weekdays").textContent = `${cafeDetails.openHour || "-"} - ${cafeDetails.closeHour || "-"}`;
+
+    // Set CSS styles to preview gallery
+    const thumbnails = document.querySelectorAll(".cafe-thumbnail");
+    thumbnails.forEach((thumbnail) => {
+        thumbnail.style.display = "block"; // Make each thumbnail visible
+    });
+
+    document.querySelector(".gallery-container").style.borderStyle = "none";
+
+    // Update main image and thumbnails
+    const mainImage = document.getElementById("main-image");
+    mainImage.classList.remove("upload-placeholder");
+    mainImage.classList.add("main-cafe-image");
+
+    console.log(uploadedImages);
+    console.log(thumbnails.length);
+    if (uploadedImages.length > 0) {
+        mainImage.src = URL.createObjectURL(uploadedImages[0]); // Set the first image as the main image
+        for (let i = 1; i < uploadedImages.length; i++) {
+            if (i <= thumbnails.length) {
+                thumbnails[i-1].src = URL.createObjectURL(uploadedImages[i]); // Set each thumbnail's source
+            }
+        }
+    }        
+
+    
+}
+
+// Handle final confirmation
 finalConfirmBtn.addEventListener("click", async () => {
     const formData = new FormData();
 
-    // Add text fields
+    // Add text fields to FormData
     for (const [key, value] of Object.entries(cafeDetails)) {
         formData.append(key, value);
     }
 
-    // Add uploaded images
-    for (const file of uploadedImages) {
-        formData.append("cafe_pictures", file); // same field name as your backend expects
-    }
+    // Add uploaded images to FormData
+    uploadedImages.forEach((file) => {
+        formData.append("cafe_pictures", file);
+    });
 
     try {
-        const response = await fetch("http://localhost:3000/api/upload", {
+        const response = await fetch("http://localhost:5000/api/upload", {
             method: "POST",
             body: formData,
         });
@@ -94,7 +120,7 @@ finalConfirmBtn.addEventListener("click", async () => {
     }
 });
 
-// Final cancel
+// Handle final cancel
 finalCancelBtn.addEventListener("click", () => {
     cafeDetails = {};
     uploadedImages = [];
