@@ -26,27 +26,7 @@ Database.connect(function (err) {
   console.log("Connected to jajongtee database successfully");
 });
 
-let options = {
-  method: "GET", // HTTP method (e.g., GET, POST, PUT, DELETE)
-  headers: { "Content-Type": "application/json", },
-};
 
-// Home page
-app.get("/", (req, res) => {
-  console.log("Request at ", req.url);
-  let query = `SELECT * FROM Adminn WHERE Admin_ID = 1`;
-  Database.query(query, function (error, results) {
-    if (error) throw error;
-    console.log(`${results.length} rows returned`);
-    if (results.length > 0) {
-      console.log("Found");
-    } else {
-      console.log("Not Found");
-      return res.sendFile(__dirname + "/html/notfound.html");
-    }
-    return res.send(results);
-  });
-});
 
 // API endpoint for admin login
 // This endpoint handles the login process for admin users
@@ -241,7 +221,7 @@ app.get("/api/login-logs", (req, res) => {
   ORDER BY
       ${sortBy} ${sortDirection === "desc" ? "DESC" : "ASC"}
   LIMIT ? OFFSET ?
-`;
+  `;
 
   // Count query to get total number of records
   let countQuery = `
@@ -255,7 +235,7 @@ app.get("/api/login-logs", (req, res) => {
       email LIKE ? OR
       accountId LIKE ? OR
       role LIKE ?
-`;
+  `;
 
   // Search parameter with wildcards
   const searchParam = `%${search}%`;
@@ -304,6 +284,28 @@ app.get("/api/login-logs", (req, res) => {
     },
   );
 });
+
+
+
+app.get("/api/cafe", (req, res) => {
+  console.log("Request at ", req.url);
+
+
+
+  
+  // SQL query to fetch all cafes
+  const query = `SELECT Restaurant_ID, Name FROM Restaurant_Cafe`;
+
+  Database.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching cafes:", error);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    // Return the results as JSON
+    res.json(results);
+  });
+}
 
 
 

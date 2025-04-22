@@ -35,12 +35,12 @@ popupForm.addEventListener("submit", (event) => {
         branch,
         province,
         district,
-        pin_code,       // Backend expects 'pin_code'
+        pin_code,     
         address,
-        contact_number, // Backend expects 'contact_number'
-        open_hour,      // Backend expects 'open_hour'
-        close_hour,     // Backend expects 'close_hour'
-        account_id,     // Backend expects 'account_id'
+        contact_number, 
+        open_hour,      
+        close_hour,     
+        account_id,     
     };
 
     // Save uploaded images locally
