@@ -38,9 +38,10 @@ body {
 
 .logo {
   position: absolute;
-  left: 20px; /* Adjust the position of the logo */
+  left: 20px; 
   height: 83.18px;
   top: 11px;
+  cursor: pointer;
 }
 
 .search-container {
@@ -90,7 +91,7 @@ body {
 .add-button img {
   width: 24px;
   height: 24px;
-  margin-left: 12px;
+  margin-top: 10px;
 }
 
 .user-actions {

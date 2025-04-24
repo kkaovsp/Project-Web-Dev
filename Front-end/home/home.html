@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cafe Discovery</title>
-    <link rel="stylesheet" href="/home/home.css" type="text/css" />
+    <link rel="stylesheet" href="home.css" type="text/css" />
 
     <link
       rel="stylesheet"
@@ -20,24 +20,30 @@
     <div class="container">
       <header class="main-header">
         <nav class="main-nav">
-          <img src="/Image/Logo.png" alt="Logo" class="logo" />
+          <div class="logo-container">
+            <button onclick="window.location.href='../home/home.html'" aria-label="Settings" class="icon-button">
+            <img src="../Image/Logo.png" alt="Logo" class="logo" />
+            </button>
+          </div>
 
           <div class="search-container">
             <div class="search-icon">
-              <img src="/Image/SearchIcon.png" alt="Search Icon" />
+              <img src="../Image/SearchIcon.png" alt="Search Icon" />
             </div>
             <input type="text" placeholder="Search..." class="search-input" />
             <div class="add-button">
-              <img src="/Image/SelectBox.png" alt="Plus Icon" />
+              <button onclick="window.location.href='../Location/Location.html'" aria-label="Settings" class="icon-button">
+              <img src="../Image/SelectBox.png" alt="Plus Icon" />
+              </button>
             </div>
           </div>
 
           <div class="user-actions">
-            <button onclick="window.location.href='/admin/login'" aria-label="Settings" class="icon-button">
-              <img src="/Image/AdminLogin.png" id="loginIcon" class="icon" alt="Login" />
+            <button onclick="window.location.href='../admin-login/admin-login.html'" aria-label="Settings" class="icon-button">
+              <img src="../Image/AdminLogin.png" id="loginIcon" class="icon" alt="Login" />
             </button>
             <button aria-label="User profile" class="icon-button">
-              <img src="/Image/UserLogin.png" alt="User Profile" />
+              <img src="../Image/UserLogin.png" alt="User Profile" />
             </button>
           </div>
         </nav>
@@ -48,17 +54,17 @@
           <div class="slider-container">
             <div class="slider-track" id="sliderTrack">
               <img
-                src="/Image/Slider1.jpg"
+                src="../Image/Slider1.jpg"
                 alt="Slider image"
                 class="slider-image"
               />
               <img
-                src="/Image/Slider2.jpg"
+                src="../Image/Slider2.jpg"
                 alt="Slider image"
                 class="slider-image"
               />
               <img
-                src="/Image/Slider3.jpg"
+                src="../Image/Slider3.jpg"
                 alt="Slider image"
                 class="slider-image"
               />
