@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Log</title>
     <link rel="stylesheet" href="/login-log/login-log.css">
 </head>
+
 <body>
     <main class="login-log-page">
         <header class="header-section">
             <div class="breadcrumb">
-                <img
-                    src="https://images.pexels.com/photos/5137555/pexels-photo-5137555.jpeg"
-                    alt="Dashboard icon"
-                    class="dashboard-icon"
-                />
+                <img src="https://images.pexels.com/photos/5137555/pexels-photo-5137555.jpeg" alt="Dashboard icon"
+                    class="dashboard-icon" />
                 <span class="breadcrumb-item">Dashboard</span>
                 <span class="breadcrumb-separator">/</span>
                 <span class="breadcrumb-item current">Login Log</span>
@@ -41,14 +40,9 @@
 
         <section class="content-section">
             <div class="controls-container">
-                <input
-                    type="search"
-                    placeholder="Search users..."
-                    class="search-input"
-                    aria-label="Search users"
-                />
+                <input type="search" placeholder="Search users..." class="search-input" aria-label="Search users" />
                 <div class="filter-controls">
-                    <select class="filter-select" aria-label="Filter by role">
+                    <select class="filter-select">
                         <option>All Roles</option>
                         <option>Super Admin</option>
                         <option>Manager</option>
@@ -88,26 +82,7 @@
             </div>
         </section>
     </main>
-
-    <script>
-        // This script will handle the initial loading state
-        document.addEventListener('DOMContentLoaded', function() {
-            // Show loading state in the table until data is loaded
-            const tableContainer = document.querySelector(".user-table");
-            const tableRows = tableContainer.querySelectorAll(".table-row:not(.table-header)");
-
-            // Hide all rows initially except header
-            tableRows.forEach(row => {
-                row.style.display = "none";
-            });
-
-            // Add a loading indicator
-            const loadingRow = document.createElement("div");
-            loadingRow.className = "table-row loading-row";
-            loadingRow.textContent = "Loading login data...";
-            tableContainer.appendChild(loadingRow);
-        });
-    </script>
     <script src="/login-log/login-log.js"></script>
 </body>
+
 </html>

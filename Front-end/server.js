@@ -119,20 +119,6 @@ app.post("/api/admin/login", async (req, res) => {
   }
 });
 
-app.get("/api/cafe-list", async (req, res) => {
-  try {
-    const response = await fetch("http://localhost:5000/api/cafe-list", get);
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-    const data = await response.json();
-    res.json(data);
-  } catch (error) {
-    console.error("Error fetching cafes:", error);
-    res.status(500).json({ error: "Failed to fetch cafes" });
-  }
-});
-
 
 // API proxy endpoints
 // This endpoint is used to fetch login logs from the backend API

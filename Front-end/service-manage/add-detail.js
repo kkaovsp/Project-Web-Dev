@@ -22,11 +22,11 @@ popupForm.addEventListener("submit", (event) => {
     const address = document.getElementById("popup-address").value;
     const province = document.getElementById("popup-province").value;
     const district = document.getElementById("popup-district").value;
-    const pin_code = document.getElementById("popup-pin-code").value; // Fix: match 'pin_code'
-    const contact_number = document.getElementById("popup-contact-number").value; // Fix: match 'contact_number'
-    const open_hour = document.getElementById("popup-open-hour").value; // Fix: match 'open_hour'
-    const close_hour = document.getElementById("popup-close-hour").value; // Fix: match 'close_hour'
-    const account_id = document.getElementById("popup-account-id").value; // Fix: match 'account_id'
+    const pin_code = document.getElementById("popup-pin-code").value;
+    const contact_number = document.getElementById("popup-contact-number").value; 
+    const open_hour = document.getElementById("popup-open-hour").value;
+    const close_hour = document.getElementById("popup-close-hour").value; 
+    const account_id = document.getElementById("popup-account-id").value;
     const cafePictures = document.getElementById("popup-cafe-pictures").files;
 
     // Save data locally
