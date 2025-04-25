@@ -48,17 +48,62 @@ function renderCafeList(cafes) {
     card.className = "card-list";
     card.innerHTML = `
       <div class="card-content">
-        <div class="card-main-content"
-          <div class="card-image-column">
-            <img src="/Image/${cafe.img_url}1" class ="cafe-image">
-          </div>
-          <div class="card-text-column">
-          <h2 class="${cafe.img_url}">Caltex Borom Inbound</h2>
-      </div>
-    `;
+                    <div class="card-main-content">
+                        <div class="card-image-column">
+                            <img src="/Image/${cafe.imgName}1.jpg" class="cafe-image" />
+                        </div>
+                        <div class="card-text-column">
+                            <h2 class="cafe-name">${cafe.branch}</h2>
+                        </div>
+                    </div>
+                </div>`;
     cafeListContainer.appendChild(card);
   });
 }
+
+async function fetchFilterOptions() {
+
+  try {
+    const response = await fetch("http://localhost:5000/api/filter-options", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const restaurant = await response.json();
+    console.log(restaurant)
+    console.log((restaurant.names, restaurant.provinces, restaurant.districts));
+    populateFilterOptions(restaurant.names, restaurant.provinces, restaurant.districts);
+  } catch (error) {
+    console.error("Error fetching filter options:", error);
+  }
+}
+
+ function populateFilterOptions(restaurant, province, district) {
+
+  // restaurant.for
+
+  // province.forEach((prov) => {
+  //   const option = document.createElement("option");
+  //   option.value = prov;
+  //   option.textContent = prov;
+  //   provinceFilter.appendChild(option);
+  // });
+
+  // district.forEach((dist) => {
+  //   const option = document.createElement("option");
+  //   option.value = dist;
+  //   option.textContent = dist;
+  //   districtFilter.appendChild(option);
+  // });
+}
+
+
 
 // Event listeners
 searchInput.addEventListener("input", () => {
@@ -83,3 +128,4 @@ districtFilter.addEventListener("change", () => {
 
 // Initialize
 fetchCafeData();
+fetchFilterOptions();

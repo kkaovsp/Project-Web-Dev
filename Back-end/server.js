@@ -266,6 +266,30 @@ app.get("/api/login-logs", (req, res) => {
 });
 
 // ==========================
+// Filter Option API
+// ==========================
+app.get("/api/filter-options", (req, res) => {
+  const query = `
+  SELECT
+    GROUP_CONCAT(DISTINCT Name) AS names,
+    GROUP_CONCAT(DISTINCT Province) AS provinces,
+    GROUP_CONCAT(DISTINCT District) AS districts
+  FROM 
+    Restaurant_Cafe;
+  `;
+
+  Database.query(query, (error, results) => {
+    if (error) {
+      console.error("Error fetching filter options:", error);
+      return res.status(500).json({ error: "Database error" });
+    }
+    console.log("Filter options fetched successfully");
+    res.json(results);
+    console.log(results);
+  });
+})
+
+// ==========================
 // Cafe List API
 // ==========================
 /**
@@ -325,36 +349,15 @@ app.get("/api/cafe-list", (req, res) => {
       console.error("Error fetching cafe list:", error);
       return res.status(500).json({ error: "Database error" });
     }
-    const imageDirectory = path.join(__dirname, "../Front-end/Image");
-    
-    // Add the correct image URL to each cafe
-    const cafesWithImages = results.map((cafe) => {
-      console.log(cafe.branch);
-      cafe.image_url = findImageWithExtension(cafe.branch, imageDirectory);
+    results.forEach((cafe) => {
+      cafe.imgName = cafe.branch.replace(/\s+/g, "_"); // Replace spaces with underscores
       return cafe;
     });
 
-    res.json(cafesWithImages)
-    console.log("Cafe list fetched successfully:", results);
+    res.json(results);
   });
 });
 
-function findImageWithExtension(imageName, directory) {
-  const files = fs.readdirSync(directory); // Read all files in the directory
-
-  for (const file of files) {
-    const ext = path.extname(file).toLowerCase(); // Get the file extension
-    const baseName = path.basename(file, ext); // Get the file name without extension
-
-    imageName = imageName.replace(/\s+/g, "_"); // Replace spaces with underscores in the image name
-    if (baseName === imageName); {
-      const imagePath = `${imageName}${ext}`; // Construct the image path
-      console.log(`Image found: ${imagePath}`);
-      return imagePath; // Return the matched file
-    }
-  }
-  return null; // Return null if no match is found
-}
 // ==========================
 // 9. Start Server
 // ==========================

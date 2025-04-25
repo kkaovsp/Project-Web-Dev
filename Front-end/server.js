@@ -86,11 +86,7 @@ app.get("/search", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "search/search.html"));
   console.log("Search page requested");
 });
-// Location page
-app.get("/Location", (req, res) => {
-  res.sendFile(path.join(__dirname, "/", "Location/Location.html"));
-  console.log("Location page requested");
-});
+
 
 
 // Admin login API

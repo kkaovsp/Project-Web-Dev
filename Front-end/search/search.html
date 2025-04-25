@@ -1,128 +1,216 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="search.css" />
-    <title>Search - JaJongTee</title>
-  </head>
-  <body>
-    <main class="search-page">
-      <header class="header-tab">
-        <a href = "/home" >
-          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/50b9c1a10b1b6d9f016658928daf3e9eccc280bc?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="JaJongTee Logo" class="logo-image" />
-      </a>
-        <div class="search-bar" role="search">
-          <div class="fab-container">
-            <button class="fab-button" aria-label="Search">
-              <div class="button-content">
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/40d8bde33849d067b0b32caa7ed20e348763fbfb?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Search" class="fab-icon" />
-              </div>
-            </button>
-          </div>
-          <div class="search-icon-container">
-            <div class="search-icon-wrapper">
-              <div class="icon-content">
-                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/cef9fa138ea3cceb7a78d37bb4a95a7124782853?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Search Icon" class="search-icon" />
-              </div>
-            </div>
-          </div>
-          <div class="search-input-container">
-            <div class="search-input"></div>
-          </div>
-        </div>
-
-        <div class="header-actions">
-          <a href="AdminLogin.html">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/e4c8c8ec3f83c27319c85c073fc4227505c84178?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Admin Login" class="admin-icon" />
-          </a>
-          <a href="UserLogin.html">
-            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/24bec2b08ae5ed6fe80d6b9edc43ed0dde918905?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="User Login" class="user-icon" />
-          </a>
-        </div>
-      </header>
-
-      <section class="search-filters-section">
-        <div class="search-filters-container">
-          <div class="filters-content">
-            <div class="filters-layout">
-              <div class="filter-labels">
-                <div class="filter-label">Cafe</div>
-                <div class="filter-label location-label">Location</div>
-                <div class="filter-label hours-label">Opening Hours</div>
-              </div>
-
-              <div class="filter-selectors">
-                <div class="filter-selectors-container">
-                  <div class="filter-dropdown cafe-dropdown">
-                    <div class="dropdown-header">
-                      <div class="dropdown-title">Select Cafe</div>
-                      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/110615a5faa52d45fd40560a2469c957dd13bf66?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Expand" class="dropdown-icon" />
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+          rel="stylesheet"/>
+        <link rel="stylesheet" href="search.css" type="text/css"/>
+        <title>Location</title>
+    </head>
+        <header>
+            <nav>
+                <a href="../home/home.html">
+                    <img src="../Image/Logo.png" class = "logo">
+                </a>
+      
+                    <div class="searchbar">
+                            <input type="text" id="searchInput" placeholder="">
+                            <img src="../Image/SearchIcon.png" class="search-icon">
+                            <a href="../Location/Location.html">
+                                <img src="../Image/SelectBox.png" class="select-box-icon"></img>
+                            </a>
                     </div>
-                  </div>
 
-                  <div class="filter-dropdown location-dropdown">
-                    <div class="dropdown-header">
-                      <div class="dropdown-title">Select Location</div>
-                      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/f5789427b73b08db4f1eff147a40c8a29e076e8d?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Expand" class="dropdown-icon" />
+                    <div class="right-links">
+                        <a href="../admin-login/admin-login.html">
+                            <img src="../Image/AdminLogin.png" class="icon"></img>
+                        </a>
+                        <a href="../UserLogin/UserLogin.html">
+                            <img src="../Image/UserLogin.png"class="icon"></img>
+                        </a>
                     </div>
-                  </div>
+            </nav>
+        </header>
 
-                  <div class="filter-dropdown hours-dropdown">
-                    <div class="dropdown-header">
-                      <div class="dropdown-title">Select Opening Hours</div>
-                      <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/01a44117d6261c2ac2fba3553fb80ff782a1b595?placeholderIfAbsent=true&apiKey=d0a187305ed94256a0b9cc329927d8f7" alt="Expand" class="dropdown-icon" />
-                    </div>
-                  </div>
+        <main class="filter-section">
+            <form class="filter-form">
+              <div class="filter-group">
+                <label class="filter-label">Cafe</label>
+                <div class="select-wrapper">
+                    <select class="filter-select" id="Cafe" name="Cafe">
+                        <option value="" disabled selected hidden>Select Cafe</option>
+                        <option value="Starbucks">Starbucks</option>
+                        <option value="Amazon Cafe">Amazon Cafe</option>
+                        <option value="Punthai Coffee">Punthai Coffee</option>
+                    </select>
+                  <svg
+                    class="arrow-icon"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M11.5303 2.72593C11.2375 2.42491 10.7626 2.42491 10.4697 2.72593L6.00023 7.31976L1.53073 2.72593C1.23785 2.42491 0.762994 2.42491 0.470112 2.72593C0.17723 3.02696 0.17723 3.51503 0.470112 3.81606L6.00023 9.5L11.5303 3.81606C11.8232 3.51503 11.8232 3.02696 11.5303 2.72593Z"
+                      fill="#8F9098"
+                    />
+                  </svg>
                 </div>
               </div>
+    
+              <div class="filter-group">
+                <label class="filter-label">Location</label>
+                <div class="select-wrapper">
+                    <select class="filter-select" id="Location" name="Location">
+                        <option value="" disabled selected hidden>Select Location</option>
+                        <option value="Nearme">Nearme</option>
+                        <option value="Bangkok">Bangkok</option>
+                        <option value="Nakhon Pathom">Nakhon Pathom</option>
+                    </select>
+                  <svg
+                    class="arrow-icon"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M11.5303 2.72593C11.2375 2.42491 10.7626 2.42491 10.4697 2.72593L6.00023 7.31976L1.53073 2.72593C1.23785 2.42491 0.762994 2.42491 0.470112 2.72593C0.17723 3.02696 0.17723 3.51503 0.470112 3.81606L6.00023 9.5L11.5303 3.81606C11.8232 3.51503 11.8232 3.02696 11.5303 2.72593Z"
+                      fill="#8F9098"
+                    />
+                  </svg>
+                </div>
+              </div>
+    
+              <div class="filter-group">
+                <label class="filter-label">Opening Hours</label>
+                <div class="select-wrapper">
+                    <select class="filter-select" id="OpeningHours" name="OpeningHours">
+                        <option value="" disabled selected hidden>Select Opening Hours</option>
+                        <option value="Standart Hours">Standart Hours</option>
+                        <option value="Open 24 Hours">Open 24 Hours</option>
+                    </select>
+                    <svg
+                      class="arrow-icon"
+                      width="12"
+                      height="12"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M11.5303 2.72593C11.2375 2.42491 10.7626 2.42491 10.4697 2.72593L6.00023 7.31976L1.53073 2.72593C1.23785 2.42491 0.762994 2.42491 0.470112 2.72593C0.17723 3.02696 0.17723 3.51503 0.470112 3.81606L6.00023 9.5L11.5303 3.81606C11.8232 3.51503 11.8232 3.02696 11.5303 2.72593Z"
+                        fill="#8F9098"
+                      />
+                    </svg>
+                </div>
+              </div>
+              <!-- For arrow to rotate -->
+              <script>
+                document.querySelectorAll('.filter-select').forEach((select) => {
+                  select.addEventListener('click', function () {
+                    const wrapper = this.closest('.select-wrapper'); // Get the parent .select-wrapper
+                    wrapper.classList.toggle('open'); // Toggle the 'open' class
+                  });
+                  select.addEventListener('blur', function () {
+                    const wrapper = this.closest('.select-wrapper'); // Get the parent .select-wrapper
+                    wrapper.classList.remove('open'); // Remove the 'open' class when focus is lost
+                  });
+                });
+              </script>
+              <div class="button-group">
+                <button type="submit" class="search-btn">Search</button>
+                <button type="reset" class="reset-btn">Reset</button>
+              </div>
+            </form>
+          </main>
+        </div>
+        <!-- UNDER SEARCH .......................................................-->
+        <main class="locations-container">
+          <!-- TEST1 -->
+          <div class="location-card">
+              <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/523eda8d04e997c4b52a497c0507e71004d7ed53?placeholderIfAbsent=true"
+              alt="Mahidol University - Salaya Campus"
+              class="location-image"
+              />
+              <div class="location-content">
+                  <h2 class="location-title">Mahidol University - Salaya Campus</h2>
+                  <div class="location-row">
+                    <img src="../Image/Pin.png"></img>
+                    <p class="location-address">999 Phutthamonthon 4 Road , Salaya , Nakhon Patthom 73170</p>
+                  </div>
+              </div>
+              <div class="operating-hours">
+                  <time>Monday 07:00 to 19:00</time><br />
+                  <time>Tuesday 07:00 to 19:00</time><br />
+                  <time>Wednesday 07:00 to 19:00</time><br />
+                  <time>Thursday 07:00 to 19:00</time><br />
+                  <time>Friday 07:00 to 19:00</time><br />
+                  <time>Saturday 08:00 to 17:00</time><br />
+                  <time>Sunday 08:00 to 17:00</time>
+              </div>
+            </div>
+          <!-- TEST2 -->
+          <div class="location-card">
+            <img
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/150f29f9f9b4fea62aa68e9b68fde01661f087f1?placeholderIfAbsent=true"
+            alt="Mahidol University - Salaya Campus"
+            class="location-image"
+            />
+            <div class="location-content">
+                <h2 class="location-title">The Fourth Putthamonthon Sai 4</h2>
+                <div class="location-row">
+                  <img src="../Image/Pin.png"/>
+                  <p class="location-address">Phutthamonthon Sai 4 Road , Kratumlom, SamPhran, Nakornpathom</p>
+                </div>
+            </div> 
+            <div class="operating-hours">
+                <time>Monday 07:00 to 19:00</time><br />
+                <time>Tuesday 07:00 to 19:00</time><br />
+                <time>Wednesday 07:00 to 19:00</time><br />
+                <time>Thursday 07:00 to 19:00</time><br />
+                <time>Friday 07:00 to 19:00</time><br />
+                <time>Saturday 08:00 to 17:00</time><br />
+                <time>Sunday 08:00 to 17:00</time>
+            </div>
+          </div>
+          <!-- TEST3 -->
+          <div class="location-card">
+            <img
+            src="https://cdn.builder.io/api/v1/image/assets/TEMP/04211ca6386875b37989726866ea8a8b17aa413f?placeholderIfAbsent=true"
+            alt="Mahidol University - Salaya Campus"
+            class="location-image"
+            />
+            <div class="location-content">
+                <h2 class="location-title">Central Plaza Salaya</h2>
+                <div class="location-row">
+                  <img src="../Image/Pin.png"/>
+                  <p class="location-address">99/19, 99/20 Moo.2 Borommaratchachonnani Road, Bang Toey Sam Phran Nakhon Phatom 73210</p>
+                </div>
+            </div> 
+            <div class="operating-hours">
+              <time>Monday 07:00 to 21:00</time><br />
+              <time>Tuesday 07:00 to 21:00</time><br />
+              <time>Wednesday 07:00 to 21:00</time><br />
+              <time>Thursday 07:00 to 21:00</time><br />
+              <time>Friday 07:00 to 21:00</time><br />
+              <time>Saturday Closed</time><br />
+              <time>Sunday Closed</time>
             </div>
           </div>
 
-          <div class="search-actions">
-            <button type="button" class="search-button">Search</button>
-            <button type="button" class="reset-button">Reset</button>
-          </div>
-        </div>
-      </section>
-    </main>
+        </main>
+      </body>
 
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Make dropdowns interactive
-        const dropdowns = document.querySelectorAll(".filter-dropdown");
-
-        dropdowns.forEach((dropdown) => {
-          dropdown.addEventListener("click", function () {
-            // Toggle active class for styling
-            this.classList.toggle("active");
-
-            // In a real implementation, this would show/hide dropdown options
-            console.log(
-              `Clicked on ${this.querySelector(".dropdown-title").textContent}`,
-            );
-          });
-        });
-
-        // Search button functionality
-        document
-          .querySelector(".search-button")
-          .addEventListener("click", function () {
-            // In a real implementation, this would gather filter values and perform search
-            console.log("Search button clicked");
-          });
-
-        // Reset button functionality
-        document
-          .querySelector(".reset-button")
-          .addEventListener("click", function () {
-            // In a real implementation, this would reset all filters
-            console.log("Reset button clicked");
-            dropdowns.forEach((dropdown) =>
-              dropdown.classList.remove("active"),
-            );
-          });
-      });
-    </script>
-  </body>
 </html>
