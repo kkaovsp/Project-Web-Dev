@@ -1,18 +1,21 @@
 /* NAV */
+body {
+  margin: 0px;
+}
 header {
   background-color: #4409AB;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  margin: -10px -8px; 
+  height: 108px;
+  width: 100%
 } 
 nav {
   display: flex;
   align-items: center;
   width: 100%;
+  height: 100%;
   justify-content: space-evenly;
-  padding: 10px 10px;
 }
 main .container {
   margin-top: 50px;
@@ -192,34 +195,6 @@ a .select-box-icon {
       sans-serif;
   }
   
-  @media (max-width: 991px) {
-    .admin-login-page {
-      padding-bottom: 100px;
-    }
-  }
-  
-  /* Header and Navigation */
-  /* .main-header {
-    width: 100%;
-  } */
-  
-  /* .nav-bar {
-    background-color: #4409ab;
-    display: flex;
-    width: 100%;
-    padding: 12px 18px;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  } */
-  
-  @media (max-width: 991px) {
-    .nav-bar {
-      max-width: 100%;
-      padding-right: 20px;
-    }
-  }
   
   .logo-image {
     aspect-ratio: 1;
@@ -325,12 +300,6 @@ a .select-box-icon {
     overflow: hidden;
   }
   
-  @media (max-width: 991px) {
-    .admin-logo {
-      margin-top: 40px;
-    }
-  }
-  
   .login-heading {
     color: #000000;
     font-size: 36px;
@@ -339,12 +308,6 @@ a .select-box-icon {
     letter-spacing: -0.72px;
     margin-top: 56px;
     text-align: center;
-  }
-  
-  @media (max-width: 991px) {
-    .login-heading {
-      margin-top: 40px;
-    }
   }
   
   /* Login Form */
@@ -358,13 +321,6 @@ a .select-box-icon {
     padding: 24px 24px 75px;
     font-size: 16px;
     font-weight: 400;
-  }
-  
-  @media (max-width: 991px) {
-    .login-form {
-      padding: 24px 20px 75px;
-      margin-top: 40px;
-    }
   }
   
   .form-field {
