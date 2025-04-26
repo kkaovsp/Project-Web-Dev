@@ -34,7 +34,7 @@
             </nav>
         </header>
 
-        <main class="filter-section">
+        <div class="filter-section">
             <form class="filter-form">
               <div class="filter-group">
                 <label class="filter-label">Cafe</label>
@@ -115,6 +115,10 @@
                     </svg>
                 </div>
               </div>
+              <div class="button-group">
+                <button type="submit" class="search-btn">Search</button>
+                <button type="reset" class="reset-btn">Reset</button>
+              </div>
               <!-- For arrow to rotate -->
               <script>
                 document.querySelectorAll('.filter-select').forEach((select) => {
@@ -128,12 +132,8 @@
                   });
                 });
               </script>
-              <div class="button-group">
-                <button type="submit" class="search-btn">Search</button>
-                <button type="reset" class="reset-btn">Reset</button>
-              </div>
             </form>
-          </main>
+          </div>
         </div>
         <!-- UNDER SEARCH .......................................................-->
         <main class="locations-container">
