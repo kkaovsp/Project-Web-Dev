@@ -1,8 +1,187 @@
+/* nav */
+header {
+  background-color: #4409AB;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: -10px -8px; 
+} 
+nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-evenly;
+  padding: 10px 10px;
+}
+main .container {
+  margin-top: 50px;
+  margin-left: 40px;
+  margin-bottom: 25px;
+}
+.right-links{ 
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.searchbar {
+  position: relative;
+  display: flex;
+  max-width: 600px;
+  width: 100%;
+}
+#searchInput { 
+  height: 40px;
+  width: 100%; 
+  padding: 10px 50px;
+  border: 1px solid #ccc;
+  border-radius: 28px;
+  font-size: 1rem;
+}
+.search-icon { 
+  position: absolute;
+  top: 6px;
+  left: 5px;
+  pointer-events: none;
+}
+a .select-box-icon { 
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 25px;
+}
+.squarebox{
+  background-color: #4409AB5E;
+  display: flex;
+  align-items: center;
+  margin: 0 -8px;
+}
+.recommendicon{
+  display: flex;
+  margin-left: 60px;
+  align-items: center;
+  h3{
+      margin-left: 10px;
+  }
+}
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center; 
+  max-width: 280px; 
+}
+.firstfooter {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 40px;
+  flex-wrap: wrap; 
+  p {
+      line-height: 2;
+  }
+}
+.footer-logo {
+  text-align: start;
+}
+.location {
+  display: flex; 
+  align-items: center; 
+  flex-wrap: wrap;
+  gap:10px; 
+}
+
+.location img {
+  width: 20px;
+  height: auto; 
+  margin-left: 20px;
+}
+.RecName {
+  font-size: 1rem; 
+}
+.underRecName{
+  position: relative;
+  top: -30px;
+  margin-left: 50px;
+  font-size: 1rem; 
+  color: #68717A; 
+}
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.main-header {
+  width: 100%;
+  height: 106px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  background-color: #4409ab;
+}
+
+.header-logo {
+  width: 76px;
+  height: 83px;
+  margin-right: 352px;
+}
+
+.search-container {
+  display: flex;
+  width: 556px;
+  height: 57px;
+  padding: 0 16px 0 4px;
+  align-items: center;
+  margin-right: 284px;
+  background-color: #f3edf7;
+}
+
+.action-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  border: none;
+  padding: 16px;
+  background-color: #e8def8;
+  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+
+.search-button {
+  display: flex;
+  width: 48px;
+  height: 48px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.search-input {
+  cursor: text;
+  width: 391px;
+  height: 56px;
+  background-color: #f3edf7;
+  margin-left: 40px;
+}
+.settings-button,
+.user-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
 /* Base styles */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 body {
@@ -27,50 +206,14 @@ body {
 .main-nav {
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the content horizontally */
+  justify-content: center; 
   padding: 0 20px;
   height: 106px;
   max-width: 1440px;
   margin: 0 auto;
   width: 100%;
-  position: relative; /* Allow absolute positioning for the logo */
+  position: relative; 
 }
-
-.logo {
-  position: absolute;
-  left: 20px; 
-  height: 83.18px;
-  top: 11px;
-  cursor: pointer;
-}
-
-.search-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 556px;
-  height: 57px;
-  padding: 0 16px;
-  border-radius: 4px;
-  background-color: #f3edf7;
-  position: relative; /* Ensure proper alignment */
-}
-
-.search-icon img {
-  width: 24px;
-  height: 24px;
-  margin-right: 12px;
-}
-
-.search-input {
-  flex: 1;
-  border: none;
-  background: transparent;
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-  color: #49454f;
-}
-
 .search-input:focus {
   outline: none;
 }
@@ -96,12 +239,12 @@ body {
 
 .user-actions {
   position: absolute;
-  right: 20px; /* Adjust the position of user actions */
+  right: 20px;
   display: flex;
   gap: 20px;
   color: white;
   font-size: 24px;
-}
+} 
 
 .icon-button {
   background: none;

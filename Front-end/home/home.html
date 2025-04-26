@@ -17,38 +17,31 @@
     />
   </head>
   <body>
+    <header>
+      <nav>
+          <a href="../home/home.html">
+              <img src="../Image/Logo.png" class = "logo">
+          </a>
+
+              <div class="searchbar">
+                      <input type="text" id="searchInput" placeholder="">
+                      <img src="../Image/SearchIcon.png" class="search-icon">
+                      <a href="../search/search.html">
+                          <img src="../Image/SelectBox.png" class="select-box-icon"></img>
+                      </a>
+              </div>
+
+              <div class="right-links">
+                  <a href="../admin-login/admin-login.html">
+                      <img src="../Image/AdminLogin.png" class="icon"></img>
+                  </a>
+                  <a href="../UserLogin/UserLogin.html">
+                      <img src="../Image/UserLogin.png"class="icon"></img>
+                  </a>
+              </div>
+      </nav>
+  </header>
     <div class="container">
-      <header class="main-header">
-        <nav class="main-nav">
-          <div class="logo-container">
-            <button onclick="window.location.href='../home/home.html'" aria-label="Settings" class="icon-button">
-            <img src="../Image/Logo.png" alt="Logo" class="logo" />
-            </button>
-          </div>
-
-          <div class="search-container">
-            <div class="search-icon">
-              <img src="../Image/SearchIcon.png" alt="Search Icon" />
-            </div>
-            <input type="text" placeholder="Search..." class="search-input" />
-            <div class="add-button">
-              <button onclick="window.location.href='../search/search.html'" aria-label="Settings" class="icon-button">
-              <img src="../Image/SelectBox.png" alt="Plus Icon" />
-              </button>
-            </div>
-          </div>
-
-          <div class="user-actions">
-            <button onclick="window.location.href='../admin-login/admin-login.html'" aria-label="Settings" class="icon-button">
-              <img src="../Image/AdminLogin.png" id="loginIcon" class="icon" alt="Login" />
-            </button>
-            <button aria-label="User profile" class="icon-button">
-              <img src="../Image/UserLogin.png" alt="User Profile" />
-            </button>
-          </div>
-        </nav>
-      </header>
-
       <main class="main-content">
         <section class="slider-section" aria-label="Featured cafes">
           <div class="slider-container">
