@@ -4,13 +4,13 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  margin: -10px -8px; /* top-bottom, left-right*/
+  margin: -10px -8px; 
 } 
 nav {
   display: flex;
   align-items: center;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 10px 10px;
 }
 main .container {
@@ -18,7 +18,7 @@ main .container {
   margin-left: 40px;
   margin-bottom: 25px;
 }
-.right-links{ /*right-links*/
+.right-links{ 
   display: flex;
   align-items: center;
   gap: 20px;
@@ -27,28 +27,28 @@ main .container {
   position: relative;
   display: flex;
   max-width: 600px;
-  width: 100%;     
+  width: 100%;
 }
 #searchInput { 
   height: 40px;
   width: 100%; 
   padding: 10px 50px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 28px;
   font-size: 1rem;
 }
-.search-icon { /*left-icon */
+.search-icon { 
   position: absolute;
   top: 6px;
   left: 5px;
   pointer-events: none;
 }
-a .select-box-icon { /*right-icon */
+a .select-box-icon { 
   position: absolute;
   right: 10px; 
-  top: 50%; 
+  top: 50%;
   transform: translateY(-50%);
-  /* cursor: pointer; */
+  border-radius: 25px;
 }
 .squarebox{
   background-color: #4409AB5E;
@@ -69,7 +69,7 @@ a .select-box-icon { /*right-icon */
   flex-direction: column;
   align-items: center; 
   text-align: center; 
-  max-width: 280px; /* Set the max width to match the image width */
+  max-width: 280px; 
 }
 .firstfooter {
   display: flex;
@@ -105,9 +105,6 @@ a .select-box-icon { /*right-icon */
   font-size: 1rem; 
   color: #68717A; 
 }
-
-/* as */
-
 .app-container {
   width: 100%;
   min-height: 100vh;
@@ -140,7 +137,6 @@ a .select-box-icon { /*right-icon */
   margin-right: 284px;
   background-color: #f3edf7;
 }
- 
 
 .action-button {
   display: flex;
@@ -172,7 +168,6 @@ a .select-box-icon { /*right-icon */
   background-color: #f3edf7;
   margin-left: 40px;
 }
-
 .settings-button,
 .user-button {
   background: none;
@@ -181,6 +176,7 @@ a .select-box-icon { /*right-icon */
   padding: 0;
 }
 
+ /* navvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
 .filter-section { 
   width: 100%;
   border-bottom: 1px solid #000;
@@ -312,6 +308,7 @@ background-color: #fff;
 width: 251px;
 height: 188px;
 object-fit: cover;
+border-radius: inherit;
 }
 
 .location-content {
