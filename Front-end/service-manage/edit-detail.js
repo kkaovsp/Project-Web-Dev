@@ -1,4 +1,4 @@
-// Wrap the code in an async function
+//Get Cafe Information Part 
 async function loadCafeDetails() {
     const params = new URLSearchParams(window.location.search);
     const cafeId = params.get("id");
@@ -52,6 +52,61 @@ function renderCafeDetails(cafe) {
             thumbnails[i-2].src = `/Image/${cafe.imgName}${i}.jpg`; // Set each thumbnail's source 
     }   
 }
+
+//Update Cafe Information Part
+const openPopupBtn = document.getElementById("open-popup-btn");
+const popupForm = document.getElementById("popup-form");
+const finalConfirmBtn = document.getElementById("final-confirm-btn");
+const finalCancelBtn = document.getElementById("final-cancel-btn");
+
+let cafeDetails = {}; // Object to store form data locally
+let uploadedImages = []; // Array to store uploaded images
+
+// Open popup
+openPopupBtn.addEventListener("click", () => {
+    popupForm.style.display = "flex";
+});
+
+// Handle popup form submission
+popupForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Collect form data
+    const name = document.getElementById("popup-name").value;
+    const branch = document.getElementById("popup-branch").value;
+    const address = document.getElementById("popup-address").value;
+    const province = document.getElementById("popup-province").value;
+    const district = document.getElementById("popup-district").value;
+    const pin_code = document.getElementById("popup-pin-code").value;
+    const contact_number = document.getElementById("popup-contact-number").value; 
+    const open_hour = document.getElementById("popup-open-hour").value;
+    const close_hour = document.getElementById("popup-close-hour").value; 
+    const account_id = document.getElementById("popup-account-id").value;
+    const cafePictures = document.getElementById("popup-cafe-pictures").files;
+
+    // Save data locally
+    cafeDetails = {
+        name,
+        branch,
+        province,
+        district,
+        pin_code,     
+        address,
+        contact_number, 
+        open_hour,      
+        close_hour,     
+        account_id,     
+    };
+
+    // Save uploaded images locally
+    uploadedImages = Array.from(cafePictures);
+
+    // Render a preview
+    renderPreview();
+
+    // Close the popup form
+    document.getElementById("popup-form").style.display = "none";
+});
 
 // Call the function to load cafe details
 loadCafeDetails();
