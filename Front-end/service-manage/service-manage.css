@@ -101,6 +101,8 @@ button {
 /* Selection components */
 .filter-controls {
   display: flex;
+  width: 146px;
+  height: 36px;
 }
 
 .filter-select {
@@ -130,7 +132,7 @@ button {
   border-radius: 12px;
   background-color: rgba(68, 9, 171, 1);
   padding: 13px 16px;
-  margin-left: 29%;
+  margin-left: 40%;
   color: #fff;
   font-weight: 600;
 }
@@ -245,6 +247,16 @@ button {
   object-position: center;
   width: 40px;
   overflow: hidden;
+}
+
+.empty-list{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  height: auto;
+  font-size: 28px;
+  color:#555;
 }
 
 /* Hover states */

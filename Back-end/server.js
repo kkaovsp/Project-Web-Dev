@@ -268,26 +268,40 @@ app.get("/api/login-logs", (req, res) => {
 // ==========================
 // Filter Option API
 // ==========================
-app.get("/api/filter-options", (req, res) => {
-  const query = `
-  SELECT
-    GROUP_CONCAT(DISTINCT Name) AS names,
-    GROUP_CONCAT(DISTINCT Province) AS provinces,
-    GROUP_CONCAT(DISTINCT District) AS districts
-  FROM 
-    Restaurant_Cafe;
-  `;
+app.get("/api/filter-options", async (req, res) => {
+  // const query = `
+  // SELECT
+  //   GROUP_CONCAT(DISTINCT Name) AS names,
+  //   GROUP_CONCAT(DISTINCT Province) AS provinces,
+  //   GROUP_CONCAT(DISTINCT District) AS districts
+  // FROM 
+  //   Restaurant_Cafe;
+  // `;
 
-  Database.query(query, (error, results) => {
-    if (error) {
-      console.error("Error fetching filter options:", error);
-      return res.status(500).json({ error: "Database error" });
-    }
-    console.log("Filter options fetched successfully");
-    res.json(results);
-    console.log(results);
-  });
-})
+  // Database.query(query, (error, results) => {
+  //   if (error) {
+  //     console.error("Error fetching filter options:", error);
+  //     return res.status(500).json({ error: "Database error" });
+  //   }
+  //   console.log("Filter options fetched successfully");
+  //   res.json(results);
+  //   console.log(results);
+  // });
+  try {
+    const [names] = await Database.promise().query("SELECT DISTINCT Name AS name FROM Restaurant_Cafe");
+    const [provinces] = await Database.promise().query("SELECT DISTINCT Province AS province FROM Restaurant_Cafe");
+    const [districts] = await Database.promise().query("SELECT DISTINCT District AS district FROM Restaurant_Cafe");
+
+    res.json({
+      names: names.map(row => row.name),
+      provinces: provinces.map(row => row.province),
+      districts: districts.map(row => row.district),
+    });
+  } catch (error) {
+    console.error("Error fetching filter options:", error);
+    res.status(500).json({ error: "Database error" });
+  }
+});
 
 // ==========================
 // Cafe List API
