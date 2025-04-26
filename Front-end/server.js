@@ -77,9 +77,15 @@ app.get("/admin/service-management/add-new", (req, res) => {
   console.log("Add-new page requested");
 });
 
-app.get("/admin/service-management/edit", (req, res) => {
+app.get('/admin/service-management/edit', (req, res) => {
+  const cafeId = req.query.id;
+  if (!cafeId) {
+    return res.status(400).send('Cafe ID is required');
+  }
+  // Logic to fetch cafe details using cafeId
+  // For now, we'll just render the edit page
   res.sendFile(path.join(__dirname, "/", "service-manage/edit-cafe.html"));
-  console.log("Edit page requested");
+  console.log(`Edit page requested for cafe ID: ${cafeId}`);
 });
 
 app.get("/search", (req, res) => {

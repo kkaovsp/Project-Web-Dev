@@ -8,7 +8,6 @@ function swap(src, thumbnail) {
   document.querySelectorAll(".cafe-thumbnail").forEach(thumbnail => {
     thumbnail.addEventListener("click", () => {
         const src = thumbnail.src;
-        console.log(src,thumbnail);
         swap(src, thumbnail);
     });
 });

@@ -117,87 +117,7 @@ app.post("/api/admin/login", (req, res) => {
 });
 
 // ==========================
-// Cafe Upload API
-// ==========================
-/**
- * POST /api/upload
- * Handles uploading cafe details and images.
- */
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "../Front-end/Image"));
-  },
-  filename: function (req, file, cb) {
-    const branch = req.body.branch.replace(/\s+/g, "_");
-    if (!req.fileIndex) {
-      req.fileIndex = 1;
-    }
-    const fileExtension = path.extname(file.originalname);
-    const filename = `${branch}${req.fileIndex}${fileExtension}`;
-    req.fileIndex++;
-    cb(null, filename);
-  },
-});
-
-const upload = multer({ storage });
-
-app.post("/api/upload", upload.array("cafe_pictures", 4), (req, res) => {
-  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id } =
-    req.body;
-
-  if (!name || !branch || !province || !district || !pin_code || !address || !contact_number || !open_hour || !close_hour || !account_id) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
-
-  const resID = {
-    Starbucks: "101",
-    Amazon: "201",
-    Punthai: "301",
-  };
-
-  const getLastIdQuery = `
-    SELECT Restaurant_ID
-    FROM Restaurant_Cafe
-    WHERE Name LIKE '${name}'
-    ORDER BY Restaurant_ID DESC
-    LIMIT 1
-  `;
-
-  let restaurantId;
-  Database.query(getLastIdQuery, (error, results) => {
-    if (error) {
-      console.error("Error fetching last Restaurant_ID:", error);
-      return res.status(500).json({ error: "Database error" });
-    }
-
-    if (results.length > 0 && results[0].Restaurant_ID) {
-      restaurantId = parseInt(results[0].Restaurant_ID) + 1;
-    } else {
-      restaurantId = resID[name];
-    }
-
-    const query = `
-      INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, Branch, Province, District, pin_code, Address, Contact_number, Open_hour, Close_hour, Account_ID)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    Database.query(
-      query,
-      [restaurantId, name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id],
-      (error) => {
-        if (error) {
-          console.error("Error adding cafe:", error);
-          return res.status(500).json({ error: "Database error" });
-        }
-
-        res.status(200).json({ message: "Cafe added successfully" });
-      }
-    );
-  });
-});
-
-// ==========================
-// 7. Login Logs API
+// Login Logs API
 // ==========================
 /**
  * GET /api/login-logs
@@ -310,7 +230,7 @@ app.get("/api/filter-options", async (req, res) => {
  * GET /api/cafe-list
  * Fetches a list of cafes based on search and filter criteria.
  */
-app.get("/api/cafe-list", (req, res) => {
+app.get("/api/cafes", (req, res) => {
   const search = req.query.search || ""; // Search term
   const cafe = req.query.cafe || ""; // Cafe filter
   const province = req.query.province || ""; // Location filter
@@ -318,7 +238,7 @@ app.get("/api/cafe-list", (req, res) => {
 
   queryParams = [`%${search}%`, `${cafe}`, `${district}`, `${province}`];
   // Base SQL query
-  let query = `
+  const query = `
     SELECT 
       Branch AS branch,
       Restaurant_ID AS id
@@ -329,33 +249,6 @@ app.get("/api/cafe-list", (req, res) => {
       District LIKE ? AND
       Province LIKE ? 
   `;
-
-  // // Query parameters
-  // const queryParams = [];
-
-  // // Add search filter
-  // if (search) {
-  //   query += ` AND (Name LIKE ? OR Branch LIKE ?)`;
-  //   queryParams.push(`%${search}%`, `%${search}%`);
-  // }
-
-  // // Add cafe name filter
-  // if (cafe) {
-  //   query += ` AND Name = ?`;
-  //   queryParams.push(cafe);
-  // }
-
-  // // Add opening hours filter
-  // if (openingHours) {
-  //   query += ` AND Open_hour <= ? AND Close_hour >= ?`;
-  //   queryParams.push(openingHours, openingHours);
-  // }
-
-  // // Add location filter
-  // if (location) {
-  //   query += ` AND Province LIKE ?`;
-  //   queryParams.push(`%${location}%`);
-  // }
 
   // Execute the query
   Database.query(query, queryParams, (error, results) => {
@@ -369,6 +262,158 @@ app.get("/api/cafe-list", (req, res) => {
     });
 
     res.json(results);
+  });
+});
+
+
+//Getting Cafe Details from Database
+app.get("/api/cafes/:id", (req, res) => {
+  const cafeId = req.params.id;
+
+  // SQL query to delete the cafe
+  const query = `
+  SELECT 
+      Branch AS branch,
+      Address AS address,
+      Open_hour AS open_hour,
+      Close_hour AS close_hour
+    FROM 
+      Restaurant_Cafe
+    WHERE
+      Restaurant_ID = ?
+  `;
+  console.log("Getting Details Cafe with ID:", cafeId);
+  Database.query(query, [cafeId], (error, results) => {
+    if (error) {
+      console.error("Error deleting cafe:", error);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: "Cafe not found" });
+    }
+
+    const cafe = results[0];
+    cafe.imgName = cafe.branch.replace(/\s+/g, "_");
+
+    console.log(cafe);
+    res.json(cafe);
+  });
+});
+
+app.delete("/api/cafes/:id", (req, res) => {
+  const cafeId = req.params.id;
+
+  // SQL query to delete the cafe
+  const deleteQuery = `DELETE FROM Restaurant_Cafe WHERE Restaurant_ID = ?`;
+  console.log("Deleting cafe with ID:", cafeId);
+  Database.query(deleteQuery, [cafeId], (error, results) => {
+    if (error) {
+      console.error("Error deleting cafe:", error);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: "Cafe not found" });
+    }
+
+    res.status(200).json({ message: "Cafe deleted successfully" });
+  });
+});
+
+//Edit Cafe API
+app.put('/api/cafes/:id', (req, res) => {
+  const cafeId = req.params.id;
+
+  const cafesPath = path.join(__dirname, 'cafes.json');
+  const cafes = JSON.parse(fs.readFileSync(cafesPath));
+
+  const cafeIndex = cafes.findIndex(cafe => cafe.id === cafeId);
+  if (cafeIndex === -1) return res.status(404).json({ error: "Cafe not found" });
+
+  cafes[cafeIndex] = { ...cafes[cafeIndex], ...updatedData };
+
+  fs.writeFileSync(cafesPath, JSON.stringify(cafes, null, 2));
+  res.json(cafes[cafeIndex]);
+});
+
+// ==========================
+// Cafe Upload API
+// ==========================
+/**
+ * POST /api/upload
+ * Handles uploading cafe details and images.
+ */
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, "../Front-end/Image"));
+  },
+  filename: function (req, file, cb) {
+    const branch = req.body.branch.replace(/\s+/g, "_");
+    if (!req.fileIndex) {
+      req.fileIndex = 1;
+    }
+    const fileExtension = path.extname(file.originalname);
+    const filename = `${branch}${req.fileIndex}${fileExtension}`;
+    req.fileIndex++;
+    cb(null, filename);
+  },
+});
+
+const upload = multer({ storage });
+
+app.post("/api/cafe", upload.array("cafe_pictures", 4), (req, res) => {
+  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id } =
+    req.body;
+
+  if (!name || !branch || !province || !district || !pin_code || !address || !contact_number || !open_hour || !close_hour || !account_id) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const resID = {
+    Starbucks: "101",
+    Amazon: "201",
+    Punthai: "301",
+  };
+
+  const getLastIdQuery = `
+    SELECT Restaurant_ID
+    FROM Restaurant_Cafe
+    WHERE Name LIKE '${name}'
+    ORDER BY Restaurant_ID DESC
+    LIMIT 1
+  `;
+
+  let restaurantId;
+  Database.query(getLastIdQuery, (error, results) => {
+    if (error) {
+      console.error("Error fetching last Restaurant_ID:", error);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (results.length > 0 && results[0].Restaurant_ID) {
+      restaurantId = parseInt(results[0].Restaurant_ID) + 1;
+    } else {
+      restaurantId = resID[name];
+    }
+
+    const query = `
+      INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, Branch, Province, District, pin_code, Address, Contact_number, Open_hour, Close_hour, Account_ID)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    Database.query(
+      query,
+      [restaurantId, name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id],
+      (error) => {
+        if (error) {
+          console.error("Error adding cafe:", error);
+          return res.status(500).json({ error: "Database error" });
+        }
+
+        res.status(200).json({ message: "Cafe added successfully" });
+      }
+    );
   });
 });
 

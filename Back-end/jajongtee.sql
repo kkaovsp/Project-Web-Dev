@@ -86,8 +86,16 @@ INSERT INTO Login_log (Login_log, Account_ID) VALUES
 
 -- Insert sample data for Restaurant_Cafe
 INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, Branch, Province, District, pin_code, Address, Contact_number, Open_hour, Close_hour, Account_ID) VALUES
-(101, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
-
+(101, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111),
+(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
 
 
 -- Display created tables
@@ -142,8 +150,12 @@ LIMIT 10 OFFSET 0;
 select * from restaurant_cafe;
 SHOW FULL COLUMNS FROM vw_login_logs;
 
-SELECT Restaurant_ID
-    FROM Restaurant_Cafe
-    WHERE Name LIKE 'Starbucks'
-    ORDER BY Restaurant_ID DESC
-    LIMIT 1
+SELECT 
+      Branch AS branch,
+      Address AS address,
+      Open_hour AS open_hour,
+      Close_hour AS close_hour
+    FROM 
+      Restaurant_Cafe
+    WHERE
+      Restaurant_ID = 123

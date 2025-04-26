@@ -64,13 +64,6 @@
     width: 460px;
   }
   
-  @media (max-width: 991px) {
-    .search-container {
-      max-width: 460px;
-      width: 100%;
-    }
-  }
-  
   .search-icon {
     aspect-ratio: 1;
     object-fit: contain;

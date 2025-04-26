@@ -249,14 +249,14 @@ button {
   overflow: hidden;
 }
 
-.empty-list{
+.empty-list-text {
   display: flex;
-  justify-content: center;
+  justify-content: center; 
+  align-items: center;     
+  height: 100%;            
+  font-size: 18px;
+  color: #555;
   text-align: center;
-  align-items: center;
-  height: auto;
-  font-size: 28px;
-  color:#555;
 }
 
 /* Hover states */
