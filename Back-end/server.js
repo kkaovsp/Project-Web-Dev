@@ -189,15 +189,6 @@ app.get("/api/login-logs", (req, res) => {
 // Filter Option API
 // ==========================
 app.get("/api/filter-options", async (req, res) => {
-  // const query = `
-  // SELECT
-  //   GROUP_CONCAT(DISTINCT Name) AS names,
-  //   GROUP_CONCAT(DISTINCT Province) AS provinces,
-  //   GROUP_CONCAT(DISTINCT District) AS districts
-  // FROM 
-  //   Restaurant_Cafe;
-  // `;
-
   // Database.query(query, (error, results) => {
   //   if (error) {
   //     console.error("Error fetching filter options:", error);
@@ -276,12 +267,18 @@ app.get("/api/cafes/:id", (req, res) => {
       Branch AS branch,
       Address AS address,
       Open_hour AS open_hour,
-      Close_hour AS close_hour
+      Close_hour AS close_hour,
+      Name AS name,
+      Province AS province,
+      District AS district,
+      pin_code AS pincode,
+      Contact_number as contact   
     FROM 
       Restaurant_Cafe
     WHERE
       Restaurant_ID = ?
   `;
+
   console.log("Getting Details Cafe with ID:", cafeId);
   Database.query(query, [cafeId], (error, results) => {
     if (error) {
@@ -304,6 +301,35 @@ app.get("/api/cafes/:id", (req, res) => {
 app.delete("/api/cafes/:id", (req, res) => {
   const cafeId = req.params.id;
 
+  //SQL query to get branch name to delete image
+  const getCafeQuery = "SELECT Branch FROM Restaurant_Cafe WHERE Restaurant_ID = ?";
+  Database.query(getCafeQuery, [cafeId], (err, results) => {
+    if (err) {
+      console.error("Error fetching cafe:", err);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Cafe not found" });
+    }
+
+    const imageName = results[0].Branch.replace(/\s+/g, "_"); // Match your image naming style
+    
+    for (let i = 1; i <= 4; i++) {
+      const imagePath = path.join(__dirname, "../Front-end/Image", `${imageName}${i}.jpg`);
+
+      fs.unlink(imagePath, (err) => {
+        if (err) {
+          console.error(`Error deleting image ${imageName}${i}.jpg:`, err);
+          // Don't stop process even if image not found, just log it
+        } else {
+          console.log(`Deleted image: ${imageName}${i}.jpg`);
+        }
+      });
+    }
+  });
+
+  
   // SQL query to delete the cafe
   const deleteQuery = `DELETE FROM Restaurant_Cafe WHERE Restaurant_ID = ?`;
   console.log("Deleting cafe with ID:", cafeId);
@@ -321,29 +347,8 @@ app.delete("/api/cafes/:id", (req, res) => {
   });
 });
 
-//Edit Cafe API
-app.put('/api/cafes/:id', (req, res) => {
-  const cafeId = req.params.id;
 
-  const cafesPath = path.join(__dirname, 'cafes.json');
-  const cafes = JSON.parse(fs.readFileSync(cafesPath));
-
-  const cafeIndex = cafes.findIndex(cafe => cafe.id === cafeId);
-  if (cafeIndex === -1) return res.status(404).json({ error: "Cafe not found" });
-
-  cafes[cafeIndex] = { ...cafes[cafeIndex], ...updatedData };
-
-  fs.writeFileSync(cafesPath, JSON.stringify(cafes, null, 2));
-  res.json(cafes[cafeIndex]);
-});
-
-// ==========================
-// Cafe Upload API
-// ==========================
-/**
- * POST /api/upload
- * Handles uploading cafe details and images.
- */
+//Format how image will be store and destination
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "../Front-end/Image"));
@@ -361,6 +366,78 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
+//Edit Cafe API
+app.put("/api/cafes/:id", upload.array("cafe_pictures", 4), (req, res) => {
+  const cafeId = req.params.id;
+  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour } = req.body; // New updated data
+  const oldBranch = req.body.oldBranch;
+  const uploadedImages = req.body.files;
+  const oldImagename = oldBranch.replace(/\s+/g, "_");
+  const newImagename = branch.replace(/\s+/g, "_");
+  console.log("Image name:", oldImagename, newImagename)
+
+  //If upload new image along with the new branch name, it will store in the Image folder automatically
+
+  //But if admin doesn't upload new image = use old image with new branch name, 
+  //so now we need to change the image to match with new branch name
+  if (branch !== oldBranch && (!uploadedImages || uploadedImages.length === 0)) {
+    for (let i = 1; i <= 4; i++) {
+      const oldFilePath = path.join(__dirname, "../Front-end/Image", `${oldImagename}${i}.jpg`);
+      const newFilePath = path.join(__dirname, "../Front-end/Image", `${newImagename}${i}.jpg`);
+
+      // Rename the old image file
+      fs.rename(oldFilePath, newFilePath, (err) => {
+        if (err) {
+          console.error("Error renaming file:", err);
+          return res.status(500).json({ error: "Failed to rename image" });
+        }
+      });
+    }
+  }
+
+  const query = `
+    UPDATE 
+      Restaurant_Cafe
+    SET 
+      Name = ?,
+      Branch = ?,
+      Province = ?,
+      District = ?,
+      pin_code = ?, 
+      Address = ?, 
+      Contact_number = ?,
+      Open_hour = ?, 
+      Close_hour = ?
+    WHERE 
+      Restaurant_ID = ?
+  `;
+
+  console.log("Updating Cafe....")
+  Database.query(query, [name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, cafeId], (error, results) => {
+    if (error) {
+      console.error("Error updating cafe:", error);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ error: "Cafe not found" });
+    }
+
+    console.log(`Cafe ID ${cafeId} updated successfully.`);
+    res.status(200).json({ message: "Cafe updated successfully" });
+  });
+});
+
+
+// ==========================
+// Cafe Upload API
+// ==========================
+/**
+ * POST /api/upload
+ * Handles uploading cafe details and images.
+ */
+
 
 app.post("/api/cafe", upload.array("cafe_pictures", 4), (req, res) => {
   const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id } =
