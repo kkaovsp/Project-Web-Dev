@@ -87,15 +87,15 @@ INSERT INTO Login_log (Login_log, Account_ID) VALUES
 -- Insert sample data for Restaurant_Cafe
 INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, Branch, Province, District, pin_code, Address, Contact_number, Open_hour, Close_hour, Account_ID) VALUES
 (101, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111),
-(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
-(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
-(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
-(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
-(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
-(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
-(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
-(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
-(123, 'Starbucks', 'Camp Davis', 'Bangkok', 'Sukhumvit', 10110, '88, Camp Davis, Sukhumvit 24 Khlongtan Khlong Toei Bangkok 10110', '+66844387343', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Caltex Borom', 'Bangkok', 'Thawi Watthana', 10170, 'Sala Thammasop, Thawi Watthana, Bangkok 10170', '+66843561058', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Shell Kanchanapisek', 'Bangkok', 'Taling Chan', 10170, 'Bang Ramat, Taling Chan, Bangkok 10170', '+66659194031', '06:30:00', '22:00:00', 1111111);
+(123, 'Starbucks', 'Mahidol University - Salaya Campus', 'Bangkok', 'Phutthamonthon', 73170, 'Salaya, Phutthamonthon District, Nakhon Pathom 73170', '+66659194053', '07:00:00', '19:00:00', 1111111);
+(123, 'Starbucks', 'The Fourth Sai 4', 'Bangkok', 'Sam Phran', 73170, 'The Fourth Bang Krathuek, Sam Phran District, Nakhon Pathom 73170', '+66811346504', '07:00:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Central Plaza Salaya', 'Bangkok', 'Sam Phran', 73170, '99 Borommaratchachonnani Frontage Rd, Bang Toei, Sam Phran District, Nakhon Pathom 73170', '+66844387399', '06:30:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'Seacon Bangkae', 'Bangkok', 'Phasi Charoen', 10160, '607 Phet Kasem Rd, Bang Wa, Phasi Charoen, Bangkok 10160', '+66848741732', '08:00:00', '21:30:00', 1111111);
+(123, 'Starbucks', 'The Mall Bangkae', 'Bangkok', 'Bang Khae', 10110, '275 Phet Kasem Rd, Bang Khae Nuea, Bang Khae, Bangkok 10160', '+6624545289', '10:00:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'The Crystal Ratchapruek', 'Bangkok', 'Nonthaburi', 11130, '555/9 Ratchaphruek Rd, Nonthaburi 11130', '+66844387438', '07:00:00', '21:00:00', 1111111);
+(123, 'Starbucks', 'The Paseo Park Kanchanapisek', 'Bangkok', 'Thawi Watthana', 10160, 'Kanchanaphisek Rd, Sala Thammasop, Thawi Watthana, Bangkok 10160', '+66614108966', '06:30:00', '21:00:00', 1111111);
 
 
 -- Display created tables
