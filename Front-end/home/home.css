@@ -46,10 +46,10 @@ main .container {
 }
 a .select-box-icon { 
   position: absolute;
-  align-self: right;
   top: 50%;
   transform: translateY(-50%);
   border-radius: 25px;
+  right: 1.5%;
 }
 .squarebox{
   background-color: #4409AB5E;
