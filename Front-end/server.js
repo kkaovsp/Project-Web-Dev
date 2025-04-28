@@ -95,65 +95,6 @@ app.get("/search", (req, res) => {
 
 
 
-// Admin login API
-// This endpoint is used to handle admin login requests from the frontend
-// It forwards the request to the backend API and returns the response to the frontend
-app.post("/api/admin/login", async (req, res) => {
-  try {
-    const response = await fetch("http://localhost:5000/api/admin/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(req.body),
-    });
-    const data = await response.json();
-
-    if (!response.ok) {
-      return res.status(response.status).json(data);
-    }
-    res.json(data);
-    console.log("Admin login successful:", data.user.Username);
-
-  } catch (error) {
-    console.error("Error during login:", error);
-    res.status(500).json({ error: "Login process failed" });
-  }
-});
-
-
-// API proxy endpoints
-// This endpoint is used to fetch login logs from the backend API
-// It forwards the request to the backend API and returns the login logs data to the frontend
-app.get("/api/login-logs", async (req, res) => {
-  try {
-    // Get query parameters
-    const page = req.query.page || 1;
-    const limit = req.query.limit || 10;
-    const search = req.query.search || "";
-    const sortBy = req.query.sortBy || "login_date";
-    const sortDirection = req.query.sortDirection || "desc";
-
-    // Forward the request to the backend
-    const response = await fetch(
-      `http://localhost:5000/api/login-logs?page=${page}&limit=${limit}&search=${search}&sortBy=${sortBy}&sortDirection=${sortDirection}`,
-      get
-    );
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    res.json(data);
-
-  } catch (error) {
-    console.error("Error fetching login logs:", error);
-    res.status(500).json({ error: "Failed to fetch login logs" });
-  }
-});
-
-
 // Start the server
 app.listen(port, () => {
   console.log(`Frontend server is running at http://localhost:${port}`);

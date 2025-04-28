@@ -46,7 +46,7 @@ main .container {
 }
 a .select-box-icon { 
   position: absolute;
-  right: 10px; 
+  align-self: right;
   top: 50%;
   transform: translateY(-50%);
   border-radius: 25px;
@@ -400,48 +400,4 @@ body {
   font-size: 13px;
   color: #68717a;
   line-height: 1.4;
-}
-
-/* Responsive styles */
-@media (max-width: 991px) {
-  .slider-container {
-    width: 85%;
-    height: 380px;
-  }
-
-  .locations-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 640px) {
-  .main-nav {
-    flex-direction: column;
-    height: auto;
-    padding: 10px;
-  }
-
-  .search-container {
-    width: 100%;
-    margin: 10px 0;
-  }
-
-  .slider-container {
-    width: 100%;
-    height: 300px;
-  }
-
-  .slider-button {
-    width: 36px;
-    height: 36px;
-  }
-
-  .prev-button {
-    left: 10px;
-  }
-
-  .locations-grid {
-    grid-template-columns: 1fr;
-  }
-
 }

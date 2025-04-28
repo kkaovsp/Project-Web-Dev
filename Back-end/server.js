@@ -189,15 +189,6 @@ app.get("/api/login-logs", (req, res) => {
 // Filter Option API
 // ==========================
 app.get("/api/filter-options", async (req, res) => {
-  // Database.query(query, (error, results) => {
-  //   if (error) {
-  //     console.error("Error fetching filter options:", error);
-  //     return res.status(500).json({ error: "Database error" });
-  //   }
-  //   console.log("Filter options fetched successfully");
-  //   res.json(results);
-  //   console.log(results);
-  // });
   try {
     const [names] = await Database.promise().query("SELECT DISTINCT Name AS name FROM Restaurant_Cafe");
     const [provinces] = await Database.promise().query("SELECT DISTINCT Province AS province FROM Restaurant_Cafe");
@@ -231,6 +222,7 @@ app.get("/api/cafes", (req, res) => {
   // Base SQL query
   const query = `
     SELECT 
+      Name as name,
       Branch AS branch,
       Restaurant_ID AS id
     FROM Restaurant_Cafe
@@ -249,6 +241,7 @@ app.get("/api/cafes", (req, res) => {
     }
     results.forEach((cafe) => {
       cafe.imgName = cafe.branch.replace(/\s+/g, "_"); // Replace spaces with underscores
+      cafe.imgName = `${cafe.name}_${cafe.imgName}`;
       return cafe;
     });
 
@@ -292,6 +285,7 @@ app.get("/api/cafes/:id", (req, res) => {
 
     const cafe = results[0];
     cafe.imgName = cafe.branch.replace(/\s+/g, "_");
+    cafe.imgName = `${cafe.name}_${cafe.imgName}`;
 
     console.log(cafe);
     res.json(cafe);
@@ -302,7 +296,15 @@ app.delete("/api/cafes/:id", (req, res) => {
   const cafeId = req.params.id;
 
   //SQL query to get branch name to delete image
-  const getCafeQuery = "SELECT Branch FROM Restaurant_Cafe WHERE Restaurant_ID = ?";
+  const getCafeQuery = `
+    SELECT 
+      Branch as branch,
+      Name as name
+    FROM 
+      Restaurant_Cafe 
+    WHERE 
+      Restaurant_ID = ?`;
+
   Database.query(getCafeQuery, [cafeId], (err, results) => {
     if (err) {
       console.error("Error fetching cafe:", err);
@@ -313,23 +315,21 @@ app.delete("/api/cafes/:id", (req, res) => {
       return res.status(404).json({ error: "Cafe not found" });
     }
 
-    const imageName = results[0].Branch.replace(/\s+/g, "_"); // Match your image naming style
-    
-    for (let i = 1; i <= 4; i++) {
-      const imagePath = path.join(__dirname, "../Front-end/Image", `${imageName}${i}.jpg`);
+    const imageName = `${results[0].name}_${results[0].branch.replace(/\s+/g, "_")}`; // Match your image naming style
+    try {
+      for (let i = 1; i <= 4; i++) {
+        const imagePath = path.join(__dirname, "../Front-end/Image", `${imageName}${i}.jpg`);
 
-      fs.unlink(imagePath, (err) => {
-        if (err) {
-          console.error(`Error deleting image ${imageName}${i}.jpg:`, err);
-          // Don't stop process even if image not found, just log it
-        } else {
-          console.log(`Deleted image: ${imageName}${i}.jpg`);
-        }
-      });
+        fs.unlinkSync(imagePath); // <-- sync delete
+        console.log(`Deleted image: ${imageName}${i}.jpg`);
+      }
+    } catch (error) {
+      console.error("Error deleting image:", error);
+      return res.status(500).json({ error: "Failed to delete images. Cafe not deleted." });
     }
   });
 
-  
+
   // SQL query to delete the cafe
   const deleteQuery = `DELETE FROM Restaurant_Cafe WHERE Restaurant_ID = ?`;
   console.log("Deleting cafe with ID:", cafeId);
@@ -355,11 +355,13 @@ const storage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const branch = req.body.branch.replace(/\s+/g, "_");
+    const cafe = req.body.name;
+
     if (!req.fileIndex) {
       req.fileIndex = 1;
     }
     const fileExtension = path.extname(file.originalname);
-    const filename = `${branch}${req.fileIndex}${fileExtension}`;
+    const filename = `${cafe}_${branch}${req.fileIndex}${fileExtension}`;
     req.fileIndex++;
     cb(null, filename);
   },
@@ -373,8 +375,8 @@ app.put("/api/cafes/:id", upload.array("cafe_pictures", 4), (req, res) => {
   const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour } = req.body; // New updated data
   const oldBranch = req.body.oldBranch;
   const uploadedImages = req.body.files;
-  const oldImagename = oldBranch.replace(/\s+/g, "_");
-  const newImagename = branch.replace(/\s+/g, "_");
+  const oldImagename = `${name}_${oldBranch.replace(/\s+/g, "_")}`;
+  const newImagename = `${name}_${branch.replace(/\s+/g, "_")}`;
   console.log("Image name:", oldImagename, newImagename)
 
   //If upload new image along with the new branch name, it will store in the Image folder automatically

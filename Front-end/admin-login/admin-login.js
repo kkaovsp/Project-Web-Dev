@@ -21,9 +21,12 @@ loginForm.addEventListener("submit", async function (event) {
     loginTime: new Date().toISOString(), // Add login timestamp
   };
 
+  // Admin login API
+  // This endpoint is used to handle admin login requests from the frontend
+  // It forwards the request to the backend API and returns the response to the frontend
   try {
     // Send data to the server
-    const response = await fetch("/api/admin/login", {
+    const response = await fetch("http://localhost:5000/api/admin/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

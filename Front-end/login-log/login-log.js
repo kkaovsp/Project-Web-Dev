@@ -33,7 +33,7 @@ async function fetchLoginData() {
 
   try {
     const response = await fetch(
-      `/api/login-logs?page=${state.currentPage}&limit=${state.itemsPerPage}&search=${state.searchTerm}&sortBy=${state.sortBy}&sortDirection=${state.sortDirection}`
+      `http://localhost:5000/api/login-logs?page=${state.currentPage}&limit=${state.itemsPerPage}&search=${state.searchTerm}&sortBy=${state.sortBy}&sortDirection=${state.sortDirection}`
     );
 
     if (!response.ok) {
@@ -55,7 +55,7 @@ async function fetchLoginData() {
 }
 
 // ==========================
-// 2. Render Table
+// Render Table
 // ==========================
 
 /**

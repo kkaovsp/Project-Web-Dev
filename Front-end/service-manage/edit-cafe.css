@@ -450,8 +450,8 @@ button {
 }
 
 #map {
-  height: 200px;
-  width: 200px;
+  height: 400px;
+  width: 800px;
 }
 
 #open-map-btn {
@@ -466,10 +466,16 @@ button {
 }
 
 #close-map-btn {
+  margin-left: 95%;
   background: transparent;
   border: none;
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
   color: #333;
+}
+
+#map-popup.popup-form .popup-content{
+  width: 800px;
+  padding: 0%;
 }

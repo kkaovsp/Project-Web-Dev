@@ -6,18 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/service-manage/edit-cafe.css" />
     <title>Edit Cafe</title>
-    <script type="text/javascript" src="https://api.longdo.com/map/?key=f6581385895268d125e491ea2cbab81e"></script>
-    <script>
-        var map;
-        function init() {
-            map = new longdo.Map({
-                placeholder: document.getElementById('map')
-            });
-        }
-    </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
 
-<body onload="init();">
+<body>
     <main class="cafe-detail">
         <header class="header-banner">
             <a href="/admin/service-management">
@@ -120,11 +112,12 @@
         <div class="popup-form" id="map-popup">
             <div class="popup-content">
                 <button type="button" id="close-map-btn">×</button>
-                <div id="map" style="width: 400%; height: 400px;"></div>
+                <div id="map"></div>
             </div>
         </div>
 
     </main>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="/service-manage/edit-detail.js"></script>
     <script src="/service-manage/imgdisplay.js"></script>
 </body>

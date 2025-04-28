@@ -140,9 +140,9 @@ button {
 /* Service manager list */
 .service-manager-list {
   align-self: center;
+  justify-items: center;
   margin-top: 30px;
   width: 100%;
-  max-width: 1326px;
   height: calc(100vh - 250px);
   overflow-y: auto;
   overflow-x: hidden;
@@ -174,9 +174,8 @@ button {
   border: 1px solid #dee2e6;
   background-color: #fff;
   display: flex;
-  width: 100%;
+  width: 90%;
   padding-right: 41px;
-  padding-left: 20px;
   align-items: stretch;
   gap: 40px 100px;
   flex-wrap: wrap;
@@ -204,11 +203,10 @@ button {
 
 .cafe-image {
   aspect-ratio: 1;
-  object-fit: contain;
-  object-position: center;
+  object-fit: cover;
   width: 180px;
-  max-width: 100%;
-  overflow: hidden;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 .card-text-column {
