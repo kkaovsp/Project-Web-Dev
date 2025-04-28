@@ -24,9 +24,6 @@ main .container {
   align-items: center;
   gap: 20px;
 }
-a .logo {
-  float: left;
-}
 .searchbar {
   position: relative;
   display: flex;
@@ -49,7 +46,7 @@ a .logo {
 }
 a .select-box-icon { 
   position: absolute;
-  align-self: right;
+  right: 10px; 
   top: 50%;
   transform: translateY(-50%);
   border-radius: 25px;

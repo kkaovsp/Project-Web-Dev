@@ -251,7 +251,8 @@ a .select-box-icon {
 /* search and reset buttons POS*/
 .button-group {
   display: flex;
-  gap: 200px;
+  gap: 100px;
+  margin-left: 550;
 }
 
  /* search and reset buttons SIZE*/
