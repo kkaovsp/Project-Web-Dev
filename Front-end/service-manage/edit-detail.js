@@ -13,9 +13,9 @@ async function loadCafeDetails() {
         const response = await fetch(`http://localhost:5000/api/cafes/${cafeId}`, {
             method: "GET",
             headers: {
-              "Content-Type": "application/json",
+                "Content-Type": "application/json",
             },
-          });
+        });
 
         if (!response.ok) {
             throw new Error("Failed to fetch cafe details.");
@@ -72,8 +72,21 @@ function renderCafeDetails(cafe) {
     mainImage.classList.add("main-cafe-image");
     mainImage.src = `/Image/${cafe.imgName}1.jpg`;
     for (let i = 2; i <= 4; i++) {
-            thumbnails[i-2].src = `/Image/${cafe.imgName}${i}.jpg`; // Set each thumbnail's source 
-    }   
+        thumbnails[i - 2].src = `/Image/${cafe.imgName}${i}.jpg`; // Set each thumbnail's source 
+    }
+
+    //Public API MAP from LONGDO MAP
+    map.Search.placeholder(
+        document.getElementById('result')
+    );
+
+    doSearch(cafe.branch)
+}
+
+function doSearch(search) {
+    map.Search.search(search, {
+        limit: 1
+    });
 }
 
 
@@ -90,7 +103,7 @@ openPopupBtn.addEventListener("click", () => {
 // Close when click outside
 closePopupBtn.addEventListener("click", () => {
     popupForm.style.display = "none";
-  });
+});
 
 
 // Handle popup form submission
@@ -106,9 +119,9 @@ popupForm.addEventListener("submit", async (event) => {
     const province = document.getElementById("popup-province").value;
     const district = document.getElementById("popup-district").value;
     const pin_code = document.getElementById("popup-pin-code").value;
-    const contact_number = document.getElementById("popup-contact-number").value; 
+    const contact_number = document.getElementById("popup-contact-number").value;
     const open_hour = document.getElementById("popup-open-hour").value;
-    const close_hour = document.getElementById("popup-close-hour").value; 
+    const close_hour = document.getElementById("popup-close-hour").value;
     const cafePictures = document.getElementById("popup-cafe-pictures").files;
     const oldBranch = document.getElementById("popup-branch").getAttribute("placeholder"); //Use for changing image name using old branch name to find image
 
@@ -117,12 +130,12 @@ popupForm.addEventListener("submit", async (event) => {
         branch,
         province,
         district,
-        pin_code,     
+        pin_code,
         address,
-        contact_number, 
-        open_hour,      
-        close_hour, 
-        oldBranch,         
+        contact_number,
+        open_hour,
+        close_hour,
+        oldBranch,
     };
     const uploadedImages = Array.from(cafePictures);
 

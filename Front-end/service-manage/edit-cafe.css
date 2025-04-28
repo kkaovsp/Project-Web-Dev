@@ -71,8 +71,6 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  border-style: dotted;
-  border-color: #b6b6b6;
 }
 
 .main-image-column {
@@ -449,4 +447,20 @@ button {
   font-weight: bold;
   cursor: pointer;
   color: #333;
+}
+
+#map {
+  height: 200px;
+  width: 200px;
+}
+
+#open-map-btn {
+  border-radius: 8px;
+  background-color:#dedee1;
+  margin-bottom: auto;
+  margin-left: 22%;
+  padding: auto;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
 }
