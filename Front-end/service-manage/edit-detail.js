@@ -76,18 +76,35 @@ function renderCafeDetails(cafe) {
     }
 
     //Public API MAP from LONGDO MAP
-    map.Search.placeholder(
-        document.getElementById('result')
-    );
+    initMap;
+    doSearch(cafe.address);
+}
 
-    doSearch(cafe.branch)
+var map;
+function initMap() {
+  map = new longdo.Map({
+    placeholder: document.getElementById('map')
+  });
 }
 
 function doSearch(search) {
+    console.log(`Searching for: ${search}`)
     map.Search.search(search, {
         limit: 1
     });
 }
+
+// Show map popup
+document.getElementById('open-map-btn').addEventListener('click', function() {
+  document.getElementById('map-popup').style.display = 'flex';
+  initMap(); // Load map when opening
+});
+
+// Close map popup
+document.getElementById('close-map-btn').addEventListener('click', function() {
+  document.getElementById('map-popup').style.display = 'none';
+});
+
 
 
 //Update Cafe Information Part
@@ -95,12 +112,12 @@ const openPopupBtn = document.getElementById("open-popup-btn");
 const closePopupBtn = document.getElementById("close-popup-btn")
 const popupForm = document.getElementById("popup-form");
 
-// Open popup
+// Open edit popup
 openPopupBtn.addEventListener("click", () => {
     popupForm.style.display = "flex";
 });
 
-// Close when click outside
+// Close edit popup 
 closePopupBtn.addEventListener("click", () => {
     popupForm.style.display = "none";
 });
