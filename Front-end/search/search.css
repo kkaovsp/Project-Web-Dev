@@ -179,11 +179,9 @@ a .select-box-icon {
   padding: 0;
 }
 
- /* navvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
 .filter-section { 
   display: flex;
   border-bottom: 1px solid #000;
-  padding-left: 20%;
   background-color: #d9d9d9;
   margin-bottom: 30px;
 }
@@ -191,9 +189,7 @@ a .select-box-icon {
 .filter-form {
   position: relative;
   display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 20px;
+  margin: 20px 350px;
   flex-direction: column;
   gap: 16px;
 }
@@ -255,8 +251,7 @@ a .select-box-icon {
 /* search and reset buttons POS*/
 .button-group {
   display: flex;
-  gap: 100px;
-  margin-left: 50%;
+  gap: 200px;
 }
 
  /* search and reset buttons SIZE*/
@@ -331,9 +326,9 @@ font-weight: 700;
 margin: 0;
 }
 .location-row {
-display: flex; /* Align the icon and paragraph horizontally */
-align-items: center; /* Vertically align the icon and paragraph */
-gap: 8px; /* Add spacing between the icon and the paragraph */
+display: flex; 
+align-items: center; 
+gap: 8px; 
 }
 .location-content img {
 width: 20px;
