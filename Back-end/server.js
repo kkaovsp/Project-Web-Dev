@@ -15,7 +15,7 @@ const app = express();
 const port = 5000;
 
 // ==========================
-// Frontend Server
+// Middleware Configuration
 // ==========================
 app.use(cors({ origin: "http://localhost:3000" }));
 app.use(express.json());
@@ -26,9 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 // ==========================
 const Database = mysql.createConnection({
   host: "localhost",
-  user: "jajongtee", // Use your MySQL username
-  password: "folkrakj", // Use your MySQL password
-  database: "jajongtee", // The new database name
+  user: "jajongtee",
+  password: "folkrakj",
+  database: "jajongtee",
 });
 
 Database.connect(function (err) {
@@ -40,12 +40,13 @@ Database.connect(function (err) {
 });
 
 // ==========================
-// Admin Login API
+// Authentication APIs
 // ==========================
+
 /**
  * POST /api/admin/login
- * Handles admin login by verifying username and password.
- * Logs the login attempt in the Login_log table.
+ * Handles admin login by verifying username and password
+ * Logs the login attempt in the Login_log table
  */
 app.post("/api/admin/login", (req, res) => {
   const { username, password } = req.body;
@@ -119,9 +120,10 @@ app.post("/api/admin/login", (req, res) => {
 // ==========================
 // Login Logs API
 // ==========================
+
 /**
  * GET /api/login-logs
- * Retrieves login logs with pagination, search, and sorting.
+ * Retrieves login logs with pagination, search, and sorting
  */
 app.get("/api/login-logs", (req, res) => {
   const page = parseInt(req.query.page) || 1;
@@ -186,8 +188,13 @@ app.get("/api/login-logs", (req, res) => {
 });
 
 // ==========================
-// Filter Option API
+// Cafe Management APIs
 // ==========================
+
+/**
+ * GET /api/filter-options
+ * Retrieves available filter options for cafes
+ */
 app.get("/api/filter-options", async (req, res) => {
   try {
     const [names] = await Database.promise().query("SELECT DISTINCT Name AS name FROM Restaurant_Cafe");
@@ -205,21 +212,18 @@ app.get("/api/filter-options", async (req, res) => {
   }
 });
 
-// ==========================
-// Cafe List API
-// ==========================
 /**
- * GET /api/cafe-list
- * Fetches a list of cafes based on search and filter criteria.
+ * GET /api/cafes
+ * Retrieves list of cafes with optional filtering
  */
 app.get("/api/cafes", (req, res) => {
-  const search = req.query.search || ""; // Search term
-  const cafe = req.query.cafe || ""; // Cafe filter
-  const province = req.query.province || ""; // Location filter
-  const district = req.query.district || ""; // District filter
+  const search = req.query.search || "";
+  const cafe = req.query.cafe || "";
+  const province = req.query.province || "";
+  const district = req.query.district || "";
 
   queryParams = [`%${search}%`, `${cafe}`, `${district}`, `${province}`];
-  // Base SQL query
+  
   const query = `
     SELECT 
       Name as name,
@@ -233,14 +237,14 @@ app.get("/api/cafes", (req, res) => {
       Province LIKE ? 
   `;
 
-  // Execute the query
   Database.query(query, queryParams, (error, results) => {
     if (error) {
       console.error("Error fetching cafe list:", error);
       return res.status(500).json({ error: "Database error" });
     }
+    
     results.forEach((cafe) => {
-      cafe.imgName = cafe.branch.replace(/\s+/g, "_"); // Replace spaces with underscores
+      cafe.imgName = cafe.branch.replace(/\s+/g, "_");
       cafe.imgName = `${cafe.name}_${cafe.imgName}`;
       return cafe;
     });
@@ -249,14 +253,15 @@ app.get("/api/cafes", (req, res) => {
   });
 });
 
-
-//Getting Cafe Details from Database
+/**
+ * GET /api/cafes/:id
+ * Retrieves details of a specific cafe
+ */
 app.get("/api/cafes/:id", (req, res) => {
   const cafeId = req.params.id;
 
-  // SQL query to delete the cafe
   const query = `
-  SELECT 
+    SELECT 
       Branch AS branch,
       Address AS address,
       Open_hour AS open_hour,
@@ -275,11 +280,11 @@ app.get("/api/cafes/:id", (req, res) => {
   console.log("Getting Details Cafe with ID:", cafeId);
   Database.query(query, [cafeId], (error, results) => {
     if (error) {
-      console.error("Error deleting cafe:", error);
+      console.error("Error fetching cafe details:", error);
       return res.status(500).json({ error: "Database error" });
     }
 
-    if (results.affectedRows === 0) {
+    if (results.length === 0) {
       return res.status(404).json({ error: "Cafe not found" });
     }
 
@@ -292,10 +297,13 @@ app.get("/api/cafes/:id", (req, res) => {
   });
 });
 
+/**
+ * DELETE /api/cafes/:id
+ * Deletes a cafe and its associated images
+ */
 app.delete("/api/cafes/:id", (req, res) => {
   const cafeId = req.params.id;
 
-  //SQL query to get branch name to delete image
   const getCafeQuery = `
     SELECT 
       Branch as branch,
@@ -315,12 +323,11 @@ app.delete("/api/cafes/:id", (req, res) => {
       return res.status(404).json({ error: "Cafe not found" });
     }
 
-    const imageName = `${results[0].name}_${results[0].branch.replace(/\s+/g, "_")}`; // Match your image naming style
+    const imageName = `${results[0].name}_${results[0].branch.replace(/\s+/g, "_")}`;
     try {
       for (let i = 1; i <= 4; i++) {
         const imagePath = path.join(__dirname, "../Front-end/Image", `${imageName}${i}.jpg`);
-
-        fs.unlinkSync(imagePath); // <-- sync delete
+        fs.unlinkSync(imagePath);
         console.log(`Deleted image: ${imageName}${i}.jpg`);
       }
     } catch (error) {
@@ -329,8 +336,6 @@ app.delete("/api/cafes/:id", (req, res) => {
     }
   });
 
-
-  // SQL query to delete the cafe
   const deleteQuery = `DELETE FROM Restaurant_Cafe WHERE Restaurant_ID = ?`;
   console.log("Deleting cafe with ID:", cafeId);
   Database.query(deleteQuery, [cafeId], (error, results) => {
@@ -347,8 +352,9 @@ app.delete("/api/cafes/:id", (req, res) => {
   });
 });
 
-
-//Format how image will be store and destination
+// ==========================
+// File Upload Configuration
+// ==========================
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "../Front-end/Image"));
@@ -369,26 +375,24 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-//Edit Cafe API
+/**
+ * PUT /api/cafes/:id
+ * Updates cafe details and handles image updates
+ */
 app.put("/api/cafes/:id", upload.array("cafe_pictures", 4), (req, res) => {
   const cafeId = req.params.id;
-  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour } = req.body; // New updated data
+  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour } = req.body;
   const oldBranch = req.body.oldBranch;
   const uploadedImages = req.body.files;
   const oldImagename = `${name}_${oldBranch.replace(/\s+/g, "_")}`;
   const newImagename = `${name}_${branch.replace(/\s+/g, "_")}`;
   console.log("Image name:", oldImagename, newImagename)
 
-  //If upload new image along with the new branch name, it will store in the Image folder automatically
-
-  //But if admin doesn't upload new image = use old image with new branch name, 
-  //so now we need to change the image to match with new branch name
   if (branch !== oldBranch && (!uploadedImages || uploadedImages.length === 0)) {
     for (let i = 1; i <= 4; i++) {
       const oldFilePath = path.join(__dirname, "../Front-end/Image", `${oldImagename}${i}.jpg`);
       const newFilePath = path.join(__dirname, "../Front-end/Image", `${newImagename}${i}.jpg`);
 
-      // Rename the old image file
       fs.rename(oldFilePath, newFilePath, (err) => {
         if (err) {
           console.error("Error renaming file:", err);
@@ -431,19 +435,12 @@ app.put("/api/cafes/:id", upload.array("cafe_pictures", 4), (req, res) => {
   });
 });
 
-
-// ==========================
-// Cafe Upload API
-// ==========================
 /**
- * POST /api/upload
- * Handles uploading cafe details and images.
+ * POST /api/cafe
+ * Creates a new cafe with images
  */
-
-
 app.post("/api/cafe", upload.array("cafe_pictures", 4), (req, res) => {
-  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id } =
-    req.body;
+  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id } = req.body;
 
   if (!name || !branch || !province || !district || !pin_code || !address || !contact_number || !open_hour || !close_hour || !account_id) {
     return res.status(400).json({ error: "All fields are required" });
@@ -497,8 +494,8 @@ app.post("/api/cafe", upload.array("cafe_pictures", 4), (req, res) => {
 });
 
 // ==========================
-// 9. Start Server
+// Start Server
 // ==========================
 app.listen(port, () => {
-  console.log(`Server listening at Port ${port}`);
+  console.log(`Backend server is running at http://localhost:${port}`);
 });
