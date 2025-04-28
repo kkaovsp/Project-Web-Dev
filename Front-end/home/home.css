@@ -24,6 +24,9 @@ main .container {
   align-items: center;
   gap: 20px;
 }
+a .logo {
+  float: left;
+}
 .searchbar {
   position: relative;
   display: flex;
