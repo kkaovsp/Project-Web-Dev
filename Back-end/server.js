@@ -46,11 +46,23 @@ Database.connect(function (err) {
 // Authentication APIs
 // ==========================
 
-/**
- * POST /api/admin/login
- * Handles admin login by verifying username and password
- * Logs the login attempt in the Login_log table
- */
+// Testing Admin Login - Success Case
+// method: POST
+// URL: http://localhost:5000/api/admin/login
+// body: raw JSON
+// {
+//     "username": "chaowaphat",
+//     "password": "password123"
+// }
+//
+// Testing Admin Login - Failed Case
+// method: POST
+// URL: http://localhost:5000/api/admin/login
+// body: raw JSON
+// {
+//     "username": "wronguser",
+//     "password": "wrongpass"
+// }
 app.post("/api/admin/login", (req, res) => {
   const { username, password } = req.body;
 
@@ -125,10 +137,13 @@ app.post("/api/admin/login", (req, res) => {
 // Login Logs API
 // ==========================
 
-/**
- * GET /api/login-logs
- * Retrieves login logs with pagination, search, and sorting
- */
+// Testing Get Login Logs - Default Page
+// method: GET
+// URL: http://localhost:5000/api/login-logs?page=1&limit=10&search=&sortBy=login_date&sortDirection=desc
+//
+// Testing Get Login Logs - With Pagination and Search
+// method: GET
+// URL: http://localhost:5000/api/login-logs?page=1&limit=10&search=chaowaphat&sortBy=login_date&sortDirection=desc
 app.get("/api/login-logs", (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 10;
@@ -138,6 +153,7 @@ app.get("/api/login-logs", (req, res) => {
 
   const offset = (page - 1) * limit;
 
+  console.log(req.url);
   const query = `
     SELECT * FROM vw_login_logs
     WHERE
@@ -195,10 +211,12 @@ app.get("/api/login-logs", (req, res) => {
 // Cafe Management APIs
 // ==========================
 
-/**
- * GET /api/filter-options
- * Retrieves available filter options for cafes
- */
+// Testing Get Filter Options
+// method: GET
+// URL: http://localhost:5000/api/filter-options
+
+// This one just for it to get the data of cafe name, province, and district
+// to use as filter options dynamically, so it has only one test case possible
 app.get("/api/filter-options", async (req, res) => {
   try {
     const [names] = await Database.promise().query("SELECT DISTINCT Name AS name FROM Restaurant_Cafe");
@@ -216,16 +234,19 @@ app.get("/api/filter-options", async (req, res) => {
   }
 });
 
-/**
- * GET /api/cafes
- * Retrieves list of cafes with optional filtering
- */
+// Testing Get All Cafes - No Filter
+// method: GET
+// URL: http://localhost:5000/api/cafes?search=&cafe=%&province=%&district=%
+//
+// Testing Get Cafes - With Filters
+// method: GET
+// URL: http://localhost:5000/api/cafes?cafe=Starbucks&province=Bangkok&district=Khlong Toei
 app.get("/api/cafes", (req, res) => {
   const search = req.query.search || "";
   const cafe = req.query.cafe || "";
   const province = req.query.province || "";
   const district = req.query.district || "";
-
+  console.log(req.url);
   queryParams = [`%${search}%`, `${cafe}`, `${district}`, `${province}`];
   
   const query = `
@@ -258,10 +279,13 @@ app.get("/api/cafes", (req, res) => {
   });
 });
 
-/**
- * GET /api/cafes/:id
- * Retrieves details of a specific cafe
- */
+// Testing Get Single Cafe - Success
+// method: GET
+// URL: http://localhost:5000/api/cafes/101
+//
+// Testing Get Non-existent Cafe
+// method: GET
+// URL: http://localhost:5000/api/cafes/999
 app.get("/api/cafes/:id", (req, res) => {
   const cafeId = req.params.id;
 
@@ -302,10 +326,13 @@ app.get("/api/cafes/:id", (req, res) => {
   });
 });
 
-/**
- * DELETE /api/cafes/:id
- * Deletes a cafe and its associated images
- */
+// Testing Delete Cafe - Success
+// method: DELETE
+// URL: http://localhost:5000/api/cafes/101
+//
+// Testing Delete Non-existent Cafe
+// method: DELETE
+// URL: http://localhost:5000/api/cafes/999
 app.delete("/api/cafes/:id", (req, res) => {
   const cafeId = req.params.id;
 
@@ -380,10 +407,111 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-/**
- * PUT /api/cafes/:id
- * Updates cafe details and handles image updates
- */
+// Testing Create New Cafe - Success
+// method: POST
+// URL: http://localhost:5000/api/cafes
+// body: form-data
+// {
+//     "name": "Starbucks",
+//     "branch": "Test Branch",
+//     "province": "Bangkok",
+//     "district": "Sathon",
+//     "pin_code": "10120",
+//     "address": "123 Test Street",
+//     "contact_number": "0123456789",
+//     "open_hour": "07:00:00",
+//     "close_hour": "22:00:00",
+//     "account_id": "1111111",
+//     "cafe_pictures": [file1.jpg, file2.jpg, file3.jpg, file4.jpg]
+// }
+//
+// Testing Create Cafe - Missing Required Fields
+// method: POST
+// URL: http://localhost:5000/api/cafes
+// body: form-data
+// {
+//     "name": "Starbucks",
+//     "branch": "Test Branch"
+// }
+app.post("/api/cafes", upload.array("cafe_pictures", 4), (req, res) => {
+  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id } = req.body;
+
+  if (!name || !branch || !province || !district || !pin_code || !address || !contact_number || !open_hour || !close_hour || !account_id) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
+
+  const resID = {
+    Starbucks: "101",
+    Amazon: "201",
+    Punthai: "301",
+  };
+
+  const getLastIdQuery = `
+    SELECT Restaurant_ID
+    FROM Restaurant_Cafe
+    WHERE Name LIKE '${name}'
+    ORDER BY Restaurant_ID DESC
+    LIMIT 1
+  `;
+
+  let restaurantId;
+  Database.query(getLastIdQuery, (error, results) => {
+    if (error) {
+      console.error("Error fetching last Restaurant_ID:", error);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (results.length > 0 && results[0].Restaurant_ID) {
+      restaurantId = parseInt(results[0].Restaurant_ID) + 1;
+    } else {
+      restaurantId = resID[name];
+    }
+
+    const query = `
+      INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, Branch, Province, District, pin_code, Address, Contact_number, Open_hour, Close_hour, Account_ID)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    Database.query(
+      query,
+      [restaurantId, name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id],
+      (error) => {
+        if (error) {
+          console.error("Error adding cafe:", error);
+          return res.status(500).json({ error: "Database error" });
+        }
+
+        res.status(200).json({ message: "Cafe added successfully" });
+      }
+    );
+  });
+});
+
+// Testing Update Cafe - Success
+// method: PUT
+// URL: http://localhost:5000/api/cafes/101
+// body: form-data
+// {
+//     "name": "Starbucks",
+//     "branch": "Updated Branch",
+//     "province": "Bangkok",
+//     "district": "Sathon",
+//     "pin_code": "10120",
+//     "address": "123 Updated Street",
+//     "contact_number": "0123456789",
+//     "open_hour": "08:00:00",
+//     "close_hour": "23:00:00",
+//     "oldBranch": "Previous Branch Name"
+// }
+//
+// Testing Update Non-existent Cafe
+// method: PUT
+// URL: http://localhost:5000/api/cafes/999
+// body: form-data
+// {
+//     "name": "Starbucks",
+//     "branch": "Test Branch"
+// }
 app.put("/api/cafes/:id", upload.array("cafe_pictures", 4), (req, res) => {
   const cafeId = req.params.id;
   const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour } = req.body;
@@ -440,72 +568,13 @@ app.put("/api/cafes/:id", upload.array("cafe_pictures", 4), (req, res) => {
   });
 });
 
-/**
- * POST /api/cafes
- * Creates a new cafe with images
- */
-app.post("/api/cafes", upload.array("cafe_pictures", 4), (req, res) => {
-  const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id } = req.body;
-
-  if (!name || !branch || !province || !district || !pin_code || !address || !contact_number || !open_hour || !close_hour || !account_id) {
-    return res.status(400).json({ error: "All fields are required" });
-  }
-
-  const resID = {
-    Starbucks: "101",
-    Amazon: "201",
-    Punthai: "301",
-  };
-
-  const getLastIdQuery = `
-    SELECT Restaurant_ID
-    FROM Restaurant_Cafe
-    WHERE Name LIKE '${name}'
-    ORDER BY Restaurant_ID DESC
-    LIMIT 1
-  `;
-
-  let restaurantId;
-  Database.query(getLastIdQuery, (error, results) => {
-    if (error) {
-      console.error("Error fetching last Restaurant_ID:", error);
-      return res.status(500).json({ error: "Database error" });
-    }
-
-    if (results.length > 0 && results[0].Restaurant_ID) {
-      restaurantId = parseInt(results[0].Restaurant_ID) + 1;
-    } else {
-      restaurantId = resID[name];
-    }
-
-    const query = `
-      INSERT INTO Restaurant_Cafe (Restaurant_ID, Name, Branch, Province, District, pin_code, Address, Contact_number, Open_hour, Close_hour, Account_ID)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    Database.query(
-      query,
-      [restaurantId, name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id],
-      (error) => {
-        if (error) {
-          console.error("Error adding cafe:", error);
-          return res.status(500).json({ error: "Database error" });
-        }
-
-        res.status(200).json({ message: "Cafe added successfully" });
-      }
-    );
-  });
-});
-
-// ==========================
-// Admin Profile APIs
-// ==========================
-
-/**
- * GET /api/admin/profile
- * Retrieves admin profile information
- */
+// Testing Get Admin Profile - Success
+// method: GET
+// URL: http://localhost:5000/api/admin/profile?id=1111111
+//
+// Testing Get Admin Profile - Not Found
+// method: GET
+// URL: http://localhost:5000/api/admin/profile?id=9999999
 app.get("/api/admin/profile", (req, res) => {
   console.log("Query parameters:", req.query.id);
   console.log("URL:", req.url);
