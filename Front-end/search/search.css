@@ -217,7 +217,7 @@ a .select-box-icon {
   display: flex;
   border-bottom: 1px solid #000;
   background-color: #d9d9d9;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   overflow-y: hidden;
   overflow-x: hidden;
   flex-shrink: 0;
@@ -226,9 +226,9 @@ a .select-box-icon {
 .filter-form {
   position: relative;
   display: flex;
-  margin: 20px 350px;
+  margin: 15px 160px;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
 .filter-group {

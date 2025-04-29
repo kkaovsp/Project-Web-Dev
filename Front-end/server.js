@@ -122,7 +122,7 @@ app.get("/admin/management/add", (req, res) => {
  * Edit Cafe Page Route
  * Serves the edit cafe page with cafe ID validation
  */
-app.get('/admin/service-management/edit', (req, res) => {
+app.get('/admin/management/edit', (req, res) => {
   const cafeId = req.query.id;
   const adminId = req.query.id;
   if (!cafeId) {

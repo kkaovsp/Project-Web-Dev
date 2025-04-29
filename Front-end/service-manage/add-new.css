@@ -170,51 +170,6 @@ body {
   border: none;
 }
 
-.cafe-meta {
-  align-self: start;
-  display: flex;
-  margin-top: 11px;
-  align-items: stretch;
-  gap: 40px 46px;
-}
-
-.rating-container {
-  display: flex;
-  align-items: stretch;
-  gap: 8px;
-  white-space: nowrap;
-}
-
-.rating-score {
-  display: flex;
-  align-items: stretch;
-  gap: 4px;
-  font-size: 17px;
-  color: #11141a;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.score-value {
-  flex-grow: 1;
-}
-
-.stars-image {
-  aspect-ratio: 5.49;
-  object-fit: contain;
-  object-position: center;
-  width: 88px;
-  margin-top: auto;
-  margin-bottom: auto;
-  flex-shrink: 0;
-}
-
-.review-count {
-  color: #322a7d;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.6;
-}
 
 .status-container {
   display: flex;

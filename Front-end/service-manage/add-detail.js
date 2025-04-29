@@ -1,5 +1,6 @@
 // Get elements
 const openPopupBtn = document.getElementById("open-popup-btn");
+const closePopupBtn = document.getElementById("close-popup-btn")
 const popupForm = document.getElementById("popup-form");
 const finalConfirmBtn = document.getElementById("final-confirm-btn");
 const finalCancelBtn = document.getElementById("final-cancel-btn");
@@ -10,6 +11,11 @@ let uploadedImages = []; // Array to store uploaded images
 // Open popup
 openPopupBtn.addEventListener("click", () => {
     popupForm.style.display = "flex";
+});
+
+// Close popup
+closePopupBtn.addEventListener("click", () => {
+    popupForm.style.display = "none";
 });
 
 // Handle popup form submission

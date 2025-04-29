@@ -39,8 +39,9 @@ npm start
 The frontend will run on `http://localhost:3000`
 
 ### 4. Access the Application
-- Open your browser and go to `http://localhost:3000`
-- Admin login: `http://localhost:3000/admin/login`
+- Open your browser and go to `http://localhost:3000/`
+- It will redirect to `http://localhost:3000/home` which is a homepage for our website
+
 
 ## Important Remarks
 
@@ -49,44 +50,4 @@ The frontend will run on `http://localhost:3000`
    - After logging in, the admin ID must be present in the URL for admin pages to work
    - If you lose the ID parameter in the URL, you'll need to log in again
 
-2. Image Upload:
-   - Maximum 4 images per cafe
-   - Supported formats: JPG, PNG
-   - Maximum file size: 5MB per image
 
-3. Browser Compatibility:
-   - Best viewed in Chrome or Firefox
-   - Some features may not work properly in Internet Explorer
-
-### Security Notes
-- Do not expose the backend port (5000) to public access
-- Admin credentials should be changed from default on first use
-- Keep your MySQL credentials secure
-
-### Maintenance
-- The login log table may grow large over time - consider periodic cleanup
-- Regular database backups are recommended
-
-## Troubleshooting
-
-### Common Issues and Solutions
-
-1. "Cannot connect to database":
-   - Check if MySQL is running
-   - Verify database credentials
-   - Ensure database `jajongtee` exists
-
-2. "Images not loading":
-   - Check if the `Image` folder has correct permissions
-   - Verify image paths are correct
-   - Clear browser cache
-
-3. "Admin access denied":
-   - Check if you're logged in
-   - Verify URL contains admin ID parameter
-   - Try clearing browser cookies and logging in again
-
-4. "Server won't start":
-   - Check if ports 3000 and 5000 are available
-   - Ensure all dependencies are installed
-   - Look for error messages in the terminal

@@ -9,7 +9,6 @@
   body {
     margin: 0;
     font-family: 'Inter', sans-serif;
-    overflow: hidden;
   }
   
   /* NAV */
@@ -93,7 +92,7 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  position: absolute;
+
   right: 450px;
 }
 
@@ -106,15 +105,13 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    position: absolute;
-    right: 580px;
+    margin-left: 50px;
 }
 /* Main container */
 .cafe-detail {
   background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   align-items: center;
   padding-bottom: 24px;
 }
@@ -218,7 +215,7 @@
 /* Cafe info section */
 .cafe-info {
   width: 1100px;
-  padding-top: 40px;
+  padding-top: 10px;
   padding-left: 10px;
   font-family:
     Inter,
@@ -240,7 +237,7 @@
   display: flex;
   width: 100%;
   align-items: center;
-  flex-wrap: wrap;
+  gap:20px;
 }
 
 .cafe-name {
@@ -248,7 +245,7 @@
   font-size: 30px;
   font-weight: 700;
   line-height: 60px;
-  width: 70%;
+  width:700px;
 }
 
 .add-detail-btn {
@@ -261,52 +258,6 @@
   font-size: 16px;
   font-weight: 600;
   border: none;
-}
-
-.cafe-meta {
-  align-self: start;
-  display: flex;
-  margin-top: 11px;
-  align-items: stretch;
-  gap: 40px 46px;
-}
-
-.rating-container {
-  display: flex;
-  align-items: stretch;
-  gap: 8px;
-  white-space: nowrap;
-}
-
-.rating-score {
-  display: flex;
-  align-items: stretch;
-  gap: 4px;
-  font-size: 17px;
-  color: #11141a;
-  font-weight: 600;
-  line-height: 1;
-}
-
-.score-value {
-  flex-grow: 1;
-}
-
-.stars-image {
-  aspect-ratio: 5.49;
-  object-fit: contain;
-  object-position: center;
-  width: 88px;
-  margin-top: auto;
-  margin-bottom: auto;
-  flex-shrink: 0;
-}
-
-.review-count {
-  color: #322a7d;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.6;
 }
 
 .status-container {
@@ -328,14 +279,6 @@
   font-size: 16px;
   line-height: 24px;
   flex-basis: auto;
-}
-
-.closed-status {
-  color: #ffa101;
-}
-
-.opening-time {
-  color: #11141a;
 }
 
 /* Cafe details section */
@@ -490,7 +433,7 @@ button {
   border-radius: 8px;
   width: 40%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
+  overflow-y:scroll;
   max-height: 80%;
 }
 

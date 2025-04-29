@@ -138,6 +138,7 @@ button {
   margin-left: 40%;
   color: #fff;
   font-weight: 600;
+  align-self: center;
 }
 
 /* Service manager list */

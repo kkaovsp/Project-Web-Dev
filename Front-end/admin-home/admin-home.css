@@ -12,8 +12,7 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #fff;
-  overflow: hidden;
-  height: 960%;
+  overflow-y: scroll;
 }
 
 .layout-container {
@@ -165,7 +164,7 @@ body {
 }
 
 .admin-title-container {
-  margin-top: 479px;
+  margin-top: 280px;
   font-family:
     Inter,
     -apple-system,
@@ -205,30 +204,32 @@ body {
   border: 10px solid #000;
   border-radius: 50%;
   display: flex;
-  width: 400px;
+  width: 350px;
   max-width: 100%;
-  padding: 89px 80px;
+  padding-top: 50px;
+  padding-bottom: 50px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
 .profile-picture {
-  aspect-ratio: 0.97;
+  aspect-ratio: 1;
   object-fit: contain;
   object-position: center;
-  width: 217px;
+  width: 150px;
   max-width: 100%;
 }
 
 .admin-info-container {
   align-self: flex-end;
   display: flex;
-  margin-top: 120px;
+  margin-top: 30px;
   width: 500px;
   max-width: 100%;
   flex-direction: column;
   align-items: stretch;
+  gap: 10px;
 }
 
 .info-label {
@@ -248,7 +249,6 @@ body {
 .info-value {
   border-radius: 4px;
   border: 0.7px solid #cecece;
-  margin-top: 10px;
   padding: 18px 21px;
   font-family:
     Inter,
@@ -265,7 +265,6 @@ body {
   border-radius: 4px;
   border: 0.7px solid #cecece;
   display: flex;
-  margin-top: 10px;
   padding: 9px 50px 9px 15px;
   align-items: stretch;
   gap: 12px;
@@ -350,7 +349,6 @@ body {
 .id-value {
   border-radius: 4px;
   border: 0.7px solid #cecece;
-  margin-top: 10px;
   padding: 18px 7px;
   font-size: 14px;
   font-weight: 400;
