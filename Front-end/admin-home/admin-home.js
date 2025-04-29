@@ -27,9 +27,8 @@ async function fetchAdminData() {
     try {
         const accountId = getAccountIdFromURL();
         if (!accountId) {
-            console.error("No account ID found");
-            window.location.href = '/admin/login'; // Redirect to login if no ID found
-            return;
+            console.error("No account ID found in URL");
+            throw new Error('Account ID is missing');
         }
 
         const url = `http://localhost:5000/api/admin/profile?id=${accountId}`;
@@ -85,13 +84,3 @@ function initializePage() {
 
 // Event listener for page load
 document.addEventListener('DOMContentLoaded', initializePage);
-
-// Helper function to navigate to other admin pages while maintaining accountId
-function navigateToAdminPage(path) {
-    const accountId = getAccountIdFromURL();
-    if (accountId) {
-        window.location.href = `${path}?id=${accountId}`;
-    } else {
-        window.location.href = path;
-    }
-}

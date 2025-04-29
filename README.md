@@ -90,5 +90,3 @@ The frontend will run on `http://localhost:3000`
    - Check if ports 3000 and 5000 are available
    - Ensure all dependencies are installed
    - Look for error messages in the terminal
-
-For any other issues, please contact the development team. 

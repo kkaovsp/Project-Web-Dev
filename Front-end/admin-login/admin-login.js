@@ -40,9 +40,6 @@ loginForm.addEventListener("submit", async function (event) {
       alert("Login successful!");
       console.log("Server response:", result);
 
-      // Store accountId in localStorage
-      localStorage.setItem('adminAccountId', result.accountId);
-
       // Redirect to admin dashboard or another page
       window.location.href = `/admin/home?id=${result.accountId}`;
     } else {
