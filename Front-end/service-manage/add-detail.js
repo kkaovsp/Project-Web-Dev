@@ -106,7 +106,7 @@ finalConfirmBtn.addEventListener("click", async () => {
     });
 
     try {
-        const response = await fetch("http://localhost:5000/api/cafe", {
+        const response = await fetch("http://localhost:5000/api/cafes", {
             method: "POST",
             body: formData,
         });

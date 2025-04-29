@@ -441,10 +441,10 @@ app.put("/api/cafes/:id", upload.array("cafe_pictures", 4), (req, res) => {
 });
 
 /**
- * POST /api/cafe
+ * POST /api/cafes
  * Creates a new cafe with images
  */
-app.post("/api/cafe", upload.array("cafe_pictures", 4), (req, res) => {
+app.post("/api/cafes", upload.array("cafe_pictures", 4), (req, res) => {
   const { name, branch, province, district, pin_code, address, contact_number, open_hour, close_hour, account_id } = req.body;
 
   if (!name || !branch || !province || !district || !pin_code || !address || !contact_number || !open_hour || !close_hour || !account_id) {

@@ -1,21 +1,21 @@
 # Jaa Jong Tee Cafe Management System
 
-A full-stack web application for managing cafe information and locations.
+A full-stack web application for managing cafe/restaurant reservation.
 
 ## Project Structure
 
 ```
 .
 ├── Front-end/              # React frontend application
-│   ├── admin-home/        # Admin dashboard components
-│   ├── admin-login/       # Admin authentication components
-│   ├── detail/            # Cafe detail view components
-│   ├── home/              # Main homepage components
-│   ├── login-log/         # Login history components
-│   ├── member/            # Member management components
-│   ├── search/            # Search functionality components
-│   ├── service-manage/    # Service management components
-│   ├── Image/             # Static images
+│   ├── admin-home/        # Admin dashboard folder
+│   ├── admin-login/       # Admin authentication folder
+│   ├── detail/            # Cafe details folder
+│   ├── home/              # Main homepage folder
+│   ├── login-log/         # Login history tracking folder
+│   ├── member/            # Member management folder
+│   ├── search/            # Search functionality folder
+│   ├── service-manage/    # Service management folder
+│   ├── Image/             # Static assets folder
 │   ├── server.js          # Frontend server configuration
 │   └── package.json       # Frontend dependencies
 │
@@ -29,7 +29,6 @@ A full-stack web application for managing cafe information and locations.
 
 - Node.js (v14 or higher)
 - MySQL Server
-- Web browser (Chrome/Firefox recommended)
 
 ## Setup Instructions
 
@@ -42,7 +41,7 @@ CREATE DATABASE jajongtee;
 ```
 3. Import the database schema and sample data:
 ```bash
-mysql -u your_username -p jajongtee < Back-end/jajongtee.sql
+mysql -u jajongtee -p folkrakj < Back-end/jajongtee.sql
 ```
 
 ### 2. Backend Server Setup
@@ -83,11 +82,117 @@ The frontend application will run on `http://localhost:3000`
    - Username: chaowaphat
    - Password: password123
 
+## API Documentation
+
+### Authentication
+- `POST /api/admin/login`
+  - Description: Authenticate admin user
+  - Request Body:
+    ```json
+    {
+      "username": "string",
+      "password": "string"
+    }
+    ```
+  - Response: Admin profile and account information
+
+### Admin Profile
+- `GET /api/admin/profile`
+  - Description: Get admin profile information
+  - Query Parameters:
+    - `id`: Account ID
+  - Response: Admin profile details including name, contact, and role
+
+### Cafe Management
+- `GET /api/filter-options`
+  - Description: Get available filter options for cafes
+  - Response: List of unique names, provinces, and districts
+
+- `GET /api/cafes`
+  - Description: Get list of cafes with filtering
+  - Query Parameters:
+    - `search`: Search term
+    - `cafe`: Cafe name filter
+    - `province`: Province filter
+    - `district`: District filter
+  - Response: List of cafes with basic information
+
+- `GET /api/cafes/:id`
+  - Description: Get detailed information about a specific cafe
+  - Parameters:
+    - `id`: Cafe ID
+  - Response: Complete cafe details including hours and location
+
+- `POST /api/cafes`
+  - Description: Create a new cafe
+  - Request Body:
+    ```json
+    {
+      "name": "string",
+      "branch": "string",
+      "province": "string",
+      "district": "string",
+      "pin_code": "string",
+      "address": "string",
+      "contact_number": "string",
+      "open_hour": "HH:MM:SS",
+      "close_hour": "HH:MM:SS",
+      "account_id": "string"
+    }
+    ```
+  - Files: Up to 4 cafe pictures can be uploaded
+  - Response: Success message. When you add a new cafe using the form, the images you upload will be automatically saved to a configured image folder for later use, and all cafe details will be stored in the database.
+
+- `PUT /api/cafes/:id`
+  - Description: Update cafe information
+  - Parameters:
+    - `id`: Cafe ID
+  - Request Body: Same as POST /api/cafes
+  - Files: Optional cafe pictures update
+
+- `DELETE /api/cafes/:id`
+  - Description: Delete a cafe
+  - Parameters:
+    - `id`: Cafe ID
+  - Response: Success message
+
+### External APIs
+#### OpenStreetMap API
+- Used for displaying cafe locations on maps
+- Endpoint: `https://nominatim.openstreetmap.org/search`
+
+- Search Strategy:
+  1. First attempts to find location using cafe name + branch
+  2. If not found, tries with branch name only
+  3. If still not found, uses full address
+  4. Places marker on map when location is found
+- Map Features:
+  - Interactive map display
+  - Custom markers for cafe locations
+  - Popup information display
+  - Zoom controls
+  - Map view centering on search results
+
+  *We use public web service from OpenStreetMap because we can't request for Google Map web service (Google Cloud). This is because in the verify identity process, which using credit card to be payment method don't accept our cards. This map web service is not as good as Google Map but it still find some cafes. Some cafes or locations might not be founded*
+
+### Login History
+- `GET /api/login-logs`
+  - Description: Get login history with pagination and search
+  - Query Parameters:
+    - `page`: Page number (default: 1)
+    - `limit`: Items per page (default: 10)
+    - `search`: Search term
+    - `sortBy`: Field to sort by (default: login_date)
+    - `sortDirection`: Sort direction (asc/desc)
+  - Response: Paginated login history with total count
+
+
 ## Important Notes
 
 ### Database Configuration
 - The application uses MySQL as its database
 - The database schema includes tables for:
+  - Admin information
   - Admin accounts and profiles
   - Login logs
   - Restaurant/Cafe information
@@ -100,28 +205,19 @@ The frontend application will run on `http://localhost:3000`
 
 ### Dependencies
 Frontend:
-- Express.js for server
-- Leaflet for maps
-- Multer for file uploads
-- Node-fetch for API calls
+- Express.js (^4.18.2) - Web server framework
+- Form-data (^4.0.2) - Form data handling
+- Leaflet (^1.9.4) - Interactive maps
+- Multer (^1.4.5-lts.2) - File upload handling
+- Node-fetch (^3.3.2) - HTTP client
+- Nodemon (^3.1.9) - Development server with auto-reload
 
 Backend:
-- Express.js for API server
-- Bcrypt for password hashing
-- CORS for cross-origin requests
-- Multer for file handling
+- Express.js (^5.1.0) - Web server framework
+- CORS (^2.8.5) - Cross-origin resource sharing
+- Multer (^1.4.5-lts.2) - File upload handling
+- Nodemon (^3.1.9) - Development server with auto-reload
+- MySQL2 - MySQL database driver
 
-## Troubleshooting
-
-If you encounter any issues:
-1. Ensure MySQL server is running
-2. Verify database connection credentials
-3. Check if both frontend and backend servers are running
-4. Clear browser cache if experiencing UI issues
-5. Check console logs for error messages
-
-## Support
-
-For additional support or to report issues, please contact the development team.
 
 

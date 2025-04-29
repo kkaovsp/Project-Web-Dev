@@ -136,26 +136,3 @@ ORDER BY
 -- Display the view
 SELECT 'Login Logs View:' AS '';
 SELECT * FROM vw_login_logs;
-
-
-SELECT * FROM vw_login_logs
-WHERE
-    name LIKE '%' OR
-    email LIKE '%' OR
-    accountId LIKE '%' OR
-    role LIKE '%'
-ORDER BY login_date DESC
-LIMIT 10 OFFSET 0;
-
-select * from restaurant_cafe;
-SHOW FULL COLUMNS FROM vw_login_logs;
-
-SELECT 
-      Branch AS branch,
-      Address AS address,
-      Open_hour AS open_hour,
-      Close_hour AS close_hour
-    FROM 
-      Restaurant_Cafe
-    WHERE
-      Restaurant_ID = 123;
