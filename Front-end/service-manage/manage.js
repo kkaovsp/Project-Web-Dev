@@ -170,7 +170,7 @@ cafeListContainer.addEventListener("click", async (event) => {
   // Handle Edit
   if (target.classList.contains("edit-button")) {
     // Navigate to edit page with ID
-    window.location.href = `/admin/service-management/edit?id=${cafeId}`;
+    window.location.href = `/admin/management/edit?id=${cafeId}`;
   }
 
   // Handle Delete
