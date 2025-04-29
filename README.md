@@ -140,7 +140,7 @@ The frontend application will run on `http://localhost:3000`
       "account_id": "string"
     }
     ```
-  - Files: Up to 4 cafe pictures can be uploaded
+  - Files: Up to 4 cafe pictures can be uploaded (.jpg only)
   - Response: Success message. When you add a new cafe using the form, the images you upload will be automatically saved to a configured image folder for later use, and all cafe details will be stored in the database.
 
 - `PUT /api/cafes/:id`
