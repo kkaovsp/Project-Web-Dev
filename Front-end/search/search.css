@@ -218,17 +218,15 @@ a .select-box-icon {
   border-bottom: 1px solid #000;
   background-color: #d9d9d9;
   margin-bottom: 20px;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  flex-shrink: 0;
+  align-content: center;
 }
 
 .filter-form {
-  position: relative;
   display: flex;
-  margin: 15px 160px;
   flex-direction: column;
   gap: 12px;
+  align-items: center;
+  margin: 10px;
 }
 
 .filter-group {
