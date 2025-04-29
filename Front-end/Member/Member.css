@@ -60,7 +60,7 @@
     align-items: center;
     justify-content: center; 
   }
-  
+  /* text length */
   .text {
     max-width: 500px;
     margin-top: 10px;
