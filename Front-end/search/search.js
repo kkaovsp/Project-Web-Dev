@@ -115,7 +115,7 @@ function renderCafeList(cafes) {
       <div class="location-content">
         <h2 class="location-title">${cafe.branch}</h2>
         <div class="location-row">
-          <img src="../Image/Pin.png" alt="Location pin" />
+          <img src="Image/Pin.png" alt="Location pin" />
           <p class="location-address">${cafe.address}</p>
         </div>
       </div>
