@@ -3,17 +3,112 @@
 
 /* Base styles */
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+  }
+  
+  /* NAV */
+  header {
+    background-color: #4409AB;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 108px;
+    width: 100%
+  } 
+  nav {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 0px 15px;
+    justify-content: space-between;
+  }
+  
+  main .container {
+    margin-top: 50px;
+    margin-left: 40px;
+    margin-bottom: 25px;
+  }
+  .right-links{ 
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .searchbar {
+    position: relative;
+    display: flex;
+    max-width: 600px;
+    width: 100%;
+  }
+  #searchInput { 
+    height: 40px;
+    width: 100%; 
+    padding: 10px 50px;
+    border: 1px solid #ccc;
+    border-radius: 28px;
+    font-size: 1rem;
+  }
+  .search-icon { 
+    position: absolute;
+    top: 6px;
+    left: 5px;
+    pointer-events: none;
+  }
+  a .select-box-icon { 
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 25px;
+    right: 1.5%;
+    align-items: center;
+    margin: 0 -8px;
+  }
+
+.back-btn{
+  background-color: #4409AB;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
+  left: 50px;
+  top: 150px;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  line-height: 1.5;
+.reserve-btn{
+  background-color: #4409AB;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  position: absolute;
+  right: 360px;
 }
 
+.contact-btn{
+    background-color: rgb(164, 164, 164);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    position: absolute;
+    right: 500px;
+}
 /* Main container */
 .cafe-detail {
   background-color: #ffffff;
@@ -70,8 +165,6 @@ body {
   display: flex;
   width: 100%;
   height: 100%;
-  border-style: dotted;
-  border-color: #b6b6b6;
 }
 
 .main-image-column {
@@ -400,6 +493,7 @@ button {
 
 .popup-content h2 {
   margin-bottom: 20px;
+  width: fit-content;
 }
 
 .popup-content form {
@@ -431,4 +525,51 @@ button {
   justify-self: end;
   gap: 30px;
   margin-left: 12%;
+}
+
+.popup-content{
+  position: relative;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+#map {
+  height: 400px;
+  width: 800px;
+}
+
+#open-map-btn {
+  border-radius: 8px;
+  background-color:#dedee1;
+  margin-bottom: auto;
+  margin-left: 22%;
+  padding: auto;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+}
+
+#close-map-btn {
+  margin-left: 95%;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+#map-popup.popup-form .popup-content{
+  width: 800px;
+  padding: 0%;
 }

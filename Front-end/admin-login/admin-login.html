@@ -1,73 +1,64 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="admin-login.css" type="text/css"/>
-    <title>Administrators Login</title>
-  </head>
-  <body>
-    <header>
-      <nav>
-          <a href="../home/home.html">
-              <img src="../Image/Logo.png" class = "logo">
-          </a>
 
-              <div class="searchbar">
-                      <input type="text" id="searchInput" placeholder="">
-                      <img src="../Image/SearchIcon.png" class="search-icon">
-                      <a href="../search/search.html">
-                          <img src="../Image/SelectBox.png" class="select-box-icon"></img>
-                      </a>
-              </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/admin-login/admin-login.css" type="text/css" />
+  <title>Administrators Login</title>
+</head>
 
-              <div class="right-links">
-                  <a href="../admin-login/admin-login.html">
-                      <img src="../Image/AdminLogin.png" class="icon"></img>
-                  </a>
-                  <a href="../UserLogin/UserLogin.html">
-                      <img src="../Image/UserLogin.png"class="icon"></img>
-                  </a>
-              </div>
-      </nav>
+<body>
+  <header>
+    <nav>
+      <a href="/home">
+        <img src="/Image/Logo.png" class="logo">
+      </a>
+
+      <div class="searchbar">
+        <input type="text" id="searchInput" placeholder="">
+        <img src="/Image/SearchIcon.png" class="search-icon">
+        <a href="/cafes">
+          <img src="/Image/SelectBox.png" class="select-box-icon"></img>
+        </a>
+      </div>
+
+      <div class="right-links">
+        <a href="/admin/login">
+          <img src="/Image/AdminLogin.png" class="icon"></img>
+        </a>
+        <a>
+          <img src="/Image/UserLogin.png" class="icon"></img>
+        </a>
+      </div>
+    </nav>
   </header>
-    <div class="admin-login-page">
-      <main class="login-content">
-        <img src="../Image/Admin_Logo.png" alt="Admin Logo" class="admin-logo" />
+  <div class="admin-login-page">
+    <main class="login-content">
+      <img src="/Image/Admin_Logo.png" alt="Admin Logo" class="admin-logo" />
 
-        <h1 class="login-heading">Administrators Login</h1>
+      <h1 class="login-heading">Administrators Login</h1>
 
-        <form class="login-form" action="#" method="post">
-          <div class="form-field">
-            <label for="username" class="field-label">Username</label>
-            <input
-              type="text"
-              id="username"
-              class="field-input"
-              placeholder="Username"
-              required
-            />
-          </div>
+      <form class="login-form" action="#" method="post">
+        <div class="form-field">
+          <label for="username" class="field-label">Username</label>
+          <input type="text" id="username" class="field-input" placeholder="Username" required />
+        </div>
 
-          <div class="form-field">
-            <label for="password" class="field-label">Password</label>
-            <input
-              type="password"
-              id="password"
-              class="field-input"
-              placeholder="Password"
-              required
-            />
-          </div>
+        <div class="form-field">
+          <label for="password" class="field-label">Password</label>
+          <input type="password" id="password" class="field-input" placeholder="Password" required />
+        </div>
 
-          <div class="form-actions">
-            <button type="submit" class="sign-in-button">Sign In</button>
-          </div>
+        <div class="form-actions">
+          <button type="submit" class="sign-in-button">Sign In</button>
+        </div>
 
-          <a href="#" class="forgot-password">Forgot password?</a>
-        </form>
-      </main>
-    </div>
-    <script src="/admin-login/admin-login.js"></script>
-  </body>
+        <a href="#" class="forgot-password">Forgot password?</a>
+      </form>
+    </main>
+  </div>
+  <script src="/admin-login/admin-login.js"></script>
+</body>
+
 </html>

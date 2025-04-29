@@ -13,7 +13,7 @@ const port = 3000;
 // ==========================
 // Static File Serving
 // ==========================
-app.use("/Location", express.static(path.join(__dirname, "Location")));
+app.use("/detail", express.static(path.join(__dirname, "detail")));
 app.use("/home", express.static(path.join(__dirname, "home")));
 app.use("/search", express.static(path.join(__dirname, "search")));
 app.use("/admin-login", express.static(path.join(__dirname, "admin-login")));
@@ -50,6 +50,15 @@ app.get("/home", (req, res) => {
 });
 
 /**
+ * Home Page Route
+ * Serves the home page
+ */
+app.get("/cafes/detail", (req, res) => {
+  res.sendFile(path.join(__dirname, "/", "detail/detail.html"));
+  console.log("Detail page requested");
+});
+
+/**
  * Admin Login Page Route
  * Serves the admin login page
  */
@@ -67,6 +76,7 @@ app.get("/admin/home", (req, res) => {
   console.log("Admin home page requested");
 });
 
+
 /**
  * Login Log Page Route
  * Serves the login log page
@@ -80,7 +90,7 @@ app.get("/admin/login-log", (req, res) => {
  * Service Management Page Route
  * Serves the service management page
  */
-app.get("/admin/service-management", (req, res) => {
+app.get("/admin/management", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "service-manage/service-manage.html"));
   console.log("Service management page requested");
 });
@@ -89,7 +99,7 @@ app.get("/admin/service-management", (req, res) => {
  * Add New Service Page Route
  * Serves the add new service page
  */
-app.get("/admin/service-management/add-new", (req, res) => {
+app.get("/admin/management/add", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "service-manage/add-new.html"));
   console.log("Add-new page requested");
 });
@@ -108,12 +118,12 @@ app.get('/admin/service-management/edit', (req, res) => {
 });
 
 /**
- * Search Page Route
- * Serves the search page
+ * Cafes Page Route
+ * Serves the cafes page
  */
-app.get("/search", (req, res) => {
+app.get("/cafes", (req, res) => {
   res.sendFile(path.join(__dirname, "/", "search/search.html"));
-  console.log("Search page requested");
+  console.log("Cafes page requested");
 });
 
 // ==========================

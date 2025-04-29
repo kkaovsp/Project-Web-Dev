@@ -1,3 +1,6 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* nav */
 header {
   background-color: #4409AB;
@@ -51,10 +54,6 @@ a .select-box-icon {
   transform: translateY(-50%);
   border-radius: 25px;
   right: 1.5%;
-}
-.squarebox{
-  background-color: #4409AB5E;
-  display: flex;
   align-items: center;
   margin: 0 -8px;
 }
@@ -183,11 +182,13 @@ a .select-box-icon {
   margin: 0;
   padding: 0;
   /* box-sizing: border-box; */
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   background-color: #fff;
+  overflow: hidden;
 }
 
 .container {

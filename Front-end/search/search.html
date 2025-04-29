@@ -3,34 +3,32 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-          rel="stylesheet"/>
-        <link rel="stylesheet" href="search.css" type="text/css"/>
+        <link rel="stylesheet" href="/search/search.css" type="text/css"/>
         <title>Location</title>
     </head>
+    <body>
         <header>
             <nav>
-                <a href="../home/home.html">
-                    <img src="../Image/Logo.png" class = "logo">
+                <a href="/home">
+                    <img src="/Image/Logo.png" class="logo">
                 </a>
       
-                    <div class="searchbar">
-                            <input type="text" id="searchInput" placeholder="">
-                            <img src="../Image/SearchIcon.png" class="search-icon">
-                            <a href="../search/search.html">
-                                <img src="../Image/SelectBox.png" class="select-box-icon"></img>
-                            </a>
-                    </div>
+                <div class="searchbar">
+                    <input type="text" id="searchInput" placeholder="Search...">
+                    <img src="/Image/SearchIcon.png" class="search-icon">
+                    <a href="/cafes">
+                        <img src="/Image/SelectBox.png" class="select-box-icon">
+                    </a>
+                </div>
 
-                    <div class="right-links">
-                        <a href="../admin-login/admin-login.html">
-                            <img src="../Image/AdminLogin.png" class="icon"></img>
-                        </a>
-                        <a href="../UserLogin/UserLogin.html">
-                            <img src="../Image/UserLogin.png"class="icon"></img>
-                        </a>
-                    </div>
+                <div class="right-links">
+                    <a href="/admin/login">
+                        <img src="/Image/AdminLogin.png" class="icon">
+                    </a>
+                    <a>
+                        <img src="/Image/UserLogin.png" class="icon">
+                    </a>
+                </div>
             </nav>
         </header>
 
@@ -40,10 +38,7 @@
                 <label class="filter-label">Cafe</label>
                 <div class="select-wrapper">
                     <select class="filter-select" id="Cafe" name="Cafe">
-                        <option value="" disabled selected hidden>Select Cafe</option>
-                        <option value="Starbucks">Starbucks</option>
-                        <option value="Amazon Cafe">Amazon Cafe</option>
-                        <option value="Punthai Coffee">Punthai Coffee</option>
+                        <option value="%" selected>All Cafes</option>
                     </select>
                   <svg
                     class="arrow-icon"
@@ -64,13 +59,9 @@
               </div>
     
               <div class="filter-group">
-                <label class="filter-label">Location</label>
+                <label class="filter-label">Province</label>
                 <div class="select-wrapper">
-                    <select class="filter-select" id="Location" name="Location">
-                        <option value="" disabled selected hidden>Select Location</option>
-                        <option value="Nearme">Nearme</option>
-                        <option value="Bangkok">Bangkok</option>
-                        <option value="Nakhon Pathom">Nakhon Pathom</option>
+                    <select class="filter-select" id="Province" name="Province">
                     </select>
                   <svg
                     class="arrow-icon"
@@ -91,12 +82,9 @@
               </div>
     
               <div class="filter-group">
-                <label class="filter-label">Opening Hours</label>
+                <label class="filter-label">District</label>
                 <div class="select-wrapper">
-                    <select class="filter-select" id="OpeningHours" name="OpeningHours">
-                        <option value="" disabled selected hidden>Select Opening Hours</option>
-                        <option value="Standart Hours">Standart Hours</option>
-                        <option value="Open 24 Hours">Open 24 Hours</option>
+                    <select class="filter-select" id="District" name="District">
                     </select>
                     <svg
                       class="arrow-icon"
@@ -116,100 +104,15 @@
                 </div>
               </div>
               <div class="button-group">
-                <button type="submit" class="search-btn">Search</button>
                 <button type="reset" class="reset-btn">Reset</button>
               </div>
-              <!-- For arrow to rotate -->
-              <script>
-                document.querySelectorAll('.filter-select').forEach((select) => {
-                  select.addEventListener('click', function () {
-                    const wrapper = this.closest('.select-wrapper'); // Get the parent .select-wrapper
-                    wrapper.classList.toggle('open'); // Toggle the 'open' class
-                  });
-                  select.addEventListener('blur', function () {
-                    const wrapper = this.closest('.select-wrapper'); // Get the parent .select-wrapper
-                    wrapper.classList.remove('open'); // Remove the 'open' class when focus is lost
-                  });
-                });
-              </script>
             </form>
           </div>
-        <!-- UNDER SEARCH .......................................................-->
+
         <main class="locations-container">
-          <!-- TEST1 -->
-          <div class="location-card">
-              <img
-              src="../Image/search1.png"
-              alt="Mahidol University - Salaya Campus"
-              class="location-image"
-              />
-              <div class="location-content">
-                  <h2 class="location-title">Mahidol University - Salaya Campus</h2>
-                  <div class="location-row">
-                    <img src="../Image/Pin.png"></img>
-                    <p class="location-address">999 Phutthamonthon 4 Road , Salaya , Nakhon Patthom 73170</p>
-                  </div>
-              </div>
-              <div class="operating-hours">
-                  <time>Monday 07:00 to 19:00</time><br />
-                  <time>Tuesday 07:00 to 19:00</time><br />
-                  <time>Wednesday 07:00 to 19:00</time><br />
-                  <time>Thursday 07:00 to 19:00</time><br />
-                  <time>Friday 07:00 to 19:00</time><br />
-                  <time>Saturday 08:00 to 17:00</time><br />
-                  <time>Sunday 08:00 to 17:00</time>
-              </div>
-            </div>
-          <!-- TEST2 -->
-          <div class="location-card">
-            <img
-            src="../Image/search2.png"
-            alt="Mahidol University - Salaya Campus"
-            class="location-image"
-            />
-            <div class="location-content">
-                <h2 class="location-title">The Fourth Putthamonthon Sai 4</h2>
-                <div class="location-row">
-                  <img src="../Image/Pin.png"/>
-                  <p class="location-address">Phutthamonthon Sai 4 Road , Kratumlom, SamPhran, Nakornpathom</p>
-                </div>
-            </div> 
-            <div class="operating-hours">
-                <time>Monday 07:00 to 19:00</time><br />
-                <time>Tuesday 07:00 to 19:00</time><br />
-                <time>Wednesday 07:00 to 19:00</time><br />
-                <time>Thursday 07:00 to 19:00</time><br />
-                <time>Friday 07:00 to 19:00</time><br />
-                <time>Saturday 08:00 to 17:00</time><br />
-                <time>Sunday 08:00 to 17:00</time>
-            </div>
-          </div>
-          <!-- TEST3 -->
-          <div class="location-card">
-            <img
-            src="../Image/search3.png"
-            alt="Mahidol University - Salaya Campus"
-            class="location-image"
-            />
-            <div class="location-content">
-                <h2 class="location-title">Central Plaza Salaya</h2>
-                <div class="location-row">
-                  <img src="../Image/Pin.png"/>
-                  <p class="location-address">99/19, 99/20 Moo.2 Borommaratchachonnani Road, Bang Toey Sam Phran Nakhon Phatom 73210</p>
-                </div>
-            </div> 
-            <div class="operating-hours">
-              <time>Monday 07:00 to 21:00</time><br />
-              <time>Tuesday 07:00 to 21:00</time><br />
-              <time>Wednesday 07:00 to 21:00</time><br />
-              <time>Thursday 07:00 to 21:00</time><br />
-              <time>Friday 07:00 to 21:00</time><br />
-              <time>Saturday Closed</time><br />
-              <time>Sunday Closed</time>
-            </div>
-          </div>
-
+          <!-- Cafe cards will be dynamically inserted here -->
         </main>
-      </body>
 
+        <script src="/search/search.js"></script>
+    </body>
 </html>

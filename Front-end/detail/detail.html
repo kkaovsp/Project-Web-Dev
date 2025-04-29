@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/detail/detail.css" type="text/css" />
+    <title>Cafe Detail</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+
+<body>
+    <main class="cafe-detail">
+        <header>
+            <nav>
+                <a href="/home">
+                    <img src="/Image/Logo.png" class="logo">
+                </a>
+
+                <div class="searchbar">
+                    <input type="text" id="searchInput" placeholder="Search...">
+                    <img src="/Image/SearchIcon.png" class="search-icon">
+                    <a href="/cafes">
+                        <img src="/Image/SelectBox.png" class="select-box-icon">
+                    </a>
+                </div>
+
+                <div class="right-links">
+                    <a href="/admin/login">
+                        <img src="/Image/AdminLogin.png" class="icon">
+                    </a>
+                    <a>
+                        <img src="/Image/UserLogin.png" class="icon">
+                    </a>
+                </div>
+            </nav>
+        </header>
+        <a href="/cafes">
+            <button class="back-btn" id="back-btn">Back</button>
+        </a>
+        <!-- Cafe Details Section -->
+        <section class="cafe-gallery">
+            <div class="gallery-container">
+                <div class="main-image-column">
+                    <img id="main-image" class="upload-placeholder" />
+                </div>
+                <div class="thumbnail-column">
+                    <div class="thumbnail-container">
+                        <img src="" class="cafe-thumbnail" />
+                        <img src="" class="cafe-thumbnail" />
+                        <img src="" class="cafe-thumbnail" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cafe Info Section -->
+        <section class="cafe-info">
+            <div class="info-container">
+                <div class="cafe-header">
+                    <h2 class="cafe-name"></h2>
+                    <a>
+                        <button class="contact-btn" id="contact-btn">Contact</button>
+                    </a>
+                    <a>
+                        <button class="reserve-btn" id="reserve-btn">Reserve</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="cafe-details">
+                <div class="address-info">
+                    <img src="/Image/Edit_pin.png" alt="Location icon" class="location-icon" />
+                    <address class="address-text"></address>
+                </div>
+                <div class="hours-info">
+                    <div class="days-column">
+                        <div class="weekday-container">
+                            <img src="/Image/Edit_clock.png" alt="Clock icon" class="clock-icon" />
+                            <span class="weekdays"></span>
+                        </div>
+                    </div>
+                    <div class="time-column">
+                        <span class="open-hours"></span>
+                    </div>
+                </div>
+                <button id="open-map-btn">View Map</button>
+        </section>
+        <div class="popup-form" id="map-popup">
+            <div class="popup-content">
+                <button type="button" id="close-map-btn">×</button>
+                <div id="map"></div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="/detail/detail.js"></script>
+    <script src="/service-manage/imgdisplay.js"></script>
+</body>
+
+</html>

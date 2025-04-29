@@ -228,7 +228,8 @@ app.get("/api/cafes", (req, res) => {
     SELECT 
       Name as name,
       Branch AS branch,
-      Restaurant_ID AS id
+      Restaurant_ID AS id,
+      Address AS address
     FROM Restaurant_Cafe
     WHERE
       Branch LIKE ? AND

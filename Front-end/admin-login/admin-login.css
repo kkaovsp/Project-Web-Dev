@@ -1,7 +1,17 @@
-/* NAV */
-body {
-  margin: 0px;
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
 }
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+}
+
+/* NAV */
 header {
   background-color: #4409AB;
   display: flex;
@@ -51,10 +61,12 @@ main .container {
 }
 a .select-box-icon { 
   position: absolute;
-  right: 10px; 
   top: 50%;
   transform: translateY(-50%);
   border-radius: 25px;
+  right: 1.5%;
+  align-items: center;
+  margin: 0 -8px;
 }
 .squarebox{
   background-color: #4409AB5E;
