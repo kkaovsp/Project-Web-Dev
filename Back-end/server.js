@@ -17,7 +17,10 @@ const port = 5000;
 // ==========================
 // Middleware Configuration
 // ==========================
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ 
+  origin: ["http://localhost:3000", "http://localhost:5000"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -112,6 +115,7 @@ app.post("/api/admin/login", (req, res) => {
         success: true,
         message: "Login successful",
         user: user,
+        accountId: accountId,
       });
     });
   });
@@ -491,6 +495,70 @@ app.post("/api/cafe", upload.array("cafe_pictures", 4), (req, res) => {
         res.status(200).json({ message: "Cafe added successfully" });
       }
     );
+  });
+});
+
+// ==========================
+// Admin Profile APIs
+// ==========================
+
+/**
+ * GET /api/admin/profile
+ * Retrieves admin profile information
+ */
+app.get("/api/admin/profile", (req, res) => {
+  console.log("Query parameters:", req.query.id);
+  console.log("URL:", req.url);
+  
+  const accountId = req.query.id;
+  if (!accountId) {
+    console.error("No account ID provided");
+    return res.status(400).json({ error: "Account ID is required" });
+  }
+
+  console.log("Account ID:", accountId);
+
+  const query = `
+    SELECT 
+      a.Admin_ID,
+      a.Firstname,
+      a.Lastname,
+      a.Email,
+      a.Phone,
+      ac.Account_ID,
+      ac.Username,
+      ac.Role
+    FROM 
+      Adminn a
+    JOIN 
+      Admin_Account ac ON a.Admin_ID = ac.Admin_ID
+    WHERE
+      ac.Account_ID = ?
+  `;
+
+  Database.query(query, [accountId], (error, results) => {
+    if (error) {
+      console.error("Error fetching admin profile:", error);
+      return res.status(500).json({ error: "Database error" });
+    }
+
+    if (results.length === 0) {
+      console.error("No admin found with Account_ID:", accountId);
+      return res.status(404).json({ error: "Admin profile not found" });
+    }
+
+    const admin = results[0];
+    const response = {
+      fullName: `${admin.Firstname} ${admin.Lastname}`,
+      phoneNumber: admin.Phone,
+      email: admin.Email,
+      adminId: admin.Admin_ID,
+      accountId: admin.Account_ID,
+      role: admin.Role
+    };
+
+    console.log("Sending response:", response);
+    res.json(response);
   });
 });
 

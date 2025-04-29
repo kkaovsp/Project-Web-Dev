@@ -1,4 +1,4 @@
-// Query DOM elements
+// Get references to all required DOM elements for the login log interface
 const searchInput = document.querySelector(".search-input");
 const filterSelect = document.querySelector(".filter-select");
 const tableContainer = document.querySelector(".user-table");
@@ -7,27 +7,27 @@ const selectAllCheckbox = document.getElementById("select-all");
 const prevButton = document.querySelector(".pagination-button-prev");
 const nextButton = document.querySelector(".pagination-button-next");
 
-// State object
+// Maintains the current state of the login log table
+// Includes pagination, sorting, and data management
 const state = {
-  searchTerm: "",
-  selectedRows: [],
-  currentPage: 1,
-  itemsPerPage: 10,
-  sortBy: "login_date",
-  sortDirection: "desc",
-  users: [],
-  totalUsers: 0,
-  loading: true,
-  error: null,
+  searchTerm: "",          // Current search filter
+  selectedRows: [],        // Selected table rows
+  currentPage: 1,          // Current page number
+  itemsPerPage: 10,        // Items shown per page
+  sortBy: "login_date",    // Current sort column
+  sortDirection: "desc",   // Sort direction (asc/desc)
+  users: [],              // Current page of user data
+  totalUsers: 0,          // Total number of users
+  loading: true,          // Loading state flag
+  error: null,            // Error state
 };
 
 // ==========================
-// 1. Fetch Data
+// Data Fetching
 // ==========================
 
-/**
- * Fetch login log data from the server.
- */
+// Fetches login log data from the backend API
+// Updates state with new data and triggers table render
 async function fetchLoginData() {
   state.loading = true;
 
@@ -55,12 +55,11 @@ async function fetchLoginData() {
 }
 
 // ==========================
-// Render Table
+// Table Rendering
 // ==========================
 
-/**
- * Render the table with the fetched data.
- */
+// Renders the entire table based on current state
+// Handles loading, error, and empty states
 function renderTable() {
   // Remove all existing rows except the header
   Array.from(tableContainer.children).forEach((child) => {
@@ -95,19 +94,20 @@ function renderTable() {
   updatePaginationInfo();
 }
 
-/**
- * Render a single table row.
- */
+// Creates and returns a single table row element
+// Formats user data into table cells with proper styling
 function renderTableRow(user) {
   const row = document.createElement("div");
   row.className = "table-row";
   row.setAttribute("role", "row");
 
+  // Add checkbox cell for row selection
   const checkboxCell = document.createElement("div");
   checkboxCell.className = "table-cell";
   checkboxCell.innerHTML = `<input type="checkbox" aria-label="Select row">`;
   row.appendChild(checkboxCell);
 
+  // Add user information cells
   const nameCell = document.createElement("div");
   nameCell.className = "table-cell";
   nameCell.textContent = user.name;
@@ -133,6 +133,7 @@ function renderTableRow(user) {
   roleCell.textContent = user.role;
   row.appendChild(roleCell);
 
+  // Format and add login date cell
   const loginDateCell = document.createElement("div");
   const loginDate = new Date(user.login_date);
   loginDateCell.className = "table-cell";
@@ -151,12 +152,11 @@ function renderTableRow(user) {
 }
 
 // ==========================
-// 3. Pagination
+// Pagination
 // ==========================
 
-/**
- * Update pagination information.
- */
+// Updates the pagination information display
+// Shows current range of items and total count
 function updatePaginationInfo() {
   const startItem = (state.currentPage - 1) * state.itemsPerPage + 1;
   const endItem = Math.min(
@@ -170,12 +170,11 @@ function updatePaginationInfo() {
 }
 
 // ==========================
-// 4. Event Listeners
+// Event Handlers
 // ==========================
 
-/**
- * Add select-all functionality.
- */
+// Sets up the select-all checkbox functionality
+// Manages the state of all row checkboxes
 function addSelectAllFunctionality() {
   if (!selectAllCheckbox) {
     console.error("Select-all checkbox not found!");

@@ -1,4 +1,4 @@
-// Query DOM elements
+// Get references to all required DOM elements for the search interface
 const searchInput = document.getElementById("searchInput");
 const cafeFilter = document.getElementById("Cafe");
 const provinceFilter = document.getElementById("Province");
@@ -6,7 +6,8 @@ const districtFilter = document.getElementById("District");
 const locationsContainer = document.querySelector(".locations-container");
 const searchForm = document.querySelector(".filter-form");
 
-// State object
+// Maintain the current state of search filters
+// Uses '%' as wildcard for unselected filters
 const state = {
   searchTerm: "",
   cafe: "%",
@@ -14,7 +15,8 @@ const state = {
   district: "%"
 };
 
-// Fetch filter options from the server
+// Retrieves available filter options from the backend
+// Gets lists of cafe names, provinces, and districts
 async function fetchFilterOptions() {
   try {
     const response = await fetch("http://localhost:5000/api/filter-options", {
@@ -35,7 +37,8 @@ async function fetchFilterOptions() {
   }
 }
 
-// Populate filter dropdowns
+// Fills the dropdown menus with filter options
+// Maintains "All" as the default selection for each filter
 function populateFilterOptions(cafeNames, provinces, districts) {
   // Clear existing options except the default "All" option
   cafeFilter.innerHTML = '<option value="%" selected>All Cafes</option>';
@@ -67,7 +70,8 @@ function populateFilterOptions(cafeNames, provinces, districts) {
   });
 }
 
-// Fetch cafe data from the server
+// Fetches cafe data based on current search filters
+// Uses state object to track current filter values
 async function fetchCafeData() {
   try {
     const response = await fetch(`http://localhost:5000/api/cafes?search=${state.searchTerm}&cafe=${state.cafe}&province=${state.province}&district=${state.district}`, {
@@ -88,7 +92,8 @@ async function fetchCafeData() {
   }
 }
 
-// Render the cafe list dynamically
+// Creates and displays cafe cards based on search results
+// Shows "No cafes found" message if results are empty
 function renderCafeList(cafes) {
   locationsContainer.innerHTML = ""; // Clear existing content
 
@@ -127,28 +132,33 @@ function renderCafeList(cafes) {
   locationsContainer.appendChild(cardList);
 }
 
-// Event listeners
+// Event Listeners for Search and Filters
+// Updates state and refreshes results when search input changes
 searchInput.addEventListener("input", () => {
   state.searchTerm = searchInput.value.trim();
   fetchCafeData();
 });
 
+// Updates state and refreshes results when cafe filter changes
 cafeFilter.addEventListener("change", () => {
   state.cafe = cafeFilter.value;
   fetchCafeData();
 });
 
+// Updates state and refreshes results when province filter changes
 provinceFilter.addEventListener("change", () => {
   state.province = provinceFilter.value;
   fetchCafeData();
 });
 
+// Updates state and refreshes results when district filter changes
 districtFilter.addEventListener("change", () => {
   state.district = districtFilter.value;
   fetchCafeData();
 });
 
-// Handle form reset
+// Resets all filters to default values
+// Clears search and refreshes results
 searchForm.addEventListener("reset", () => {
   state.searchTerm = "";
   state.cafe = "%";
@@ -163,10 +173,11 @@ searchForm.addEventListener("reset", () => {
   fetchCafeData();
 });
 
-// Initialize
+// Initializes the page by loading filter options and initial cafe data
 async function initialize() {
   await fetchFilterOptions();
   await fetchCafeData();
 }
 
+// Start the application
 initialize(); 

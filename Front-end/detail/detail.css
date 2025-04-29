@@ -94,7 +94,7 @@
   font-weight: 600;
   cursor: pointer;
   position: absolute;
-  right: 360px;
+  right: 450px;
 }
 
 .contact-btn{
@@ -107,7 +107,7 @@
     font-weight: 600;
     cursor: pointer;
     position: absolute;
-    right: 500px;
+    right: 580px;
 }
 /* Main container */
 .cafe-detail {
@@ -382,11 +382,14 @@
 
 .hours-info {
   display: flex;
-  min-width: 240px;
-  padding-right: 59px;
-  align-items: stretch;
   gap: 26px;
-  width: 296px;
+  width: fit-content;
+}
+
+.contact-info {
+  display: flex;
+  gap: 26px;
+  width: fit-content;
 }
 
 .days-column {
@@ -401,7 +404,7 @@
   gap: 12px;
 }
 
-.clock-icon {
+.clock-icon, .phone-icon {
   aspect-ratio: 1;
   object-fit: contain;
   object-position: center;
@@ -552,7 +555,7 @@ button {
   border-radius: 8px;
   background-color:#dedee1;
   margin-bottom: auto;
-  margin-left: 22%;
+  margin-left: 10%;
   padding: auto;
   font-size: 12px;
   font-weight: 600;

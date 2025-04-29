@@ -1,7 +1,9 @@
-//Get Cafe Information Part 
+// Global variables for map functionality
 var map;
 var searchMarker;
 
+// Loads cafe details from the backend API using the cafe ID from URL
+// Fetches and displays all cafe information including images
 async function loadCafeDetails() {
     const params = new URLSearchParams(window.location.search);
     const cafeId = params.get("id");
@@ -36,11 +38,13 @@ async function loadCafeDetails() {
     }
 }
 
-
+// Updates the UI with cafe information and images
+// Sets up the image gallery with thumbnails
 function renderCafeDetails(cafe) {
     // Update details of cafe
-    document.querySelector(".cafe-name").textContent = cafe.branch
-    document.querySelector(".address-text").textContent = cafe.address
+    document.querySelector(".cafe-name").textContent = cafe.branch;
+    document.querySelector(".address-text").textContent = cafe.address;
+    document.querySelector(".phoneNum").textContent = cafe.contact;
     document.querySelector(".weekdays").textContent = `${cafe.open_hour} - ${cafe.close_hour}`;
 
     // Set CSS styles to preview gallery
@@ -61,8 +65,9 @@ function renderCafeDetails(cafe) {
     }
 }
 
+// Initializes the Leaflet map with default center at Bangkok
 function initMap() {
-    map = L.map('map').setView([13.7563, 100.5018], 14); // Set default center to Bangkok
+    map = L.map('map').setView([13.7563, 100.5018], 14);
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -70,7 +75,8 @@ function initMap() {
     }).addTo(map);
 }
 
-// Show map popup
+// Event handler for opening the map popup
+// Initializes map if not already done and searches for cafe location
 document.getElementById('open-map-btn').addEventListener('click', function () {
     document.getElementById('map-popup').style.display = 'flex';
 
@@ -83,11 +89,13 @@ document.getElementById('open-map-btn').addEventListener('click', function () {
     doSearch(window.address);
 });
 
-// Close map popup
+// Event handler for closing the map popup
 document.getElementById('close-map-btn').addEventListener('click', function () {
     document.getElementById('map-popup').style.display = 'none';
 });
 
+// Searches for cafe location using OpenStreetMap API
+// Uses multiple fallback searches if exact location not found
 async function doSearch() {
     try {
         console.log("Searching for: ", window.branch);
@@ -112,12 +120,12 @@ async function doSearch() {
             const lat = data[0].lat;
             const lon = data[0].lon;
 
-            // Set the map view to the new location (latitude, longitude)
+            // Set the map view to the new location
             map.setView([lat, lon], 15);
 
-            // Add a marker to the map at the searched location
+            // Update or create marker
             if (searchMarker) {
-                searchMarker.remove(); // Remove any previous marker
+                searchMarker.remove();
             }
 
             searchMarker = L.marker([lat, lon]).addTo(map)
@@ -125,7 +133,7 @@ async function doSearch() {
                 .openPopup();
 
         } else {
-            // If no results found for the branch, fallback to using the full address
+            // Fallback to branch name search
             console.log("Cafe not found, searching by Branch name: ", window.name);
 
             const addressFallbackUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(window.name)}`;
@@ -202,8 +210,8 @@ async function doSearch() {
             }
         }
     } catch (error) {
-        console.error("Error searching address:", error);
-        alert("Failed to search address.");
+        console.error("Error searching location:", error);
+        alert("Failed to find cafe location on map.");
     }
 }
 

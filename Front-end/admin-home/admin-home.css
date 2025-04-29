@@ -12,17 +12,21 @@
 body {
   font-family: 'Inter', sans-serif;
   background-color: #fff;
+  overflow: hidden;
+  height: 960%;
 }
 
 .layout-container {
   display: flex;
-  height: 100vh;
+  height: 100%;
+  width: 100%;
   gap: 20px;
 }
 
 /* Sidebar Styles */
 .sidebar-column {
   display: flex;
+  position: fixed;
   flex-direction: column;
   width: 30%;
   height: 100%;
@@ -31,16 +35,9 @@ body {
 .sidebar {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 0px;
-  isolation: isolate;
-
-  position: absolute;
+  position: fixed;
   width: 254px;
   height: 1024px;
-  left: 0px;
-  top: 0px;
-
   background: #BBBBBB;
 }
 
@@ -58,7 +55,6 @@ body {
 }
 
 .sidebar-menu {
-  z-index: 0;
   display: flex;
   width: 100%;
   max-width: 235px;
@@ -67,6 +63,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   color: #000;
+  gap: 5px;
 }
 
 .menu-item {
@@ -78,17 +75,10 @@ body {
   text-decoration: none;
   color: #000;
   border-radius: 10px;
+  border: 1px solid #868686;
 }
 
-.home-link {
-  color: #616161;
-  font-size: 20px;
-  line-height: 1.2;
-  letter-spacing: -0.2px;
-  align-self: stretch;
-}
-
-.active {
+#homeText {
   background-color: #868686;
 }
 
@@ -142,7 +132,7 @@ body {
   color: #343434;
   justify-content: center;
   left: 14px;
-  bottom: 24px;
+  bottom: 90px;
 }
 
 .signout-link {
@@ -151,14 +141,14 @@ body {
   padding: 12px 15px;
   align-items: center;
   gap: 12px;
+  border: 1px solid #000;
 }
 
 /* Content Styles */
 .content-column {
   display: flex;
-  flex-direction: column;
-  width: 78%;
-  margin-left: 20px;
+  margin-left: 25%;
+  flex: 1;
 }
 
 .profile-section {
@@ -167,6 +157,7 @@ body {
 
 .profile-container {
   display: flex;
+  gap: 200px;
 }
 
 .admin-title-column {
@@ -190,6 +181,7 @@ body {
   margin-left: 10px;
   font-size: 32px;
   font-weight: 800;
+  text-align: center;
 }
 
 .admin-profile-image {
@@ -201,15 +193,12 @@ body {
   margin-top: 57px;
 }
 
-.admin-details-column {
-  width: 73%;
-  margin-left: 20px;
-}
 
 .admin-details-container {
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
+  align-items: center;
+  margin-top: 80px;
 }
 
 .profile-picture-container {
@@ -366,6 +355,7 @@ body {
   font-size: 14px;
   font-weight: 400;
   white-space: nowrap;
+  text-align: center;
 }
 
 .edit-profile-button {

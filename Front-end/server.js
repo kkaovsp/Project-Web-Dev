@@ -20,6 +20,7 @@ app.use("/admin-login", express.static(path.join(__dirname, "admin-login")));
 app.use("/admin-home", express.static(path.join(__dirname, "admin-home")));
 app.use("/login-log", express.static(path.join(__dirname, "login-log")));
 app.use("/service-manage", express.static(path.join(__dirname, "service-manage")));
+app.use("/member", express.static(path.join(__dirname, "member")));
 app.use("/Image", express.static(path.join(__dirname, "Image")));
 
 // ==========================
@@ -72,16 +73,27 @@ app.get("/admin/login", (req, res) => {
  * Serves the admin home page
  */
 app.get("/admin/home", (req, res) => {
+  const adminId = req.query.id;
   res.sendFile(path.join(__dirname, "/", "admin-home/admin-home.html"));
   console.log("Admin home page requested");
 });
 
+/**
+ * Member Page Route
+ * Serves the member page
+ */
+app.get("/admin/members", (req, res) => {
+  const adminId = req.query.id;
+  res.sendFile(path.join(__dirname, "/", "member/member.html"));
+  console.log("Member page requested");
+});
 
 /**
  * Login Log Page Route
  * Serves the login log page
  */
 app.get("/admin/login-log", (req, res) => {
+  const adminId = req.query.id;
   res.sendFile(path.join(__dirname, "/", "login-log/login-log.html"));
   console.log("Login log page requested");
 });
@@ -91,6 +103,7 @@ app.get("/admin/login-log", (req, res) => {
  * Serves the service management page
  */
 app.get("/admin/management", (req, res) => {
+  const adminId = req.query.id;
   res.sendFile(path.join(__dirname, "/", "service-manage/service-manage.html"));
   console.log("Service management page requested");
 });
@@ -100,6 +113,7 @@ app.get("/admin/management", (req, res) => {
  * Serves the add new service page
  */
 app.get("/admin/management/add", (req, res) => {
+  const adminId = req.query.id;
   res.sendFile(path.join(__dirname, "/", "service-manage/add-new.html"));
   console.log("Add-new page requested");
 });
@@ -110,6 +124,7 @@ app.get("/admin/management/add", (req, res) => {
  */
 app.get('/admin/service-management/edit', (req, res) => {
   const cafeId = req.query.id;
+  const adminId = req.query.id;
   if (!cafeId) {
     return res.status(400).send('Cafe ID is required');
   }
